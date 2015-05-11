@@ -1,5 +1,5 @@
 === Chronosly Events Calendar ===
-Contributors: Heimsveld IPBN
+Contributors: heimsveld
 Plugin Name: Chronosly Events Calendar
 Author URI: http://www.chronosly.com
 Tags: calendar, calendars, events plugin, events calendar, events calendars, events list
@@ -40,11 +40,11 @@ With amazing functionalities and a upcoming wide selection of templates and addo
 
 or
 
-1- Go to 'Plugins' menu in WordPress
-2- Click 'Add new' on the top
-3- Click upload
-4- Select the Chronosly zip file and wait for upload
-5- Activate the plugin when uploads its ok
+1. Go to 'Plugins' menu in WordPress
+2. Click 'Add new' on the top
+3. Click upload
+4. Select the Chronosly zip file and wait for upload
+5. Activate the plugin when uploads its ok
 
 == License ==
 
