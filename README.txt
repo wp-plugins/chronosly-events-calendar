@@ -1,5 +1,5 @@
 === Chronosly Events Calendar ===
-Contributors: heimsveldipbn
+Contributors: heimsveld
 Plugin Name: Chronosly Events Calendar
 Author URI: http://www.chronosly.com
 Tags: calendar, calendars, event plugin, events plugin, event plugins, events plugins, event calendar, event calendars, events calendar, events calendars, event list, events list, event lists, events lists, online calendar, organizer, organizers, place, places, recurring events, responsive calendar, calendar shortcode, event shortcode, event calendar AJAX, events calendar AJAX, event calendars AJAX, events calendars AJAX, events calendars google map, event calendar google maps, events calendar google maps, event calendars google maps, events calendars google maps, event gmap, events gmap, event management, events management, event manager, events manager, event organizer, events organizer, event page, events page, event widget, events widget, kalender, kalenders, evento, eventos, calendario, calendarios, schedule, scheduling
@@ -19,7 +19,7 @@ With amazing functionalities and a upcoming wide selection of templates and addo
 == Screenshots ==
 
 1. Event listing, all events in 1 view
-2. Category listing, event listing category gruoped
+2. Category listing, event listing category grouped
 3. Event opened javascriot slide
 4. Event single page, internal page with custom url and extended info
 5. Places listing, Organizers & Places addon required
