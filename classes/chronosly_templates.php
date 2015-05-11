@@ -604,7 +604,7 @@ if(!class_exists('Chronosly_Templates')){
             $this->vars->vista = $vista;
             $this->vars->args = $args;
             $itid = $id;
-            if(isset($args["start"]) and isset($args["end"])) $itid .= "_{$args["start"]}_{$args["end"]}";
+            if(isset($args["start"]) and isset($args["end"]) and $args["start"] and $args["start"]) $itid .= "_{$args["start"]}_{$args["end"]}";
             //si lo tenemos en la cache lo pintamos, si no lo generamos y lo guardamos
 
             $path = CHRONOSLY_TEMPLATES_PATH.DIRECTORY_SEPARATOR;
@@ -1741,7 +1741,7 @@ if(!class_exists('Chronosly_Templates')){
             $path = CHRONOSLY_TEMPLATES_PATH.DIRECTORY_SEPARATOR;
             // foreach($dads as $tid){
             $template = str_replace(" ", "_",$template);
-            if(isset($args["start"]) and isset($args["end"])) $itid .= "_{$args["start"]}_{$args["end"]}";
+            if(isset($args["start"]) and isset($args["end"]) and $args["start"] and $args["start"]) $itid .= "_{$args["start"]}_{$args["end"]}";
 
             // if($style == "front" and $id =! 1 and  $html = Chronosly_Cache::load_item($itid, $vista)) {
             //    echo $html;
@@ -1754,7 +1754,9 @@ if(!class_exists('Chronosly_Templates')){
 
                 if(!$template) $template = $this->get_tipo_template($id, $vista);
                 if(!$template) $template = $vars['chronosly_template_default'];
-                if(isset($this->vars->metas["featured"][0]) and file_exists($path.$vista.DIRECTORY_SEPARATOR.$template."_featured.html")){
+                if(isset($this->vars->metas["featured"][0]) and $this->vars->metas["featured"][0] and file_exists($path.$vista.DIRECTORY_SEPARATOR.$template."_featured.html")){
+                                        echo "aqui";
+
                     $f = fopen($path.$vista.DIRECTORY_SEPARATOR.$template."_featured.html", "r");
                     $content = @fread($f, filesize($path.$vista.DIRECTORY_SEPARATOR.$template."_featured.html"));
                 }
