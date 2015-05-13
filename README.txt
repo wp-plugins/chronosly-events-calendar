@@ -34,25 +34,25 @@ Chronosly plugin was born from the need to make events management easy  for all 
 Chronosly has 15 different views options for your calendar and the display format depends on the type of template that has been applied. Events can be selected as Featured to give them major visibility with picture.
 
 
-Take a look at our <a target="_blank" href="http://default.chronosly.com/events/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2DefaultDEMO">Chronosly Live Demo</a> clicking on each view to appreciate view display:
+Take a look at our <a target="_new" href="http://default.chronosly.com/events/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2DefaultDEMO">Chronosly Live Demo</a> clicking on each view to appreciate view display:
 
-<a target="_blank" href="http://default.chronosly.com/events/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2DefaultEventList">Events list</a> - <a target="_blank" href="http://default.chronosly.com/events/ron-carter-big-band-2/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2DefaultSingreEvent">Single event view</a>
+<a target="_new" href="http://default.chronosly.com/events/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2DefaultEventList">Events list</a> // <a target="_new" href="http://default.chronosly.com/events/ron-carter-big-band-2/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2DefaultSingreEvent">Single event view</a>
 
-<a target="_blank" href="http://default.chronosly.com/calendar/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2CalendarYear" >Calendar year</a> - <a target="_blank" href="http://default.chronosly.com/calendar/year_2015/month_5/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2CalendarMonth">Calendar month</a> - <a target="_blank" href="http://default.chronosly.com/calendar/year_2015/week_20/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Week">Calendar week</a>
+<a target="_new" href="http://default.chronosly.com/calendar/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2CalendarYear" >Calendar year</a> // <a target="_new" href="http://default.chronosly.com/calendar/year_2015/month_5/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2CalendarMonth">Calendar month</a> // <a target="_new" href="http://default.chronosly.com/calendar/year_2015/week_20/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Week">Calendar week</a>
 
-<a target="_blank" href="http://default.chronosly.com/event_categories/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2CategoryList">All categories list view</a> - <a target="_blank" href="http://default.chronosly.com/event_categories/jazz-en/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2SingleCategory">Single category view</a>
+<a target="_new" href="http://default.chronosly.com/event_categories/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2CategoryList">All categories list view</a> // <a target="_new" href="http://default.chronosly.com/event_categories/jazz-en/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2SingleCategory">Single category view</a>
 
 
 **ONLY AVAILABLE WITH ORGANIZERS & PLACES ADDON OR FULL VERSION**
 
-<a target="_blank" href="http://default.chronosly.com/organizers/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2OrganizersList">All organizers list view</a> - <a target="_blank" href="http://default.chronosly.com/organizers/sound-productions-2/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2SingleOrzanizer">Single organizer view</a>
+<a target="_new" href="http://default.chronosly.com/organizers/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2OrganizersList">All organizers list view</a> // <a target="_new" href="http://default.chronosly.com/organizers/sound-productions-2/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2SingleOrzanizer">Single organizer view</a>
 
-<a target="_blank" href="http://default.chronosly.com/places/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2PlacesList">All places list view</a> - <a target="_blank" href="http://default.chronosly.com/places/heimsveld-ipbn-2/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2SinglePlace">Single place view</a>
+<a target="_new" href="http://default.chronosly.com/places/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2PlacesList">All places list view</a> // <a target="_new" href="http://default.chronosly.com/places/heimsveld-ipbn-2/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2SinglePlace">Single place view</a>
 
 
 
 = 100% RESPONSIVE =
-All Chronosly versions are always <a target="_blank" href="http://www.chronosly.com/blog/responsive-design/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Responsive">100% responsive</a> with layout for main screen solutions, especially for iOS and Android on mobile devices
+All Chronosly versions are always <a target="_new" href="http://www.chronosly.com/blog/responsive-design/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Responsive">100% responsive</a> with layout for main screen solutions, especially for iOS and Android on mobile devices
 
 
 
@@ -63,29 +63,29 @@ Also all Templates and Addons sold in our Marketplaces were created to be 100% c
 
 Chronosly plugin includes DEFAULT TEMPLATE with FREE and FULL plugin versions.
 
-Additional templates are available on <a target="_blank" href="http://www.chronosly.com/templates/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2TemplateMKTplace">Templates Marketplace</a>, to match  your project needs better  (colour, style, ticketing, etc)
+Additional templates are available on <a target="_new" href="http://www.chronosly.com/templates/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2TemplateMKTplace">Templates Marketplace</a>, to match  your project needs better  (colour, style, ticketing, etc)
 
 
 **Addons: Enhance Chronosly features**
 
 Chronosly includes FREE major event features that can be completed with extra Addons
 
-Buy additional addons on <a target="_blank" href="http://www.chronosly.com/addons/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2AddonsMKTplace">Addons Marketplace</a> and allow your users to FILTER & SORT, SUBMIT EVENTS, SOCIAL MEDIA SHARE,…and much more.
+Buy additional addons on <a target="_new" href="http://www.chronosly.com/addons/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2AddonsMKTplace">Addons Marketplace</a> and allow your users to FILTER & SORT, SUBMIT EVENTS, SOCIAL MEDIA SHARE,…and much more.
 
 
 
 = SHORTCODES =
-<a target="_blank" href="http://www.chronosly.com/faq/frontend/shortcodes/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Shortcodes">Chronosly Shortcodes</a> are available for Events, Calendars, Templates and allow Chronosly elements to be easily attached, like event list or multiple event list, applying different templates in each one.
+<a target="_new" href="http://www.chronosly.com/faq/frontend/shortcodes/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Shortcodes">Chronosly Shortcodes</a> are available for Events, Calendars, Templates and allow Chronosly elements to be easily attached, like event list or multiple event list, applying different templates in each one.
 
 *(Organizers and Places ONLY AVAILABLE WITH ORGANIZERS & PLACES ADDON OR FULL VERSION)*
 
 
 = WIDGETS =
-<a target="_blank" href="http://www.chronosly.com/faq/frontend/new-widgets/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Widgets">Chronosly Widgets</a> are very useful to highlight some of your events, calendars or other elements information through sidebar.
+<a target="_new" href="http://www.chronosly.com/faq/frontend/new-widgets/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Widgets">Chronosly Widgets</a> are very useful to highlight some of your events, calendars or other elements information through sidebar.
 
 *(Organizers and Places ONLY AVAILABLE WITH ORGANIZERS & PLACES ADDON OR FULL VERSION)*
 
-Check Live Widgets DEMO for <a target="_blank" href="http://default.chronosly.com/es/widgets-front/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2DefaultDEMOWidgets">Default Template</a>  or <a target="_blank" href="http://grid.chronosly.com/es/widgets-front/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2GridDEMOWidgets">Grid Template</a>.
+Check Live Widgets DEMO for <a target="_new" href="http://default.chronosly.com/es/widgets-front/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2DefaultDEMOWidgets">Default Template</a>  or <a target="_new" href="http://grid.chronosly.com/es/widgets-front/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2GridDEMOWidgets">Grid Template</a>.
 
 
 = Native Integrated for WORDPRESS and other plugins Compatibility =
@@ -94,30 +94,25 @@ Chronosly was developed using **WordPress custom post types** making it possible
 
 
 = MULTIPLE LANGUAGES =
-Fully integrated with <a target="_blank" href="http://www.chronosly.com/faq/other-useful-faq/translations-languages/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Languages">WORDPRESS MULTIPLE LANGUAGES</a>.
+Fully integrated with <a target="_new" href="http://www.chronosly.com/faq/other-useful-faq/translations-languages/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Languages">WORDPRESS MULTIPLE LANGUAGES</a>.
 
 Chronosly was developed with Localize compatible with most of the Language Plugins:
 
-* Loco Translate – Free (recommended)
-
-* WPML
-
-* qTranslate - Free
-
-* Polylang
-
-* Poedit
-
-* And many others...
+ * Loco Translate – Free (recommended)
+ * WPML
+ * qTranslate - Free
+ * Polylang
+ * Poedit
+ * And many others...
 
 
 Also, Chronosly already has been translated to:
 
-English (default) - Italian - Spanish - Catalan
+English (default) / Italian / Spanish / Catalan
 
 Other languages being translated:
 
-French - Deutsch - Portuguese
+French / Deutsch / Portuguese
 
 
 
@@ -130,7 +125,7 @@ Create as many categories as you want without restrictions.
 
 
 = RECURRING EVENTS =
-Wide set up options for <a target="_blank" href="http://www.chronosly.com/faq/events/date/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2RecurringEvents">recurring events</a>.
+Wide set up options for <a target="_new" href="http://www.chronosly.com/faq/events/date/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2RecurringEvents">recurring events</a>.
 
 Repeating events saves you the time it would take to create multiple separate events and let’s you change all events in the series at once.
 
@@ -159,7 +154,7 @@ We are here to help you, we are here to solve problems.
 
 = FULL VERSION - TEMPLATE CUSTOMIZATION =
 
-<a target="_blank" href="http://www.chronosly.com/pricing/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Pricing">Chronosly FULL VERSION</a> also offers **tools to become a powerful WordPress FULL EDITABLE event calendar** plugin for advanced users.
+<a target="_new" href="http://www.chronosly.com/pricing/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Pricing">Chronosly FULL VERSION</a> also offers **tools to become a powerful WordPress FULL EDITABLE event calendar** plugin for advanced users.
 
 Chronosly features as **HTML Templates** and Drag and Drop system tools allow developers and users with programming skills to customize all templates without restrictions.
 
