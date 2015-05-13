@@ -1,25 +1,173 @@
 === Chronosly Events Calendar ===
-Contributors: heimsveld
+Contributors: heimsveldipbn
 Plugin Name: Chronosly Events Calendar
 Author URI: http://www.chronosly.com
 Tags: calendar, calendars, event plugin, events plugin, event plugins, events plugins, event calendar, event calendars, events calendar, events calendars, event list, events list, event lists, events lists, online calendar, organizer, organizers, place, places, recurring events, responsive calendar, calendar shortcode, event shortcode, event calendar AJAX, events calendar AJAX, event calendars AJAX, events calendars AJAX, events calendars google map, event calendar google maps, events calendar google maps, event calendars google maps, events calendars google maps, event gmap, events gmap, event management, events management, event manager, events manager, event organizer, events organizer, event page, events page, event widget, events widget, kalender, kalenders, evento, eventos, calendario, calendarios, schedule, scheduling
 Requires at least: 3.1
 Tested up to: 4.2
-Stable tag: 2.0.5
+Stable tag: 2.0.4
 License: GPLv2
 
 Elegant event list display, easy-to-use interface with major event features included. 100% responsive and extensible with templates and addons.
 
 == Description ==
-Chronosly is designed to suit all users, designers, software developers and basic users.
-Basic users, can apply a template and just upload events easily.
-Advanced users, designers and developers, can take control of everything, make their own templates or edit the predefined ones with our editing Drag & Drop system. Only in Chronosly full version.
-With amazing functionalities and a upcoming wide selection of templates and addons to enhance features.
+Chronosly plugin was born from the need to make events management easy  for all users with an easy integration and a wide range of customization options.
+
+= Features include: =
+
+* Elegant Event List Display (15 different views available)
+* Extensible with Templates and Addons
+* HTML Templates for 
+* Shortcodes
+* Widgets
+* Native integrated with WORDPRESS and Other Plugins
+* Fully integrated with WORDPRESS MULTIPLE LANGUAGES
+* Unlimited Categories
+* Recurring Events
+* Google Maps Events Integration
+* URL Customization (URL friendly)
+* 5 STARS Customer Support
+* FULL VERSION with Template Customization Tools FOR 30$
+
+
+= ELEGANT EVENT LIST DISPLAY =
+Chronosly has 15 different views options for your calendar and the display format depends on the type of template that has been applied. Events can be selected as Featured to give them major visibility with picture.
+
+
+Take a look at our [Chronosly Live Demo](http://default.chronosly.com/events/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2DefaultDEMO “Chronosly Live Demo”) clicking on each view to appreciate view display:
+
+[Events list](http://default.chronosly.com/events/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2DefaultEventList “Chronosly Event List Live Demo”)
+[Single event view](http://default.chronosly.com/events/ron-carter-big-band-2/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2DefaultSingreEvent “Chronosly Single Event View”)
+
+[Calendar year](http://default.chronosly.com/calendar/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2CalendarYear “Chronosly Year View Calendar”)
+[Calendar month](http://default.chronosly.com/calendar/year_2015/month_5/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2CalendarMonth “Chronosly Month View Calendar”)
+[Calendar week](http://default.chronosly.com/calendar/year_2015/week_20/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Week “Chronosly Week View Calendar”)
+
+[All categories list view](http://default.chronosly.com/event_categories/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2CategoryList “Chronosly All Category List View”)
+[Single category view](http://default.chronosly.com/event_categories/jazz-en/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2SingleCategory “Chronosly Single Category View”)
+
+
+**ONLY AVAILABLE WITH ORGANIZERS & PLACES ADDON OR FULL VERSION**
+[All organizers list view](http://default.chronosly.com/organizers/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2OrganizersList “Chronosly All Organizers List View”)
+[Single organizer view](http://default.chronosly.com/organizers/sound-productions-2/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2SingleOrzanizer “Chronosly Single Organizer View”)
+
+[All places list view](http://default.chronosly.com/places/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2PlacesList “Chronosly All Places List View”)
+[Single place view](http://default.chronosly.com/places/heimsveld-ipbn-2/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2SinglePlace “Chronosly Single Place View”)
+
+
+
+= 100% RESPONSIVE =
+All Chronosly versions are always [100% responsive](http://www.chronosly.com/blog/responsive-design/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Responsive “Chronosly 100% Responsive”) with layout for main screen solutions, especially for iOS and Android on mobile devices
+
+
+
+= EXTENSIBLE WITH TEMPLATES AND ADDONS =
+Also all Templates and Addons sold in our Marketplaces were created to be 100% compatible with other plugins and nearly all themes in the market.
+
+**Templates: The right template for your project**
+Chronosly plugin includes DEFAULT TEMPLATE with FREE and FULL plugin versions.
+ 
+Additional templates are available on [Templates Marketplace](http://www.chronosly.com/templates/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2TemplateMKTplace “Chronosly Templates Marketplace”), to match  your project needs better  (colour, style, ticketing, etc)
+
+
+**Addons: Enhance Chronosly features**
+Chronosly includes FREE major event features that can be completed with extra Addons
+
+Buy additional addons on [Addons Marketplace](http://www.chronosly.com/addons/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2AddonsMKTplace “Chronosly Addons Marketplace”) and allow your users to FILTER & SORT, SUBMIT EVENTS, SOCIAL MEDIA SHARE,…and much more.
+
+
+
+= SHORTCODES =
+[Chronosly Shortcodes](http://www.chronosly.com/faq/frontend/shortcodes/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Shortcodes “Chronosly Shortcodes”) are available for Events, Calendars, Templates and allow Chronosly elements to be easily attached, like event list or multiple event list, applying different templates in each one.
+
+*(Organizers and Places ONLY AVAILABLE WITH ORGANIZERS & PLACES ADDON OR FULL VERSION)*
+
+
+=WIDGETS=
+[Chronosly Widgets](http://www.chronosly.com/faq/frontend/new-widgets/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Widgets “Chronosly Widgets”) are very useful to highlight some of your events, calendars or other elements information through sidebar.
+
+*(Organizers and Places ONLY AVAILABLE WITH ORGANIZERS & PLACES ADDON OR FULL VERSION)*
+
+Check Live Widgets DEMO for [Default Template](http://default.chronosly.com/es/widgets-front/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2DefaultDEMOWidgets “Chronosly Default Template Widgets”) or [Grid Template](http://grid.chronosly.com/es/widgets-front/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2GridDEMOWidgets “Chronosly Grid Template Widgets”).
+
+
+= Native Integrated for WORDPRESS and other plugins Compatibility =
+Chronosly was developed using **WordPress custom post types** making it possible to adapt to the vast majority of plugins.
+
+
+
+= MULTIPLE LANGUAGES =
+Fully integrated with [WORDPRESS MULTIPLE LANGUAGES](http://www.chronosly.com/faq/other-useful-faq/translations-languages/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Languages “Chronosly Languages”).
+
+Chronosly was developed with Localize compatible with most of the Language Plugins:
+
+*Loco Translate – Free (recommended)
+*WPML
+*qTranslate - Free
+*Polylang
+*Poedit
+*And many others...
+
+
+Also, Chronosly already has been translated to:
+
+*English (default)
+*Italian
+*Spanish
+*Catalan
+
+Other languages being translated:
+
+*French
+*Deutsch
+*Portuguese
+ 
+
+
+
+= OTHER USEFULL CHRONOSLY FEATURES: =
+
+=UNLIMITED CATEGORIES=
+Create as many categories as you want without restrictions.
+
+
+
+= RECURRING EVENTS =
+Wide set up options for [recurring events](http://www.chronosly.com/faq/events/date/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2RecurringEvents “Chronosly Recurring Events”).
+
+Repeating events saves you the time it would take to create multiple separate events and let’s you change all events in the series at once.
+
+
+= URL CUSTOMIZATION (URL friendly) =
+Chronosly URL's can be  customized on Event, Organizer, Place, Calendar, Category, and Tag through slugs. This might help users to identify content and Search Engines to index content as well for SEO purposes.
+
+
+
+= GOOGLE MAPS events Integration =
+*(ONLY AVAILABLE WITH ORGANIZERS & PLACES ADDON OR FULL VERSION)*
+Create all places where your events will take place.
+
+This feature allows users to Filter you events by Place Name, City and Place near to user
+*(FILTER AND SORT ADDON IS AVAILABLE IN MARKETPLACE)*
+
+
+
+= 5 STARS CUSTOMER SUPPORT =
+Our mission has been from the start to  rise client satisfaction. We have all reasons to think that we have accomplished this purpose, **9 out of 10 of our reviews praise our Client support**.
+
+We are here to help you, we are here to solve problems.
+
+
+
+= FULL VERSION - TEMPLATE CUSTOMIZATION =
+*[Chronosly FULL VERSION](http://www.chronosly.com/pricing/?utm_source=wordpress.com&utm_medium=referral&utm_campaign=WP2Pricing “Chronosly FREE vs. FULL version”)* also offers tools to become a powerful WordPress FULL EDITABLE event calendar plugin for advanced users. 
+
+Chronosly features as HTML Templates and Drag and Drop system tools allow developers and users with programming skills to customize all templates without restrictions.
 
 == Screenshots ==
 
 1. Event listing, all events in 1 view
-2. Category listing, event listing category grouped
+2. Category listing, event listing category gruoped
 3. Event opened javascriot slide
 4. Event single page, internal page with custom url and extended info
 5. Places listing, Organizers & Places addon required
