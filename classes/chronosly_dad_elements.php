@@ -1351,7 +1351,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                 break;
             }
 
-            if ($lorem) {
+            if ($lorem and (stripos($vars->metas["ev-from"][0], "'lorem'") !== FALSE or stripos($vars->metas["ev-to"][0], "'lorem'") !== FALSE)) {
                 $cont.= "<span class='lorem'></span>";
             }
 
