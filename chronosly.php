@@ -3,7 +3,7 @@
  * Plugin Name: Chronosly Events Calendar Lite
  * Plugin URI: http://www.chronosly.com
  * Description: Chronosly is one of the plugins you have always dreamt about. Designed to suit all users (basic, designers, and software developers). Choose your template and you are ready to publish your events. Install addons to enhance the preset plugin features. You can get a wide selection of templates and addons in our marketplace
- * Version: 2.0.5
+ * Version: 2.0.6
  * Author: Heimsveld IPBN
  * Author URI: http://www.heimsveld.com
  * Requires at least: 3.1
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 define('CHRONOSLY_PATH', dirname(__FILE__));//path para los includes
 define('CHRONOSLY_URL',  plugin_dir_url(__FILE__) ); //path para incluir scripts o css
 define('CHRONOSLY_DEBUG', false); //debug mode
-define('CHRONOSLY_VERSION', "2.0.5"); //debug mode
+define('CHRONOSLY_VERSION', "2.0.6"); //debug mode
 define('CHRONOSLY_ADMIN_INTERFACE', 1);  //Todo: hacer diferentes interficies de admin simple o varios event
 define('CHRONOSLY_ADMIN_MODALITY', 1);  //Todo: hacer diferentes modalidades segun la tematica
 define("CHRONOSLY_ADMIN_ROLE", 'administrator'); //role del admin

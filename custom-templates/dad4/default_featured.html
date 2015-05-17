@@ -154,9 +154,9 @@
 
                            <div class='sortable'>
                               
-                           <div class='ev-item event_title'  style='width:99.112426035503%;clear:none;float:left;color:#000000;font-size:20px;line-height:24px;text-transform:uppercase;'>
-                              <div class='ev-data event_title'>
-                                             {{event_title}}
+                           <div class='ev-item place_name'  style='height:auto;width:99.0228013029316%;clear:none;float:left;color:#000000;font-size:20px;line-height:24px;text-transform:uppercase;'>
+                              <div class='ev-data place_name'>
+                                                <span class='ch-place-{{place_id | id 0}}'>{{place_name | id 0  | filter the_title}}</span>
                                 </div>
                            
                                <div class='ch-clear'></div>
@@ -231,7 +231,7 @@
                            </div>
                            <div class='ev-item share_box'  style='color:#fff;'>
                               <div class='ev-data share_box'>
-                                                {{share_box | defaultchecked 1 | share_fb 1 | share_tw 1 | share_in 1 | share_go 1 | share_pi 1 | share_ics 1}}
+                                             {{share_box | share_fb  | share_tw  | share_in  | share_go  | share_pi  | share_ics }}
                                 </div>
                            
                                <div class='ch-clear'></div>
