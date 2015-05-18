@@ -158,6 +158,58 @@ if(!class_exists('Chronosly_Extend'))
 
         }
 
+        public function plugin_updated(){
+            $file = CHRONOSLY_ADDONS_PATH.DIRECTORY_SEPARATOR."version.json";
+            if ($f = @fopen($file, "r")) {
+                $version =@fread($f, filesize($file));
+                @fclose($f);
+               return $version != CHRONOSLY_VERSION;
+
+            } else {
+                $f = @fopen($file, "w+");
+                fwrite($f, CHRONOSLY_VERSION);
+                @fclose($f);
+                return true;
+            }
+        }
+
+        public function copy_default_template(){
+            $utils = new Chronosly_Utils();
+            $files = scandir (CHRONOSLY_PATH.DIRECTORY_SEPARATOR."custom-templates");
+            foreach ( $files as $file ) {
+                if ($file != "." && $file != ".."){
+                    $utils->rcopy( CHRONOSLY_PATH.DIRECTORY_SEPARATOR."custom-templates/$file", CHRONOSLY_TEMPLATES_PATH.DIRECTORY_SEPARATOR."$file" );
+                }
+            }
+
+        }
+
+        public function rebuild_addons_files(){
+            $utils = new Chronosly_Utils();
+            if(is_dir(CHRONOSLY_ADDONS_PATH.DIRECTORY_SEPARATOR."organizers_and_places")){
+                $files = scandir ( CHRONOSLY_ADDONS_PATH.DIRECTORY_SEPARATOR."organizers_and_places");
+                foreach ( $files as $file ) {
+                    if ($file != "." && $file != ".."){
+                        $utils->rcopy ( CHRONOSLY_ADDONS_PATH.DIRECTORY_SEPARATOR."organizers_and_places/$file", CHRONOSLY_PATH."/$file" );
+                    }
+                }
+                // $utils->rrmdir( $destination_path.DIRECTORY_SEPARATOR."organizers_and_places");
+                $settings = unserialize(get_option("chronosly-settings"));
+                $settings["chronosly_organizers_addon"] = 1;
+                $settings["chronosly_places_addon"] = 1;
+                update_option('chronosly-settings', serialize($settings));
+            }
+            if(is_dir(CHRONOSLY_ADDONS_PATH.DIRECTORY_SEPARATOR."extended_marketplace")) {
+                $files = scandir ( CHRONOSLY_ADDONS_PATH.DIRECTORY_SEPARATOR."extended_marketplace");
+                foreach ( $files as $file ) {
+                    if ($file != "." && $file != ".."){
+                        $utils->rcopy ( CHRONOSLY_ADDONS_PATH.DIRECTORY_SEPARATOR."extended_marketplace/$file",  CHRONOSLY_PATH."/$file" );
+                    }
+                }
+            }
+
+        }
+
 
         //Cuando un template se actualiza se pierden los añadidos de los addons
         public function rebuild_template_addons($template){
@@ -219,6 +271,7 @@ if(!class_exists('Chronosly_Extend'))
                 break;
                 case "templates":
                     $path = CHRONOSLY_TEMPLATES_PATH;
+
                 break;
             }
 
@@ -513,13 +566,13 @@ if(!class_exists('Chronosly_Extend'))
 
         //cargamos los init de la carpeta addons
         private static function init_addons(){
-            $addonspath = CHRONOSLY_PATH.DIRECTORY_SEPARATOR."addons".DIRECTORY_SEPARATOR;
+            $addonspath = CHRONOSLY_ADDONS_PATH;
             if ($handle = opendir($addonspath)) {
                 while (false !== ($entry = readdir($handle))) {
-                    if($entry != "." and $entry != ".." and is_dir($addonspath.$entry)) {
-                        if ($handle2 = opendir($addonspath.$entry)) {
+                    if($entry != "." and $entry != ".." and is_dir($addonspath.DIRECTORY_SEPARATOR.$entry)) {
+                        if ($handle2 = opendir($addonspath.DIRECTORY_SEPARATOR.$entry)) {
                             while (false !== ($entry2 = readdir($handle2))) {
-                                if($entry2 == "init.php") require_once($addonspath.$entry.DIRECTORY_SEPARATOR."init.php");
+                                if($entry2 == "init.php") require_once($addonspath.DIRECTORY_SEPARATOR.$entry.DIRECTORY_SEPARATOR."init.php");
                             }
                             closedir($handle2);
 

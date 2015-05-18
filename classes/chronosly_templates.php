@@ -73,7 +73,7 @@ if(!class_exists('Chronosly_Templates')){
                     if($entry != "." and $entry != ".." and $entry != "") {
                         if(is_dir( CHRONOSLY_TEMPLATES_PATH.DIRECTORY_SEPARATOR."css".DIRECTORY_SEPARATOR.$entry)) continue;
                          $name =  str_replace(".css", "", $entry);
-                        wp_register_style( "chronosly_$name", CHRONOSLY_URL.'custom-templates/css/'.$name.'.css');
+                        wp_register_style( "chronosly_$name", CHRONOSLY_TEMPLATES_URL.'/css/'.$name.'.css');
                         wp_enqueue_style("chronosly_$name");
                     }
 
@@ -85,7 +85,7 @@ if(!class_exists('Chronosly_Templates')){
         }
 
         public function set_shortcode_template_css($template="default"){
-            wp_register_style( "chronosly_$template", CHRONOSLY_URL.'custom-templates/css/'.$template.'.css');
+            wp_register_style( "chronosly_$template", CHRONOSLY_TEMPLATES_URL.'/css/'.$template.'.css');
             wp_print_styles("chronosly_$template");
 
 

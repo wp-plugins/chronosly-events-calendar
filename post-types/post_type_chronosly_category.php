@@ -63,7 +63,7 @@ if(!class_exists('Post_Type_Chronosly_Category'))
                     wp_register_script( 'chronosly-gmap', 'http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false', array( 'jquery' ));
                     wp_enqueue_script( 'chronosly-gmap');
                 }
-               
+
                wp_enqueue_script( 'jquery-ui-core');
                 wp_enqueue_script( 'jquery-ui-datepicker');
 
@@ -127,7 +127,7 @@ if(!class_exists('Post_Type_Chronosly_Category'))
 						'add_new' =>  __("Add new category", "chronosly"),
 						'add_new_item' =>  __("Add new category", "chronosly"),
 						'view_item' =>  __("View category", "chronosly"),
-						
+
 
     				),
 					'hierarchical' => true,
@@ -155,7 +155,7 @@ if(!class_exists('Post_Type_Chronosly_Category'))
                     'has_archive' => true,
     				'public' => true,
 					'sort' => true,
-    				
+
     			)
     		);
             add_rewrite_rule($slug.'/?$','index.php?chronosly_category=list_all_cats','top');
@@ -164,7 +164,7 @@ if(!class_exists('Post_Type_Chronosly_Category'))
                 flush_rewrite_rules();
                 $Post_Type_Chronosly->settings['chronosly-cats-flushed'] = 1;
                 update_option('chronosly-settings', serialize($Post_Type_Chronosly->settings));
-            
+
             }
            // add_filter( 'map_meta_cap', array("Post_Type_Chronosly",'chronosly_map_meta_cap'), 10, 4 );
             add_filter( 'template_include', array("Post_Type_Chronosly",'chronosly_templates') );
@@ -175,7 +175,7 @@ if(!class_exists('Post_Type_Chronosly_Category'))
     	 */
     	public function save_post($post_id)
     	{
-            // verify if this is an auto save routine. 
+            // verify if this is an auto save routine.
             // If it is our form has not been submitted, so we dont want to do anything
             if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
             {
@@ -304,7 +304,7 @@ if(!class_exists('Post_Type_Chronosly_Category'))
                     );
                     //drag and drop 11
                     //get custom templates
-                    if ($handle = opendir(CHRONOSLY_PATH.DIRECTORY_SEPARATOR."custom-templates".DIRECTORY_SEPARATOR."dad11".DIRECTORY_SEPARATOR)) {
+                    if ($handle = opendir(CHRONOSLY_TEMPLATES_PATH.DIRECTORY_SEPARATOR."dad11".DIRECTORY_SEPARATOR)) {
 
                         while (false !== ($entry = readdir($handle))) {
                             if($entry != "." and $entry != "..") $custom_templates[] = str_replace(".php", "",$entry);
@@ -342,7 +342,7 @@ if(!class_exists('Post_Type_Chronosly_Category'))
 
 
         }
-			
+
     	/**
     	 * hook into WP's add_meta_boxes action hook
     	 */
@@ -395,7 +395,7 @@ if(!class_exists('Post_Type_Chronosly_Category'))
                     );
                     //drag and drop 7
                     //get custom templates
-                    if ($handle = opendir(CHRONOSLY_PATH.DIRECTORY_SEPARATOR."custom-templates".DIRECTORY_SEPARATOR."dad11".DIRECTORY_SEPARATOR)) {
+                    if ($handle = opendir(CHRONOSLY_TEMPLATES_PATH.DIRECTORY_SEPARATOR."dad11".DIRECTORY_SEPARATOR)) {
 
                         while (false !== ($entry = readdir($handle))) {
                             if($entry != "." and $entry != "..") $custom_templates[] = str_replace(".php", "",$entry);

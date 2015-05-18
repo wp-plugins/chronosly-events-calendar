@@ -31,7 +31,7 @@
                     } else {
                         WP_Filesystem();
                         $destination_path = CHRONOSLY_ADDONS_PATH;
-                        if(stripos($upload['file'], "organizers_and_places") !== FALSE or stripos($upload['file'], "extended_marketplace") !== FALSE) $destination_path = CHRONOSLY_PATH;
+                        // if(stripos($upload['file'], "organizers_and_places") !== FALSE or stripos($upload['file'], "extended_marketplace") !== FALSE) $destination_path = CHRONOSLY_PATH;
                         $upload['file'] = str_replace(array("/", "\\"), DIRECTORY_SEPARATOR, $upload['file']);
                         $unzipfile = unzip_file( $upload['file'], $destination_path);
 
@@ -42,10 +42,10 @@
                                 $files = scandir ( $destination_path.DIRECTORY_SEPARATOR."organizers_and_places");
                                 foreach ( $files as $file ) {
                                     if ($file != "." && $file != ".."){
-                                        $utils->rcopy ( $destination_path.DIRECTORY_SEPARATOR."organizers_and_places/$file", $destination_path.DIRECTORY_SEPARATOR."$file" );
+                                        $utils->rcopy ( $destination_path.DIRECTORY_SEPARATOR."organizers_and_places/$file", CHRONOSLY_PATH."/$file" );
                                     }
                                 }
-                                $utils->rrmdir( $destination_path.DIRECTORY_SEPARATOR."organizers_and_places");
+                                // $utils->rrmdir( $destination_path.DIRECTORY_SEPARATOR."organizers_and_places");
                                 $settings = unserialize(get_option("chronosly-settings"));
                                 $settings["chronosly_organizers_addon"] = 1;
                                 $settings["chronosly_places_addon"] = 1;
@@ -55,10 +55,10 @@
                                 $files = scandir ( $destination_path.DIRECTORY_SEPARATOR."extended_marketplace");
                                 foreach ( $files as $file ) {
                                     if ($file != "." && $file != ".."){
-                                        $utils->rcopy ( $destination_path.DIRECTORY_SEPARATOR."extended_marketplace/$file", $destination_path.DIRECTORY_SEPARATOR."$file" );
+                                        $utils->rcopy ( $destination_path.DIRECTORY_SEPARATOR."extended_marketplace/$file",  CHRONOSLY_PATH."/$file" );
                                     }
                                 }
-                                $utils->rrmdir( $destination_path.DIRECTORY_SEPARATOR."extended_marketplace");
+                                // $utils->rrmdir( $destination_path.DIRECTORY_SEPARATOR."extended_marketplace");
                             }
                             unlink( $upload['file'] );
                             $names = explode(DIRECTORY_SEPARATOR,  $upload['file']);

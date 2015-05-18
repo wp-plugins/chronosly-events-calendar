@@ -71,6 +71,7 @@ if (!class_exists('Post_Type_Chronosly')) {
 
 
 
+
         } // END public function init()
 
         function add_admin_scripts( $hook ) {
