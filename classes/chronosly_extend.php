@@ -162,8 +162,15 @@ if(!class_exists('Chronosly_Extend'))
             $file = CHRONOSLY_ADDONS_PATH.DIRECTORY_SEPARATOR."version.json";
             if ($f = @fopen($file, "r")) {
                 $version =@fread($f, filesize($file));
-                @fclose($f);
-               return $version != CHRONOSLY_VERSION;
+                if($version != CHRONOSLY_VERSION) {
+                	$f = @fopen($file, "w+");
+		       		fwrite($f, CHRONOSLY_VERSION);
+		            @fclose($f);
+		            return true;
+               	}
+                 @fclose($f);
+                 return false;
+                
 
             } else {
                 $f = @fopen($file, "w+");
