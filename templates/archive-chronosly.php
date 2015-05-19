@@ -130,7 +130,7 @@ echo '<div class="chronosly-closure">';
          <a href="<?php  echo $Post_Type_Chronosly->settings["chronosly-calendar-url"]; ?>" class="icon-calendar"></a></div>
 
     <?php } else { ?>
-            <a href="<?php  echo (get_option('permalink_structure')?get_post_type_archive_link( 'chronosly_calendar' )."year_".date("Y")."/month_".date("n")."/":get_site_url()."/?post_type=chronosly_calendar&y=".date("Y")."&mo=".date("n")); ?>" class="icon-calendar"></a></div>
+            <a href="<?php  echo (get_option('permalink_structure')?get_post_type_archive_link( 'chronosly_calendar' )."/year_".date("Y")."/month_".date("n")."/":get_site_url()."/?post_type=chronosly_calendar&y=".date("Y")."&mo=".date("n")); ?>" class="icon-calendar"></a></div>
 <?php    }
 }
 if(!isset($_REQUEST["shortcode"]) or (isset($_REQUEST["shortcode"]) and isset($_REQUEST["before_events"]))) do_action("chronosly-before-events", $stilo);
