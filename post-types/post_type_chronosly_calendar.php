@@ -817,7 +817,7 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
         }
 
        public static function get_permalink(){
-           return get_post_type_archive_link( 'chronosly_calendar' );
+           return get_post_type_archive_link( 'chronosly_calendar' )."/";
 
        }
 
