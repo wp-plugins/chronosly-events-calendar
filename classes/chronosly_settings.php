@@ -312,16 +312,18 @@ if(!class_exists('Chronosly_Settings'))
                 if ( wp_verify_nonce( $_POST['chronosly_nonce'], "chronosly_save_settings" ) ){
                     Chronosly_Cache::clear_cache();
                     $vars = unserialize(get_option('chronosly-settings'));
+                    $vars2 = array();
                     foreach($_POST as $pf=>$pv){
                         if(stripos($pf, "history-slug") !== FALSE){
                             $prev = str_replace("history-", "", $pf);
                             $hist = explode(",", $pv);
                             //save a history of slugs to make 301 redirects
-                            if($vars[$prev] and !in_array($vars[$prev], $hist)) $vars[$pf] = $pv.",".$vars[$prev];
-                            else  $vars[$pf] = $pv;
+                            if($vars2[$prev] and !in_array($vars2[$prev], $hist)) $vars2[$pf] = $pv.",".$vars2[$prev];
+                            else  $vars2[$pf] = $pv;
                         }
-                        else $vars[$pf] = $pv;
+                        else $vars2[$pf] = $pv;
                     }
+                    $vars = array_merge($vars2);
                     update_option('chronosly-settings', serialize($vars));
 
                 } else {

@@ -1320,14 +1320,14 @@ if (!class_exists('Post_Type_Chronosly')) {
                         wp_print_styles( 'chronosly-custom-css');
                     }
                     if(!$settings["chronosly-disable-gmap-js"]) {
-                        wp_print_scripts( 'chronosly-gmap');
+                        wp_enqueue_script( 'chronosly-gmap');
 
                     }
-                    wp_print_scripts( 'chronosly-scroll');
+                    wp_enqueue_script( 'chronosly-scroll');
                     wp_print_styles( 'chronosly-scroll-css');
                     wp_print_styles( 'chronosly-icons');
                     wp_print_styles( 'chronosly-fa-icons');
-                    wp_print_scripts('chronosly-colorbox');
+                    wp_enqueue_script('chronosly-colorbox');
                     wp_print_styles('chronosly-colorbox-css');
 
                     if(!is_admin() or  stripos($_SERVER["REQUEST_URI"], "wp-admin") === FALSE){
@@ -1340,7 +1340,7 @@ if (!class_exists('Post_Type_Chronosly')) {
 
                         );
                         wp_localize_script( 'chronosly-front-js', 'translated1', $translation_array );
-                        wp_print_scripts( 'chronosly-front-js');
+                        wp_enqueue_script( 'chronosly-front-js');
                         wp_enqueue_script( 'jquery-ui-core');
                         wp_enqueue_script( 'jquery-ui-datepicker');
 
