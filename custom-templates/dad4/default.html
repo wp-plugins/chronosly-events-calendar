@@ -50,7 +50,7 @@
                         
                      <div class='ev-item full_time'  style='width:auto;clear:none;float:left;height:auto;'>
                         <div class='ev-data full_time'>
-                              {{full_time | time_format  H:i | text_before From }}
+                              {{full_time | time_format  | text_before From }}
                           </div>
                      
                          <div class='ch-clear'></div>
@@ -114,16 +114,9 @@
 
                            <div class='sortable'>
                               
-                           <div class='ev-item place_name'  style='height:auto;width:99.0228013029316%;clear:none;float:left;color:#000000;font-size:20px;line-height:24px;text-transform:uppercase;'>
-                              <div class='ev-data place_name'>
-                                                <span class='ch-place-{{place_id | id 0}}'>{{place_name | id 0  | filter the_title}}</span>
-                                </div>
-                           
-                               <div class='ch-clear'></div>
-                           </div>
                            <div class='ev-item full_date'  style='width:auto;clear:none;float:left;height:auto;color:#000000;font-size:16px;line-height:20px;text-transform:uppercase;background:none;padding-left:4px;border-bottom:2px solid black; margin-bottom:15px;'>
                               <div class='ev-data full_date'>
-                                    {{full_date | time_format d-m-y | text_before From }}
+                                    {{full_date | time_format  | text_before From }}
                                 </div>
                            
                                <div class='ch-clear'></div>
@@ -156,7 +149,7 @@
                            </div>
                            <div class='ev-item full_time'  style=''>
                               <div class='ev-data full_time'>
-                                    {{full_time | time_format  H:i}}
+                                    {{full_time | time_format }}
                                 </div>
                            
                                <div class='ch-clear'></div>
@@ -191,7 +184,7 @@
                            </div>
                            <div class='ev-item share_box'  style='color:#fff;'>
                               <div class='ev-data share_box'>
-                                             {{share_box | share_fb  | share_tw  | share_in  | share_go  | share_pi  | share_ics }}
+                                                {{share_box | defaultchecked 1 | share_fb 1 | share_tw 1 | share_in 1 | share_go 1 | share_pi 1 | share_ics 1}}
                                 </div>
                            
                                <div class='ch-clear'></div>

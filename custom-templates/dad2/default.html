@@ -73,7 +73,7 @@
                            </div>
                            <div class='ev-item full_time'  style=''>
                               <div class='ev-data full_time'>
-                                    {{full_time | time_format  H:i}}
+                                    {{full_time | time_format }}
                                 </div>
                            
                                <div class='ch-clear'></div>
@@ -120,7 +120,7 @@
                               
                            <div class='ev-item full_date'  style='width:auto;clear:none;float:left;height:auto;font-size:16px;line-height:20px;text-transform:uppercase;background:none;color:#cat-color;padding-left:4px;border-bottom:2px solid #cat-color; margin-bottom:15px;'>
                               <div class='ev-data full_date'>
-                                    {{full_date | time_format d-m-y | text_before From }}
+                                    {{full_date | time_format  | text_before From }}
                                 </div>
                            
                                <div class='ch-clear'></div>
