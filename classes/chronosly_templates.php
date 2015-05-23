@@ -167,7 +167,7 @@ if(!class_exists('Chronosly_Templates')){
                 case "update":
                     $name = (isset($_REQUEST['name']))?$_REQUEST['name']:"";
                     $html = (isset($_REQUEST['html']))?$_REQUEST['html']:"";
-                       if(file_exists($path.$name.".json" and !CHRONOSLY_DEBUG)){
+                       if(file_exists($path.$name.".json") and !CHRONOSLY_DEBUG){
                         $ret = array(
                                 "error"=> 1,
                                 "message" => __("This template is a predefined template, you can't modify it because further template autoupdates and addons upload will be automaticly.", "chronosly")."<br/>".__("Please, if you want to change this template, clone it and modify the copy.", "chronosly")

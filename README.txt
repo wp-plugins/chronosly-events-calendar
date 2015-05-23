@@ -5,7 +5,7 @@ Author URI: http://www.chronosly.com
 Tags: calendar, calendars, event plugin, events plugin, event plugins, events plugins, event calendar, event calendars, events calendar, events calendars, event list, events list, event lists, events lists, online calendar, organizer, organizers, place, places, recurring events, responsive calendar, calendar shortcode, event shortcode, event calendar AJAX, events calendar AJAX, event calendars AJAX, events calendars AJAX, events calendars google map, event calendar google maps, events calendar google maps, event calendars google maps, events calendars google maps, event gmap, events gmap, event management, events management, event manager, events manager, event organizer, events organizer, event page, events page, event widget, events widget, kalender, kalenders, evento, eventos, calendario, calendarios, schedule, scheduling
 Requires at least: 3.1
 Tested up to: 4.2
-Stable tag: 2.1.3
+Stable tag: 2.1.2
 License: GPLv2
 
 Elegant event list display, easy-to-use interface with major event features included. 100% responsive and extensible with templates and addons.
