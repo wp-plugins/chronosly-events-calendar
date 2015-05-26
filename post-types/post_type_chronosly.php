@@ -1041,10 +1041,10 @@ if (!class_exists('Post_Type_Chronosly')) {
                     //Miramos cuando empieza y acaba y generamos sus repeticiones para ver si hay que mostrarlo
                     $start =  strtotime($meta["ev-from"][0]);
                     $end =  strtotime($meta["ev-to"][0]);
-                    if($settings["chronosly_week_start"] == 1) {
-                        $start -= (60*60*24);
-                        $end -= (60*60*24);
-                    }
+                    // if($settings["chronosly_week_start"] == 1) {
+                    //     $start -= (60*60*24);
+                    //     $end -= (60*60*24);
+                    // }
 
 
                     //do repeats
