@@ -3991,7 +3991,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
             if ((!is_admin() or stripos($_SERVER["REQUEST_URI"], "wp-admin") === FALSE or $_REQUEST["action"] == "ch_run_shortcode") and $q) {
                 if ($html and $html == "print") return __("Loading map", "chronosly") . "<script>jQuery(window).load(function(){gmap_initialize('gmap{$vars->pid}$timestamp', '$q', $zoom);});</script>";
-                else return __("Loading map", "chronosly") . "<script>jQuery(window).load(function(){gmap_initialize('gmap{$vars->pid}" . round(microtime(true) * 100) . "', '$q', $zoom);});</script>";
+                else return __("Loading map", "chronosly") . "<script>jQuery(window).load(function(){gmap_initialize('gmap{$vars->pid}" . round(microtime(true) / 100) . "', '$q', $zoom);});</script>";
             }
             else if (!$q) return "<span class='lorem'></span>";
             return "";
