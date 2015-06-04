@@ -4,14 +4,10 @@ if (!class_exists('Chronosly_Dad_Elements')) {
     class Chronosly_Dad_Elements
 
     {
-        public
-
-        function __construct()
+        public function __construct()
         {
         } // END publicpublic static function __construct
-        public static
-
-        function set_new_bubble_box($type, $fields_array, $style)
+        public static function set_new_bubble_box($type, $fields_array, $style)
         {
             $args = array(
                 "name" => "box",
@@ -21,9 +17,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* FUNCIONES DE LAS FIELDS POR DEFECTO */
-        public
-
-        function custom_text_field($default = array())
+        public static function custom_text_field($default = array())
         {
             /* HTML contenido */
             if (isset($default['label'])) $label = $default['label'];
@@ -51,8 +45,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_custom_text_item($cont, $value, $vars, $html = 0)
+        static function create_custom_text_item($cont, $value, $vars, $html = 0)
         {
             if($html){
                 if (stripos($cont, "#custom_text#")) return str_replace("#custom_text#", "{{ translate | $value}}" , $cont);
@@ -69,8 +62,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_custom_text_item_js($type)
+        static function create_custom_text_item_js($type)
         {
             switch ($type) {
             case "create":
@@ -97,9 +89,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public
-
-        function custom_text_before_field($default = array())
+        public static function custom_text_before_field($default = array())
         {
             /* HTML contenido */
             if (isset($default['label'])) $label = $default['label'];
@@ -127,8 +117,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_custom_text_before_item($cont, $value, $vars, $html = 0)
+        static function create_custom_text_before_item($cont, $value, $vars, $html = 0)
         {
             if ($value) {
                 if ($html) {
@@ -150,8 +139,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_custom_text_before_item_js($type)
+        static function create_custom_text_before_item_js($type)
         {
             switch ($type) {
             case "create":
@@ -176,9 +164,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public
-
-        function custom_text_after_field($default = array())
+        public static function custom_text_after_field($default = array())
         {
             /* HTML contenido */
             if (isset($default['label'])) $label = $default['label'];
@@ -206,8 +192,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_custom_text_after_item($cont, $value, $vars, $html = 0)
+        static function create_custom_text_after_item($cont, $value, $vars, $html = 0)
         {
             if ($value) {
 
@@ -228,8 +213,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_custom_text_after_item_js($type)
+        static function create_custom_text_after_item_js($type)
         {
             switch ($type) {
             case "create":
@@ -254,9 +238,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public
-
-        function custom_textarea_field($default = array())
+        public static function custom_textarea_field($default = array())
         {
             /* HTML contenido */
             if (isset($default['label'])) $label = $default['label'];
@@ -284,15 +266,13 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_custom_textarea_item($cont, $value, $vars, $html = 0)
+        static function create_custom_textarea_item($cont, $value, $vars, $html = 0)
         {
             if ($value) return __($value, "chronosly");
             return $cont;
         }
 
-        static
-        function create_custom_textarea_item_js($type)
+        static function create_custom_textarea_item_js($type)
         {
             switch ($type) {
             case "create":
@@ -319,9 +299,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public
-
-        function custom_textbox_field($default = array())
+        public static function custom_textbox_field($default = array())
         {
             /* HTML contenido */
             if (isset($default['label'])) $label = $default['label'];
@@ -349,15 +327,13 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_custom_textbox_item($cont, $value, $vars, $html = 0)
+        static function create_custom_textbox_item($cont, $value, $vars, $html = 0)
         {
             if ($value) return __($value, "chronosly");
             return $cont;
         }
 
-        static
-        function create_custom_textbox_item_js($type)
+        static function create_custom_textbox_item_js($type)
         {
             switch ($type) {
             case "create":
@@ -384,9 +360,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public
-
-        function readmore_check_field($default = array())
+        public static function readmore_check_field($default = array())
         {
             /* HTML contenido */
             if (isset($default['label'])) $label = $default['label'];
@@ -414,8 +388,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_readmore_check_item($cont, $value, $vars, $html = 0)
+        static function create_readmore_check_item($cont, $value, $vars, $html = 0)
         {
             if ($value and trim($cont)) {
                 if ($ini = stripos($cont, "ch-organizer-")) {
@@ -456,8 +429,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             else return $cont;
         }
 
-        static
-        function create_readmore_check_item_js($type)
+        static function create_readmore_check_item_js($type)
         {
             switch ($type) {
             case "create":
@@ -472,9 +444,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public
-
-        function readmore_text_field($default = array())
+        public static function readmore_text_field($default = array())
         {
             /* HTML contenido */
             if (isset($default['label'])) $label = $default['label'];
@@ -502,8 +472,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_readmore_text_item($cont, $value, $vars, $html = 0)
+        static function create_readmore_text_item($cont, $value, $vars, $html = 0)
         {
             if ($value) {
                 $dom = new DOMDocument("1.0", "utf8");
@@ -528,8 +497,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_readmore_text_item_js($type)
+        static function create_readmore_text_item_js($type)
         {
             switch ($type) {
             case "create":
@@ -554,9 +522,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public
-
-        function readmore_action_field($default = array())
+        public static function readmore_action_field($default = array())
         {
             /* HTML contenido */
             if (isset($default['label'])) $label = $default['label'];
@@ -593,8 +559,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_readmore_action_item($cont, $value, $vars, $html = 0)
+        static function create_readmore_action_item($cont, $value, $vars, $html = 0)
         {
             switch ($value) {
             case 1: //external url
@@ -694,8 +659,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_readmore_action_item_js($type)
+        static function create_readmore_action_item_js($type)
         {
             switch ($type) {
             case "create":
@@ -710,9 +674,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public
-
-        function external_url_field($default = array())
+        public static function external_url_field($default = array())
         {
             /* HTML contenido */
             if (isset($default['label'])) $label = $default['label'];
@@ -740,8 +702,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_external_url_item($cont, $value, $vars, $html = 0)
+        static function create_external_url_item($cont, $value, $vars, $html = 0)
         {
             if ($value) {
                 if (!stripos($value, "://")) $value = "http://$value";
@@ -751,8 +712,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_external_url_item_js($type)
+        static function create_external_url_item_js($type)
         {
             switch ($type) {
             case "create":
@@ -767,9 +727,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public
-
-        function target_blank_field($default = array())
+        public static function target_blank_field($default = array())
         {
             /* HTML contenido */
             if (isset($default['label'])) $label = $default['label'];
@@ -797,8 +755,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_target_blank_item($cont, $value, $vars, $html = 0)
+        static function create_target_blank_item($cont, $value, $vars, $html = 0)
         {
             if ($value) {
                 $dom = new DOMDocument("1.0", "utf8");
@@ -819,8 +776,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_target_blank_item_js($type)
+        static function create_target_blank_item_js($type)
         {
             switch ($type) {
             case "create":
@@ -835,9 +791,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public
-
-        function nofollow_field($default = array())
+        public static function nofollow_field($default = array())
         {
             /* HTML contenido */
             if (isset($default['label'])) $label = $default['label'];
@@ -865,8 +819,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_nofollow_item($cont, $value, $vars, $html = 0)
+        static function create_nofollow_item($cont, $value, $vars, $html = 0)
         {
             if ($value) {
                 $dom = new DOMDocument("1.0", "utf8");
@@ -884,8 +837,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_nofollow_item_js($type)
+        static function create_nofollow_item_js($type)
         {
             switch ($type) {
             case "create":
@@ -900,9 +852,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public
-
-        function shorten_text_field($default = array())
+        public static function shorten_text_field($default = array())
         {
             /* HTML funcion | shorten chars */
             if (isset($default['label'])) $label = $default['label'];
@@ -930,8 +880,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function html_cut($text, $max_length)
+        static function html_cut($text, $max_length)
         {
 
             // echo "$text $max_length";
@@ -948,9 +897,10 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             $i = 0;
             $stripped = 0;
             $topen = 0;
+            $negative = 0;
             $stripped_text = strip_tags($text);
-            if ($negative) --$negative; //para los \'  o \"
             while ($is_open || ($i < strlen($text) && $stripped < strlen($stripped_text) && $stripped < $max_length)) {
+                if ($negative) --$negative; //para los \'  o \"
                 $symbol = $text{$i};
                 $result.= $symbol;
                 switch ($symbol) {
@@ -1037,8 +987,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $result;
         }
 
-        static
-        function create_shorten_text_item($cont, $value, $vars, $html = 0)
+        static function create_shorten_text_item($cont, $value, $vars, $html = 0)
         {
             if ($html) return str_replace("}}", " | shorten_text $value}}", $cont);
             if ($value and strlen($cont) > $value) {
@@ -1056,8 +1005,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_shorten_text_item_js($type)
+        static function create_shorten_text_item_js($type)
         {
             switch ($type) {
             case "create":
@@ -1093,9 +1041,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public
-
-        function upload_image_field($default = array())
+        public static function upload_image_field($default = array())
         {
             /* HTML contenido */
             if (isset($default['label'])) $label = $default['label'];
@@ -1123,14 +1069,12 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function chronosly_create_upload_image($cont, $value, $vars, $html = 0)
+        static function chronosly_create_upload_image($cont, $value, $vars, $html = 0)
         {
             return $cont . '<img width="100%" height="auto" src="' . $value . '"  />';
         }
 
-        static
-        function chronosly_create_upload_image_js($type)
+        static function chronosly_create_upload_image_js($type)
         {
             switch ($type) {
             case "create":
@@ -1145,9 +1089,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public
-
-        function upload_gallery_field($default = array())
+        public static function upload_gallery_field($default = array())
         {
             /* HTML contenido */
             if (isset($default['label'])) $label = $default['label'];
@@ -1175,22 +1117,18 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function chronosly_create_upload_gallery($cont, $value, $vars, $html = 0)
+        static function chronosly_create_upload_gallery($cont, $value, $vars, $html = 0)
         {
             return $cont . do_shortcode($value);
         }
 
-        static
-        function chronosly_create_upload_gallery_js($type)
+        static function chronosly_create_upload_gallery_js($type)
         {
             $return = 'element.find(".ev-data").html("Make a gallery and save to view it")';
             return $return;
         }
 
-        public
-
-        function time_format_field($default = array())
+        public static function time_format_field($default = array())
         {
             /* HTML funcion | time_format format */
             if (isset($default['label'])) $label = $default['label'];
@@ -1224,7 +1162,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        public static function create_time_format_item($cont, $value, $vars, $html = 0)
+        static function create_time_format_item($cont, $value, $vars, $html = 0)
         {
             $settings = unserialize(get_option("chronosly-settings"));
             $extra = $value["extra"];
@@ -1420,8 +1358,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_time_format_item_js($type)
+        static function create_time_format_item_js($type)
         {
             $settings = unserialize(get_option("chronosly-settings"));
             $return = 'var time ="";
@@ -1553,9 +1490,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         // event default bubbles
 
         /* events list public static functionS*/
-        public static
-
-        function set_new_bubble_events_list($type, $fields_array, $style)
+        public static function set_new_bubble_events_list($type, $fields_array, $style)
         {
             /* HTML variable {{event_list}} */
             $args = array(
@@ -1579,25 +1514,19 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_events_list($value, $vars, $html = 0)
+        public static function chronosly_create_events_list($value, $vars, $html = 0)
         {
             if (!$html) return "#event_list#";
             else return "{{event_list}}";
         }
 
-        public static
-
-        function chronosly_create_events_list_js($type)
+        public static function chronosly_create_events_list_js($type)
         {
             return 'content = "#event_list#"';
         }
 
         /* EVENT TITTLEpublic static functionS*/
-        public static
-
-        function set_new_bubble_event_title($type, $fields_array, $style)
+        public static function set_new_bubble_event_title($type, $fields_array, $style)
         {
             /* HTML variable {{event_title}}*/
             $args = array(
@@ -1647,17 +1576,13 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_event_title($value, $vars, $html = 0)
+        public static function chronosly_create_event_title($value, $vars, $html = 0)
         {
             if (!$html) return apply_filters('the_title', $vars->post->post_title);
             else return "{{event_title}}";
         }
 
-        public static
-
-        function chronosly_create_event_title_js($type)
+        public static function chronosly_create_event_title_js($type)
         {
             return 'var val = el.children(".ev-hidden").find(".vars input.readmore_w").val();
                     var cont = jQuery("input#title").val();
@@ -1668,9 +1593,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* EVENT DESCRIPTIONpublic static functionS*/
-        public static
-
-        function set_new_bubble_event_description($type, $fields_array, $style)
+        public static function set_new_bubble_event_description($type, $fields_array, $style)
         {
             /* HTML variable {{event_description}}*/
             $args = array(
@@ -1723,17 +1646,13 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_event_description($value, $vars, $html = 0)
+        public static function chronosly_create_event_description($value, $vars, $html = 0)
         {
             if (!$html) return apply_filters('the_content', $vars->post->post_content);
             else return "{{event_description}}";
         }
 
-        public static
-
-        function chronosly_create_event_description_js($type)
+        public static function chronosly_create_event_description_js($type)
         {
             return 'var val = el.children(".ev-hidden").find(".vars input.readmore_w").val();
                     var cont = jQuery("#content_ifr").contents().find("body").html();
@@ -1744,9 +1663,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* EVENT EXCERPTpublic static functionS*/
-        public static
-
-        function set_new_bubble_event_excerpt($type, $fields_array, $style)
+        public static function set_new_bubble_event_excerpt($type, $fields_array, $style)
         {
             /* HTML variable {{event_excerpt}}*/
             $args = array(
@@ -1796,17 +1713,13 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_event_excerpt($value, $vars, $html = 0)
+        public static function chronosly_create_event_excerpt($value, $vars, $html = 0)
         {
             if (!$html) return apply_filters('the_content', $vars->post->post_excerpt);
             else return "{{event_excerpt}}";
         }
 
-        public static
-
-        function chronosly_create_event_excerpt_js($type)
+        public static function chronosly_create_event_excerpt_js($type)
         {
             return 'var val = el.children(".ev-hidden").find(".vars input.readmore_w").val();
                     var cont = jQuery("#excerpt").val();
@@ -1817,9 +1730,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* OTHER CUSTOM TEXTpublic static functionS*/
-        public static
-
-        function set_new_bubble_custom_text($type, $fields_array, $style)
+        public static function set_new_bubble_custom_text($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("Custom text", "chronosly") ,
@@ -1847,24 +1758,18 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_custom_text($value, $vars, $html = 0)
+        public static function chronosly_create_custom_text($value, $vars, $html = 0)
         {
             return apply_filters('the_content', $value);
         }
 
-        public static
-
-        function chronosly_create_custom_text_js($type)
+        public static function chronosly_create_custom_text_js($type)
         {
             return '';
         }
 
         /* OTHER CUSTOM TEXT BOXpublic static functionS*/
-        public static
-
-        function set_new_bubble_custom_text_box($type, $fields_array, $style)
+        public static function set_new_bubble_custom_text_box($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("Custom text box", "chronosly") ,
@@ -1892,24 +1797,18 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_custom_text_box($value, $vars, $html = 0)
+        public static function chronosly_create_custom_text_box($value, $vars, $html = 0)
         {
             return $value;
         }
 
-        public static
-
-        function chronosly_create_custom_text_box_js($type)
+        public static function chronosly_create_custom_text_box_js($type)
         {
             return '';
         }
 
         /* OTHER CUSTOM LINKpublic static functionS*/
-        public static
-
-        function set_new_bubble_custom_link($type, $fields_array, $style)
+        public static function set_new_bubble_custom_link($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("Custom link", "chronosly") ,
@@ -1957,24 +1856,18 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_custom_link($value, $vars, $html = 0)
+        public static function chronosly_create_custom_link($value, $vars, $html = 0)
         {
             return "<a class='ch-readmore'></a>";
         }
 
-        public static
-
-        function chronosly_create_custom_link_js($type)
+        public static function chronosly_create_custom_link_js($type)
         {
             return '';
         }
 
         /* OTHER CUSTOM CODEpublic static functionS*/
-        public static
-
-        function set_new_bubble_custom_code($type, $fields_array, $style)
+        public static function set_new_bubble_custom_code($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("Custom code", "chronosly") ,
@@ -2003,24 +1896,18 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_custom_code($value, $vars, $html = 0)
+        public static function chronosly_create_custom_code($value, $vars, $html = 0)
         {
             return apply_filters('the_content', $value);
         }
 
-        public static
-
-        function chronosly_create_custom_code_js($type)
+        public static function chronosly_create_custom_code_js($type)
         {
             return '';
         }
 
         /* OTHER INSIDE BOXpublic static functionS*/
-        public static
-
-        function set_new_bubble_cont_box($type, $fields_array, $style)
+        public static function set_new_bubble_cont_box($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("Inside box", "chronosly") ,
@@ -2042,24 +1929,18 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_cont_box($value, $vars, $html = 0)
+        public static function chronosly_create_cont_box($value, $vars, $html = 0)
         {
             return $value;
         }
 
-        public static
-
-        function chronosly_create_cont_box_js($type)
+        public static function chronosly_create_cont_box_js($type)
         {
             return '';
         }
 
         /* TIME FULL DATE TIMEpublic static functionS*/
-        public static
-
-        function set_new_bubble_full_date($type, $fields_array, $style)
+        public static function set_new_bubble_full_date($type, $fields_array, $style)
         {
             /* HTML variable {{full_date}}*/
             $settings = unserialize(get_option("chronosly-settings"));
@@ -2096,25 +1977,19 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_full_date($value, $vars, $html = 0)
+        public static function chronosly_create_full_date($value, $vars, $html = 0)
         {
             if (!$html) return $value;
             else return "{{full_date}}";
         }
 
-        public static
-
-        function chronosly_create_full_date_js($type)
+        public static function chronosly_create_full_date_js($type)
         {
             return '';
         }
 
         /* TIME FULL DATE TIMEpublic static functionS*/
-        public static
-
-        function set_new_bubble_full_time($type, $fields_array, $style)
+        public static function set_new_bubble_full_time($type, $fields_array, $style)
         {
             /* HTML variable {{full_time}}*/
             $settings = unserialize(get_option("chronosly-settings"));
@@ -2151,25 +2026,19 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_full_time($value, $vars, $html = 0)
+        public static function chronosly_create_full_time($value, $vars, $html = 0)
         {
             if (!$html) return $value;
             else return "{{full_time}}";
         }
 
-        public static
-
-        function chronosly_create_full_time_js($type)
+        public static function chronosly_create_full_time_js($type)
         {
             return '';
         }
 
         /* TIME FULL DATE TIMEpublic static functionS*/
-        public static
-
-        function set_new_bubble_full_datetime($type, $fields_array, $style)
+        public static function set_new_bubble_full_datetime($type, $fields_array, $style)
         {
             /* HTML variable {{full_datetime}}*/
             $settings = unserialize(get_option("chronosly-settings"));
@@ -2206,25 +2075,19 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_full_datetime($value, $vars, $html = 0)
+        public static function chronosly_create_full_datetime($value, $vars, $html = 0)
         {
             if (!$html) return $value;
             else return "{{full_datetime}}";
         }
 
-        public static
-
-        function chronosly_create_full_datetime_js($type)
+        public static function chronosly_create_full_datetime_js($type)
         {
             return '';
         }
 
         /* TIME START DATEpublic static functionS*/
-        public static
-
-        function set_new_bubble_start_date($type, $fields_array, $style)
+        public static function set_new_bubble_start_date($type, $fields_array, $style)
         {
             /* HTML variable {{start_date}}*/
             $settings = unserialize(get_option("chronosly-settings"));
@@ -2261,25 +2124,19 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_start_date($value, $vars, $html = 0)
+        public static function chronosly_create_start_date($value, $vars, $html = 0)
         {
             if (!$html) return $value;
             else return "{{start_date}}";
         }
 
-        public static
-
-        function chronosly_create_start_date_js($type)
+        public static function chronosly_create_start_date_js($type)
         {
             return '';
         }
 
         /* TIME START TIMEpublic static functionS*/
-        public static
-
-        function set_new_bubble_start_hour($type, $fields_array, $style)
+        public static function set_new_bubble_start_hour($type, $fields_array, $style)
         {
             /* HTML variable {{start_hour}}*/
             $settings = unserialize(get_option("chronosly-settings"));
@@ -2316,25 +2173,19 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_start_hour($value, $vars, $html = 0)
+        public static function chronosly_create_start_hour($value, $vars, $html = 0)
         {
             if (!$html) return $value;
             else return "{{start_hour}}";
         }
 
-        public static
-
-        function chronosly_create_start_hour_js($type)
+        public static function chronosly_create_start_hour_js($type)
         {
             return '';
         }
 
         /* TIME START DATETIMEpublic static functionS*/
-        public static
-
-        function set_new_bubble_start_datetime($type, $fields_array, $style)
+        public static function set_new_bubble_start_datetime($type, $fields_array, $style)
         {
             /* HTML variable {{start_datetime}}*/
             $settings = unserialize(get_option("chronosly-settings"));
@@ -2371,25 +2222,19 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_start_datetime($value, $vars, $html = 0)
+        public static function chronosly_create_start_datetime($value, $vars, $html = 0)
         {
             if (!$html) return $value;
             else return "{{start_datetime}}";
         }
 
-        public static
-
-        function chronosly_create_start_datetime_js($type)
+        public static function chronosly_create_start_datetime_js($type)
         {
             return '';
         }
 
         /* TIME END DATEpublic static functionS*/
-        public static
-
-        function set_new_bubble_end_date($type, $fields_array, $style)
+        public static function set_new_bubble_end_date($type, $fields_array, $style)
         {
             /* HTML variable {{end_date}}*/
             $settings = unserialize(get_option("chronosly-settings"));
@@ -2426,25 +2271,19 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_end_date($value, $vars, $html = 0)
+        public static function chronosly_create_end_date($value, $vars, $html = 0)
         {
             if (!$html) return $value;
             else return "{{end_date}}";
         }
 
-        public static
-
-        function chronosly_create_end_date_js($type)
+        public static function chronosly_create_end_date_js($type)
         {
             return '';
         }
 
         /* TIME END TIMEpublic static functionS*/
-        public static
-
-        function set_new_bubble_end_hour($type, $fields_array, $style)
+        public static function set_new_bubble_end_hour($type, $fields_array, $style)
         {
             $settings = unserialize(get_option("chronosly-settings"));
             $args = array(
@@ -2480,25 +2319,19 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_end_hour($value, $vars, $html = 0)
+        public static function chronosly_create_end_hour($value, $vars, $html = 0)
         {
             if (!$html) return $value;
             else return "{{end_hour}}";
         }
 
-        public static
-
-        function chronosly_create_end_hour_js($type)
+        public static function chronosly_create_end_hour_js($type)
         {
             return '';
         }
 
         /* TIME END DATETIMEpublic static functionS*/
-        public static
-
-        function set_new_bubble_end_datetime($type, $fields_array, $style)
+        public static function set_new_bubble_end_datetime($type, $fields_array, $style)
         {
             $settings = unserialize(get_option("chronosly-settings"));
             $args = array(
@@ -2534,25 +2367,19 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_end_datetime($value, $vars, $html = 0)
+        public static function chronosly_create_end_datetime($value, $vars, $html = 0)
         {
             if (!$html) return $value;
             else return "{{end_datetime}}";
         }
 
-        public static
-
-        function chronosly_create_end_datetime_js($type)
+        public static function chronosly_create_end_datetime_js($type)
         {
             return '';
         }
 
         /* IMAGE FEATURED IMAGEpublic static functionS*/
-        public static
-
-        function set_new_bubble_featured_image($type, $fields_array, $style)
+        public static function set_new_bubble_featured_image($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("Featured image", "chronosly") ,
@@ -2605,9 +2432,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_featured_image($value, $vars, $html = 0)
+        public static function chronosly_create_featured_image($value, $vars, $html = 0)
         {
             if ($html) return '{{event_image}}';
             if (!$vars->pid or !has_post_thumbnail($vars->pid)) {
@@ -2618,9 +2443,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return '<img width="100%" height="100%" src="' . $src . '"  />';
         }
 
-        public static
-
-        function chronosly_create_featured_image_js($type)
+        public static function chronosly_create_featured_image_js($type)
         {
             return 'var val = jQuery("#set-post-thumbnail img").attr("src");
                     if(!val) {
@@ -2635,9 +2458,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* IMAGE CUSTOM IMAGEpublic static functionS*/
-        public static
-
-        function set_new_bubble_custom_image($type, $fields_array, $style)
+        public static function set_new_bubble_custom_image($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("Custom image", "chronosly") ,
@@ -2694,24 +2515,18 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_custom_image($value, $vars, $html = 0)
+        public static function chronosly_create_custom_image($value, $vars, $html = 0)
         {
             return '';
         }
 
-        public static
-
-        function chronosly_create_custom_image_js($type)
+        public static function chronosly_create_custom_image_js($type)
         {
             return "";
         }
 
         /* IMAGE GALLERYpublic static functionS*/
-        public static
-
-        function set_new_bubble_gallery($type, $fields_array, $style)
+        public static function set_new_bubble_gallery($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("Gallery", "chronosly") ,
@@ -2744,24 +2559,18 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_gallery($value, $vars, $html = 0)
+        public static function chronosly_create_gallery($value, $vars, $html = 0)
         {
             return "";
         }
 
-        public static
-
-        function chronosly_create_gallery_js($type)
+        public static function chronosly_create_gallery_js($type)
         {
             return '';
         }
 
         /* ORGANIZER NAME public static functionS*/
-        public static
-
-        function set_new_bubble_organizer_name($type, $fields_array, $style)
+        public static function set_new_bubble_organizer_name($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -2816,9 +2625,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_organizer_name($value, $vars, $html = 0)
+        public static function chronosly_create_organizer_name($value, $vars, $html = 0)
         {
             if ($html) return "<span class='ch-organizer-{{organizer_id | id $value}}'>{{organizer_name | id $value | filter the_title}}</span>";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -2826,9 +2633,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "<span class='ch-organizer-" . $vars->metas["organizer_vars"][$value]["post"]->ID . "'>" . apply_filters('the_title', $vars->metas["organizer_vars"][$value]["post"]->post_title) . "</span>";
         }
 
-        public static
-
-        function chronosly_create_organizer_name_js($type)
+        public static function chronosly_create_organizer_name_js($type)
         {
             return 'var cont = "Select organizer and save to view";
                     var def = jQuery(".chronosly-defaults #organizer-name"+val).html();
@@ -2837,9 +2642,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* ORGANIZER DESCRIPTION public static functionS*/
-        public static
-
-        function set_new_bubble_organizer_description($type, $fields_array, $style)
+        public static function set_new_bubble_organizer_description($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -2895,9 +2698,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_organizer_description($value, $vars, $html = 0)
+        public static function chronosly_create_organizer_description($value, $vars, $html = 0)
         {
             if ($html) return "{{organizer_description | id $value  | filter the_content}}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -2905,9 +2706,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return apply_filters('the_content', $vars->metas["organizer_vars"][$value]["post"]->post_content);
         }
 
-        public static
-
-        function chronosly_create_organizer_description_js($type)
+        public static function chronosly_create_organizer_description_js($type)
         {
             return 'var cont = "Select organizer and save to view";
                     var def = jQuery(".chronosly-defaults #organizer-description"+val).html();
@@ -2916,9 +2715,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* ORGANIZER EXCERPT public static functionS*/
-        public static
-
-        function set_new_bubble_organizer_excerpt($type, $fields_array, $style)
+        public static function set_new_bubble_organizer_excerpt($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -2969,9 +2766,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_organizer_excerpt($value, $vars, $html = 0)
+        public static function chronosly_create_organizer_excerpt($value, $vars, $html = 0)
         {
             if ($html) return "{{organizer_excerpt  | id $value | filter the_content}}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -2979,9 +2774,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return apply_filters('the_content', $vars->metas["organizer_vars"][$value]["post"]->post_excerpt);
         }
 
-        public static
-
-        function chronosly_create_organizer_excerpt_js($type)
+        public static function chronosly_create_organizer_excerpt_js($type)
         {
             return 'var cont = "Select organizer and save to view";
                     var def = jQuery(".chronosly-defaults #organizer-excerpt"+val).html();
@@ -2990,9 +2783,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* ORGANIZER PHONE public static functionS*/
-        public static
-
-        function set_new_bubble_organizer_phone($type, $fields_array, $style)
+        public static function set_new_bubble_organizer_phone($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3023,9 +2814,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_organizer_phone($value, $vars, $html = 0)
+        public static function chronosly_create_organizer_phone($value, $vars, $html = 0)
         {
             if ($html) return "{{organizer_phone | id $value }}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3033,9 +2822,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "<span class='ch-phone'>" . $vars->metas["organizer_vars"][$value]["metas"]["evo_phone"][0] . "</span>";
         }
 
-        public static
-
-        function chronosly_create_organizer_phone_js($type)
+        public static function chronosly_create_organizer_phone_js($type)
         {
             return 'var cont = "Select organizer and save to view";
                     var def = jQuery(".chronosly-defaults #organizer-phone"+val).html();
@@ -3044,9 +2831,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* ORGANIZER EMAIL public static functionS*/
-        public static
-
-        function set_new_bubble_organizer_email($type, $fields_array, $style)
+        public static function set_new_bubble_organizer_email($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3077,9 +2862,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_organizer_email($value, $vars, $html = 0)
+        public static function chronosly_create_organizer_email($value, $vars, $html = 0)
         {
             if ($html) return "{{organizer_email | id $value }}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3089,9 +2872,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "<a class='$class ch-email' href='mailto:" . $vars->metas["organizer_vars"][$value]["metas"]["evo_mail"][0] . "'>" . $vars->metas["organizer_vars"][$value]["metas"]["evo_mail"][0] . "</a>";
         }
 
-        public static
-
-        function chronosly_create_organizer_email_js($type)
+        public static function chronosly_create_organizer_email_js($type)
         {
             return 'var cont = "Select organizer and save to view";
                     var def = jQuery(".chronosly-defaults #organizer-mail"+val).html();
@@ -3100,9 +2881,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* ORGANIZER WEB public static functionS*/
-        public static
-
-        function set_new_bubble_organizer_web($type, $fields_array, $style)
+        public static function set_new_bubble_organizer_web($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3133,9 +2912,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_organizer_web($value, $vars, $html = 0)
+        public static function chronosly_create_organizer_web($value, $vars, $html = 0)
         {
             if ($html) return "{{organizer_web | id $value }}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3147,9 +2924,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "<a style='#data_style'  class='$class ch-web ev-data organizer_web' href='$web' target='_blank'>$web</a>";
         }
 
-        public static
-
-        function chronosly_create_organizer_web_js($type)
+        public static function chronosly_create_organizer_web_js($type)
         {
             return 'var cont = "Select organizer and save to view";
                     var def = "Web";
@@ -3158,9 +2933,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* ORGANIZER LOGO public static functionS*/
-        public static
-
-        function set_new_bubble_organizer_logo($type, $fields_array, $style)
+        public static function set_new_bubble_organizer_logo($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3214,9 +2987,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_organizer_logo($value, $vars, $html = 0)
+        public static function chronosly_create_organizer_logo($value, $vars, $html = 0)
         {
             if ($html) return "<span class='ch-organizer-{{organizer_id | id $value}}'>{{organizer_image | id $value }}</span>";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3229,9 +3000,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return '<img class="ch-organizer-' . $vars->metas["organizer_vars"][$value]["post"]->ID . '" width="100%" height="100%" src="' . $src . '"  />';
         }
 
-        public static
-
-        function chronosly_create_organizer_logo_js($type)
+        public static function chronosly_create_organizer_logo_js($type)
         {
             return 'var val = jQuery(".chronosly-defaults #organizer-thumb"+val).html();
                     if(!val) val = jQuery(".chronosly-defaults #chronolsy-feat-img").html();
@@ -3239,9 +3008,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* PLACE NAME public static functionS*/
-        public static
-
-        function set_new_bubble_place_name($type, $fields_array, $style)
+        public static function set_new_bubble_place_name($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3296,9 +3063,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_place_name($value, $vars, $html = 0)
+        public static function chronosly_create_place_name($value, $vars, $html = 0)
         {
             if ($html) return "<span class='ch-place-{{place_id | id $value}}'>{{place_name | id $value  | filter the_title}}</span>";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3306,9 +3071,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "<span class='ch-place-" . $vars->metas["places_vars"][$value]["post"]->ID . "'>" . apply_filters('the_title', $vars->metas["places_vars"][$value]["post"]->post_title) . "</span>";
         }
 
-        public static
-
-        function chronosly_create_place_name_js($type)
+        public static function chronosly_create_place_name_js($type)
         {
             return 'var cont = "Select place and save to view";
                     var def = jQuery(".chronosly-defaults #place-name"+val).html();
@@ -3317,9 +3080,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* place DESCRIPTION public static functionS*/
-        public static
-
-        function set_new_bubble_place_description($type, $fields_array, $style)
+        public static function set_new_bubble_place_description($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3375,9 +3136,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_place_description($value, $vars, $html = 0)
+        public static function chronosly_create_place_description($value, $vars, $html = 0)
         {
             if ($html) return "{{place_description | id $value  | filter the_content}}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3385,9 +3144,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return apply_filters('the_content', $vars->metas["places_vars"][$value]["post"]->post_content);
         }
 
-        public static
-
-        function chronosly_create_place_description_js($type)
+        public static function chronosly_create_place_description_js($type)
         {
             return 'var cont = "Select place and save to view";
                     var def = jQuery(".chronosly-defaults #place-description"+val).html();
@@ -3396,9 +3153,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* place EXCERPT public static functionS*/
-        public static
-
-        function set_new_bubble_place_excerpt($type, $fields_array, $style)
+        public static function set_new_bubble_place_excerpt($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3450,9 +3205,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_place_excerpt($value, $vars, $html = 0)
+        public static function chronosly_create_place_excerpt($value, $vars, $html = 0)
         {
             if ($html) return "{{place_excerpt | id $value  | filter the_content}}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3460,9 +3213,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return apply_filters('the_content', $vars->metas["places_vars"][$value]["post"]->post_excerpt);
         }
 
-        public static
-
-        function chronosly_create_place_excerpt_js($type)
+        public static function chronosly_create_place_excerpt_js($type)
         {
             return 'var cont = "Select place and save to view";
                     var def = jQuery(".chronosly-defaults #place-excerpt"+val).html();
@@ -3471,9 +3222,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* place PHONE public static functionS*/
-        public static
-
-        function set_new_bubble_place_phone($type, $fields_array, $style)
+        public static function set_new_bubble_place_phone($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3504,9 +3253,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_place_phone($value, $vars, $html = 0)
+        public static function chronosly_create_place_phone($value, $vars, $html = 0)
         {
             if ($html) return "<span class='ch-phone'>{{place_phone | id $value }}</span>";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3514,9 +3261,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "<span class='ch-phone'>" . $vars->metas["places_vars"][$value]["metas"]["evp_phone"][0] . "</span>";
         }
 
-        public static
-
-        function chronosly_create_place_phone_js($type)
+        public static function chronosly_create_place_phone_js($type)
         {
             return 'var cont = "Select place and save to view";
                     var def = jQuery(".chronosly-defaults #place-phone"+val).html();
@@ -3525,9 +3270,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* place EMAIL public static functionS*/
-        public static
-
-        function set_new_bubble_place_email($type, $fields_array, $style)
+        public static function set_new_bubble_place_email($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3558,9 +3301,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_place_email($value, $vars, $html = 0)
+        public static function chronosly_create_place_email($value, $vars, $html = 0)
         {
             if ($html) return "{{place_email | id $value }}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3570,9 +3311,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "<a class='$class ch-email' href='mailto:" . $vars->metas["places_vars"][$value]["metas"]["evp_mail"][0] . "'>" . $vars->metas["places_vars"][$value]["metas"]["evp_mail"][0] . "</a>";
         }
 
-        public static
-
-        function chronosly_create_place_email_js($type)
+        public static function chronosly_create_place_email_js($type)
         {
             return 'var cont = "Select place and save to view";
                     var def = jQuery(".chronosly-defaults #place-mail"+val).html();
@@ -3581,9 +3320,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* place WEB public static functionS*/
-        public static
-
-        function set_new_bubble_place_web($type, $fields_array, $style)
+        public static function set_new_bubble_place_web($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3614,9 +3351,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_place_web($value, $vars, $html = 0)
+        public static function chronosly_create_place_web($value, $vars, $html = 0)
         {
             if ($html) return "{{place_web | id $value }}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3628,9 +3363,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "<a style='#data_style'  class='$class ch-web ev-data place_web' href='" . $web . "' target='_blanck'>" . __("Web", "chronosly") . "</a>";
         }
 
-        public static
-
-        function chronosly_create_place_web_js($type)
+        public static function chronosly_create_place_web_js($type)
         {
             return 'var cont = "Select place and save to view";
                     var def = "Web";
@@ -3639,9 +3372,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* place LOGO public static functionS*/
-        public static
-
-        function set_new_bubble_place_image($type, $fields_array, $style)
+        public static function set_new_bubble_place_image($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3695,9 +3426,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_place_image($value, $vars, $html = 0)
+        public static function chronosly_create_place_image($value, $vars, $html = 0)
         {
             if ($html) return '{{place_image | id $value }}';
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3710,9 +3439,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return '<img width="100%" height="100%" src="' . $src . '"  />';
         }
 
-        public static
-
-        function chronosly_create_place_image_js($type)
+        public static function chronosly_create_place_image_js($type)
         {
             return 'var val = jQuery(".chronosly-defaults #place-thumb"+val).html();
                     if(!val) val = jQuery(".chronosly-defaults #chronolsy-feat-img").html();
@@ -3720,9 +3447,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* place state public static functionS*/
-        public static
-
-        function set_new_bubble_place_state($type, $fields_array, $style)
+        public static function set_new_bubble_place_state($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3753,9 +3478,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_place_state($value, $vars, $html = 0)
+        public static function chronosly_create_place_state($value, $vars, $html = 0)
         {
             if ($html) return "{{place_state | id $value }}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3763,9 +3486,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $vars->metas["places_vars"][$value]["metas"]["evp_state"][0];
         }
 
-        public static
-
-        function chronosly_create_place_state_js($type)
+        public static function chronosly_create_place_state_js($type)
         {
             return 'var cont = "Select place and save to view";
                     var def = jQuery(".chronosly-defaults #place-state"+val).html();
@@ -3774,9 +3495,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* place city public static functionS*/
-        public static
-
-        function set_new_bubble_place_city($type, $fields_array, $style)
+        public static function set_new_bubble_place_city($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3807,9 +3526,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_place_city($value, $vars, $html = 0)
+        public static function chronosly_create_place_city($value, $vars, $html = 0)
         {
             if ($html) return "{{place_city | id $value }}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3817,9 +3534,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $vars->metas["places_vars"][$value]["metas"]["evp_city"][0];
         }
 
-        public static
-
-        function chronosly_create_place_city_js($type)
+        public static function chronosly_create_place_city_js($type)
         {
             return 'var cont = "Select place and save to view";
                     var def = jQuery(".chronosly-defaults #place-city"+val).html();
@@ -3828,9 +3543,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* place country public static functionS*/
-        public static
-
-        function set_new_bubble_place_country($type, $fields_array, $style)
+        public static function set_new_bubble_place_country($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3861,9 +3574,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_place_country($value, $vars, $html = 0)
+        public static function chronosly_create_place_country($value, $vars, $html = 0)
         {
             if ($html) return "{{place_country | id $value }}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3871,9 +3582,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $vars->metas["places_vars"][$value]["metas"]["evp_country"][0];
         }
 
-        public static
-
-        function chronosly_create_place_country_js($type)
+        public static function chronosly_create_place_country_js($type)
         {
             return 'var cont = "Select place and save to view";
                     var def = jQuery(".chronosly-defaults #place-country"+val).html();
@@ -3882,9 +3591,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* place pc public static functionS*/
-        public static
-
-        function set_new_bubble_place_pc($type, $fields_array, $style)
+        public static function set_new_bubble_place_pc($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -3915,9 +3622,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_place_pc($value, $vars, $html = 0)
+        public static function chronosly_create_place_pc($value, $vars, $html = 0)
         {
             if ($html) return "{{place_pc | id $value }}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3925,9 +3630,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $vars->metas["places_vars"][$value]["metas"]["evp_pc"][0];
         }
 
-        public static
-
-        function chronosly_create_place_pc_js($type)
+        public static function chronosly_create_place_pc_js($type)
         {
             return 'var cont = "Select place and save to view";
                     var def = jQuery(".chronosly-defaults #place-pc"+val).html();
@@ -3936,9 +3639,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* place gmap public static functionS*/
-        public static
-
-        function set_new_bubble_place_gmap($type, $fields_array, $style)
+        public static function set_new_bubble_place_gmap($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("gmap", "chronosly") ,
@@ -3967,9 +3668,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_place_gmap($value, $vars, $html = 0)
+        public static function chronosly_create_place_gmap($value, $vars, $html = 0)
         {
             global $timestamp;
             $settings = unserialize(get_option("chronosly-settings"));
@@ -3997,17 +3696,13 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "";
         }
 
-        public static
-
-        function chronosly_create_place_gmap_js($type)
+        public static function chronosly_create_place_gmap_js($type)
         {
             return 'content = "";';
         }
 
         /* place DIRECTION public static functionS*/
-        public static
-
-        function set_new_bubble_place_direction($type, $fields_array, $style)
+        public static function set_new_bubble_place_direction($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -4063,9 +3758,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_place_direction($value, $vars, $html = 0)
+        public static function chronosly_create_place_direction($value, $vars, $html = 0)
         {
             if ($html) return "<span class='ch-address-{{place_id | id $value}}'>{{place_direction | id $value }}</span>";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -4075,9 +3768,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "<span class='ch-address-" . $vars->metas["places_vars"][$value]["post"]->ID . "'>" . $vars->metas["places_vars"][$value]["metas"]["evp_dir"][0] . "</span>";
         }
 
-        public static
-
-        function chronosly_create_place_direction_js($type)
+        public static function chronosly_create_place_direction_js($type)
         {
             return 'var cont = "Select place and save to view";
                     var def = jQuery(".chronosly-defaults #place-dir"+val).html();
@@ -4086,9 +3777,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* TICKET list public static functionS*/
-        public static
-
-        function set_new_bubble_ticket_list($type, $fields_array, $style)
+        public static function set_new_bubble_ticket_list($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("List of all tickets", "chronosly") ,
@@ -4148,9 +3837,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_ticket_list($value, $vars, $html = 0)
+        public static function chronosly_create_ticket_list($value, $vars, $html = 0)
         {
             if ($html) return "{{tickets_list}}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -4213,11 +3900,11 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $ret;
         }
 
-        function tickets_title_check_field($default)
+        static function tickets_title_check_field($default)
         {
-            if ($default['label']) $label = $default['label'];
+            if (isset($default['label'])) $label = $default['label'];
             else $label = "Title";
-            if ($default['order']) $order = $default['order'];
+            if (isset($default['order'])) $order = $default['order'];
             else $order = 1;
             if (isset($default['value'])) $value = $default['value'];
             else $value = 1;
@@ -4240,8 +3927,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_ticket_title($cont, $value, $vars, $html = 0)
+        static function create_ticket_title($cont, $value, $vars, $html = 0)
         {
             if ($html) {
                 $pos = strrpos($cont, "}}");
@@ -4261,8 +3947,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_ticket_title_js($type)
+        static function create_ticket_title_js($type)
         {
             switch ($type) {
             case "create":
@@ -4285,11 +3970,11 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        function tickets_price_check_field($default)
+        static function tickets_price_check_field($default)
         {
-            if ($default['label']) $label = $default['label'];
+            if (isset($default['label'])) $label = $default['label'];
             else $label = "Price";
-            if ($default['order']) $order = $default['order'];
+            if (isset($default['order'])) $order = $default['order'];
             else $order = 1;
             if (isset($default['value'])) $value = $default['value'];
             else $value = 1;
@@ -4312,8 +3997,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_ticket_price($cont, $value, $vars, $html = 0)
+        static function create_ticket_price($cont, $value, $vars, $html = 0)
         {
             if ($html) {
                 $pos = strrpos($cont, "}}");
@@ -4333,8 +4017,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_ticket_price_js($type)
+        static function create_ticket_price_js($type)
         {
             switch ($type) {
             case "create":
@@ -4357,11 +4040,11 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        function tickets_capacity_check_field($default)
+        static function tickets_capacity_check_field($default)
         {
-            if ($default['label']) $label = $default['label'];
+            if (isset($default['label'])) $label = $default['label'];
             else $label = "Capacity";
-            if ($default['order']) $order = $default['order'];
+            if (isset($default['order'])) $order = $default['order'];
             else $order = 1;
             if (isset($default['value'])) $value = $default['value'];
             else $value = 1;
@@ -4384,8 +4067,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_ticket_capacity($cont, $value, $vars, $html = 0)
+        static function create_ticket_capacity($cont, $value, $vars, $html = 0)
         {
             if ($html) {
                 $pos = strrpos($cont, "}}");
@@ -4405,8 +4087,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_ticket_capacity_js($type)
+        static function create_ticket_capacity_js($type)
         {
             switch ($type) {
             case "create":
@@ -4429,11 +4110,11 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        function tickets_min_check_field($default)
+        static function tickets_min_check_field($default)
         {
-            if ($default['label']) $label = $default['label'];
+            if (isset($default['label'])) $label = $default['label'];
             else $label = "Min. tickets";
-            if ($default['order']) $order = $default['order'];
+            if (isset($default['order'])) $order = $default['order'];
             else $order = 1;
             if (isset($default['value'])) $value = $default['value'];
             else $value = 1;
@@ -4456,8 +4137,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_ticket_min($cont, $value, $vars, $html = 0)
+        static function create_ticket_min($cont, $value, $vars, $html = 0)
         {
             if ($html) {
                 $pos = strrpos($cont, "}}");
@@ -4477,8 +4157,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_ticket_min_js($type)
+        static function create_ticket_min_js($type)
         {
             switch ($type) {
             case "create":
@@ -4501,11 +4180,11 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        function tickets_max_check_field($default)
+        static function tickets_max_check_field($default)
         {
-            if ($default['label']) $label = $default['label'];
+            if (isset($default['label'])) $label = $default['label'];
             else $label = "Max. tickets";
-            if ($default['order']) $order = $default['order'];
+            if (isset($default['order'])) $order = $default['order'];
             else $order = 1;
             if (isset($default['value'])) $value = $default['value'];
             else $value = 1;
@@ -4528,8 +4207,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_ticket_max($cont, $value, $vars, $html = 0)
+        static function create_ticket_max($cont, $value, $vars, $html = 0)
         {
             if ($html) {
                 $pos = strrpos($cont, "}}");
@@ -4549,8 +4227,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_ticket_max_js($type)
+        static function create_ticket_max_js($type)
         {
             switch ($type) {
             case "create":
@@ -4573,11 +4250,11 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        function tickets_start_check_field($default)
+        public static function tickets_start_check_field($default)
         {
-            if ($default['label']) $label = $default['label'];
+            if (isset($default['label'])) $label = $default['label'];
             else $label = "Start date";
-            if ($default['order']) $order = $default['order'];
+            if (isset($default['order'])) $order = $default['order'];
             else $order = 1;
             if (isset($default['value'])) $value = $default['value'];
             else $value = 1;
@@ -4600,8 +4277,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_ticket_start($cont, $value, $vars, $html = 0)
+        static function create_ticket_start($cont, $value, $vars, $html = 0)
         {
             if ($html) {
                 $pos = strrpos($cont, "}}");
@@ -4621,8 +4297,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_ticket_start_js($type)
+        static function create_ticket_start_js($type)
         {
             switch ($type) {
             case "create":
@@ -4645,11 +4320,11 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        function tickets_end_check_field($default)
+        public static function tickets_end_check_field($default)
         {
-            if ($default['label']) $label = $default['label'];
+            if (isset($default['label'])) $label = $default['label'];
             else $label = "End date";
-            if ($default['order']) $order = $default['order'];
+            if (isset($default['order'])) $order = $default['order'];
             else $order = 1;
             if (isset($default['value'])) $value = $default['value'];
             else $value = 1;
@@ -4672,8 +4347,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_ticket_end($cont, $value, $vars, $html = 0)
+        static function create_ticket_end($cont, $value, $vars, $html = 0)
         {
             if ($html) {
                 $pos = strrpos($cont, "}}");
@@ -4693,8 +4367,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_ticket_end_js($type)
+        static function create_ticket_end_js($type)
         {
             switch ($type) {
             case "create":
@@ -4717,11 +4390,11 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        function tickets_buy_check_field($default)
+        public static function tickets_buy_check_field($default)
         {
-            if ($default['label']) $label = $default['label'];
+            if (isset($default['label'])) $label = $default['label'];
             else $label = "Buy link";
-            if ($default['order']) $order = $default['order'];
+            if (isset($default['order'])) $order = $default['order'];
             else $order = 1;
             if (isset($default['value'])) $value = $default['value'];
             else $value = 1;
@@ -4744,8 +4417,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_ticket_buy($cont, $value, $vars, $html = 0)
+        static function create_ticket_buy($cont, $value, $vars, $html = 0)
         {
             if ($html) {
                 $pos = strrpos($cont, "}}");
@@ -4766,8 +4438,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_ticket_buy_js($type)
+        static function create_ticket_buy_js($type)
         {
             switch ($type) {
             case "create":
@@ -4790,11 +4461,11 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        function tickets_note_check_field($default)
+        public static function tickets_note_check_field($default)
         {
-            if ($default['label']) $label = $default['label'];
+            if (isset($default['label'])) $label = $default['label'];
             else $label = "Notes";
-            if ($default['order']) $order = $default['order'];
+            if (isset($default['order'])) $order = $default['order'];
             else $order = 1;
             if (isset($default['value'])) $value = $default['value'];
             else $value = 1;
@@ -4817,8 +4488,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return Chronosly_Extend::create_dad_field($args);
         }
 
-        static
-        function create_ticket_note($cont, $value, $vars, $html = 0)
+        static function create_ticket_note($cont, $value, $vars, $html = 0)
         {
             if ($html) {
                 $pos = strrpos($cont, "}}");
@@ -4838,8 +4508,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $cont;
         }
 
-        static
-        function create_ticket_note_js($type)
+        static function create_ticket_note_js($type)
         {
             switch ($type) {
             case "create":
@@ -4862,17 +4531,13 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        public static
-
-        function chronosly_create_ticket_list_js($type)
+        public static function chronosly_create_ticket_list_js($type)
         {
             return ' content = "<div class=\'defaults\'>Save to view the list</div>";';
         }
 
         /* TICKET NAME public static functionS*/
-        public static
-
-        function set_new_bubble_ticket_name($type, $fields_array, $style)
+        public static function set_new_bubble_ticket_name($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -4903,9 +4568,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_ticket_name($value, $vars, $html = 0)
+        public static function chronosly_create_ticket_name($value, $vars, $html = 0)
         {
             if ($html) return "{{ticket_name | id $value}}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -4913,9 +4576,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $vars->metas['tickets_vars'][$value]["title"];
         }
 
-        public static
-
-        function chronosly_create_ticket_name_js($type)
+        public static function chronosly_create_ticket_name_js($type)
         {
             return 'var cont = "Create a ticket and save to view";
                     var def = jQuery(".chronosly-defaults #chronosly-ticket-name"+val).html();
@@ -4924,9 +4585,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* ticket price public static functionS*/
-        public static
-
-        function set_new_bubble_ticket_price($type, $fields_array, $style)
+        public static function set_new_bubble_ticket_price($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -4957,9 +4616,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_ticket_price($value, $vars, $html = 0)
+        public static function chronosly_create_ticket_price($value, $vars, $html = 0)
         {
             if ($html) return "{{ticket_price | id $value}}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -4972,9 +4629,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "<span class='ch-currency$currency_type'>" . $settings["chronosly_currency"] . "</span> " . $vars->metas['tickets_vars'][$value]["price"] . $soldout;
         }
 
-        public static
-
-        function chronosly_create_ticket_price_js($type)
+        public static function chronosly_create_ticket_price_js($type)
         {
             return 'var cont = "Create a ticket and save to view";
                     var def = jQuery(".chronosly-defaults #chronosly-ticket-price"+val).html();
@@ -4983,9 +4638,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* ticket capacitypublic static functionS*/
-        public static
-
-        function set_new_bubble_ticket_capacity($type, $fields_array, $style)
+        public static function set_new_bubble_ticket_capacity($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -5016,9 +4669,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_ticket_capacity($value, $vars, $html = 0)
+        public static function chronosly_create_ticket_capacity($value, $vars, $html = 0)
         {
             if ($html) return "{{ticket_capacity | id $value}}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -5026,9 +4677,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $vars->metas['tickets_vars'][$value]["capacity"];
         }
 
-        public static
-
-        function chronosly_create_ticket_capacity_js($type)
+        public static function chronosly_create_ticket_capacity_js($type)
         {
             return 'var cont = "Create a ticket and save to view";
                     var def = jQuery(".chronosly-defaults #chronosly-ticket-capacity"+val).html();
@@ -5037,9 +4686,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* ticket min per user public static functionS*/
-        public static
-
-        function set_new_bubble_ticket_min_per_user($type, $fields_array, $style)
+        public static function set_new_bubble_ticket_min_per_user($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -5070,17 +4717,13 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_ticket_min_per_user($value, $vars, $html = 0)
+        public static function chronosly_create_ticket_min_per_user($value, $vars, $html = 0)
         {
             if ($html) return "{{ticket_min | id $value}}";
             return $vars->metas['tickets_vars'][$value]["min-user"];
         }
 
-        public static
-
-        function chronosly_create_ticket_min_per_user_js($type)
+        public static function chronosly_create_ticket_min_per_user_js($type)
         {
             return 'var cont = "Create a ticket and save to view";
                     var def = jQuery(".chronosly-defaults #chronosly-ticket-min"+val).html();
@@ -5089,9 +4732,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* ticket max per user public static functionS*/
-        public static
-
-        function set_new_bubble_ticket_max_per_user($type, $fields_array, $style)
+        public static function set_new_bubble_ticket_max_per_user($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -5122,9 +4763,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_ticket_max_per_user($value, $vars, $html = 0)
+        public static function chronosly_create_ticket_max_per_user($value, $vars, $html = 0)
         {
             if ($html) return "{{ticket_max | id $value}}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -5132,9 +4771,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $vars->metas['tickets_vars'][$value]["max-user"];
         }
 
-        public static
-
-        function chronosly_create_ticket_max_per_user_js($type)
+        public static function chronosly_create_ticket_max_per_user_js($type)
         {
             return 'var cont = "Create a ticket and save to view";
                     var def = jQuery(".chronosly-defaults #chronosly-ticket-max"+val).html();
@@ -5143,9 +4780,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* ticket start public static functionS*/
-        public static
-
-        function set_new_bubble_ticket_start($type, $fields_array, $style)
+        public static function set_new_bubble_ticket_start($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -5176,9 +4811,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_ticket_start($value, $vars, $html = 0)
+        public static function chronosly_create_ticket_start($value, $vars, $html = 0)
         {
             $settings = unserialize(get_option("chronosly-settings"));
             if ($html) return "{{ticket_start | id $value}}";
@@ -5192,9 +4825,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             else return $ret . strftime($settings["chronosly_format_date"], strtotime($vars->metas['tickets_vars'][$value]["start-time"]));
         }
 
-        public static
-
-        function chronosly_create_ticket_start_js($type)
+        public static function chronosly_create_ticket_start_js($type)
         {
             return 'var cont = "Create a ticket and save to view";
                     var def = jQuery(".chronosly-defaults #chronosly-ticket-start-time"+val).html();
@@ -5203,9 +4834,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* ticket end public static functionS*/
-        public static
-
-        function set_new_bubble_ticket_end($type, $fields_array, $style)
+        public static function set_new_bubble_ticket_end($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -5236,9 +4865,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_ticket_end($value, $vars, $html = 0)
+        public static function chronosly_create_ticket_end($value, $vars, $html = 0)
         {
             if ($html) return "{{ticket_end | id $value}}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -5249,9 +4876,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             else return $ret . strftime($settings["chronosly_format_date"], strtotime($vars->metas['tickets_vars'][$value]["end-time"]));
         }
 
-        public static
-
-        function chronosly_create_ticket_end_js($type)
+        public static function chronosly_create_ticket_end_js($type)
         {
             return 'var cont = "Create a ticket and save to view";
                     var def = jQuery(".chronosly-defaults #chronosly-ticket-endtime"+val).html();
@@ -5260,9 +4885,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* ticket notes public static functionS*/
-        public static
-
-        function set_new_bubble_ticket_notes($type, $fields_array, $style)
+        public static function set_new_bubble_ticket_notes($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -5293,9 +4916,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_ticket_notes($value, $vars, $html = 0)
+        public static function chronosly_create_ticket_notes($value, $vars, $html = 0)
         {
             if ($html) return "{{ticket_notes | id $value}}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -5303,9 +4924,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $vars->metas['tickets_vars'][$value]["notes"];
         }
 
-        public static
-
-        function chronosly_create_ticket_notes_js($type)
+        public static function chronosly_create_ticket_notes_js($type)
         {
             return 'var cont = "Create a ticket and save to view";
                     var def = jQuery(".chronosly-defaults #chronosly-ticket-notes"+val).html();
@@ -5314,9 +4933,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* tickets link public static functionS*/
-        public static
-
-        function set_new_bubble_ticket_link($type, $fields_array, $style)
+        public static function set_new_bubble_ticket_link($type, $fields_array, $style)
         {
             if (isset($fields_array["bubble_value"])) $value = $fields_array["bubble_value"];
             $args = array(
@@ -5346,9 +4963,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_ticket_link($value, $vars, $html = 0)
+        public static function chronosly_create_ticket_link($value, $vars, $html = 0)
         {
             if ($html) return "<a href='{{ticket_link | id $value}}' target='_blank'>#custom_text#</a>";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -5360,9 +4975,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "<a href='" . $link . "' target='_blank'>#custom_text#</a>";
         }
 
-        public static
-
-        function chronosly_create_ticket_link_js($type)
+        public static function chronosly_create_ticket_link_js($type)
         {
             return 'var cont = "Create a ticket and save to view";
                     var def = jQuery(".chronosly-defaults #chronosly-ticket-link"+val).html();
@@ -5371,9 +4984,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* categories public static functionS*/
-        public static
-
-        function set_new_bubble_categories($type, $fields_array, $style)
+        public static function set_new_bubble_categories($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("Categories", "chronosly") ,
@@ -5402,9 +5013,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_categories($value, $vars, $html = 0)
+        public static function chronosly_create_categories($value, $vars, $html = 0)
         {
             if ($html) return "{{categories}}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -5426,9 +5035,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "";
         }
 
-        public static
-
-        function chronosly_create_categories_js($type)
+        public static function chronosly_create_categories_js($type)
         {
             $settings = unserialize(get_option("chronosly-settings"));
             return 'var value="";
@@ -5444,9 +5051,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                     else  content = value.replace("' . $settings["chronosly_dad_cat_separator"] . '", "");';
         }
 
-        public static
-
-        function set_new_bubble_category_name($type, $fields_array, $style)
+        public static function set_new_bubble_category_name($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("Category Name", "chronosly") ,
@@ -5493,9 +5098,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_category_name($value, $vars, $html = 0)
+        public static function chronosly_create_category_name($value, $vars, $html = 0)
         {
 
             // print_r($vars->metas);
@@ -5507,9 +5110,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "<span class='ch-category-" . $vars->metas["cats_vars"][$value]->slug . "'>" . apply_filters('the_title', $vars->metas["cats_vars"][$value]->name) . "</span>";
         }
 
-        public static
-
-        function chronosly_create_category_name_js($type)
+        public static function chronosly_create_category_name_js($type)
         {
             return 'var val = el.children(".ev-hidden").find(".vars input.readmore_w").val();
                     var cont = jQuery("input#name").val();
@@ -5519,9 +5120,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                     else content = def;';
         }
 
-        public static
-
-        function set_new_bubble_category_description($type, $fields_array, $style)
+        public static function set_new_bubble_category_description($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("Category Description", "chronosly") ,
@@ -5571,9 +5170,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_category_desc($value, $vars, $html = 0)
+        public static function chronosly_create_category_desc($value, $vars, $html = 0)
         {
             if ($html) return "<span class='ch-category-{{category_id | id $value}}'>{{category_description | id $value | filter the_content}}</span>";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -5582,9 +5179,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "<span class='ch-category-" . $vars->metas["cats_vars"][$value]->term_id . "'>" . apply_filters('the_content', $vars->metas["cats_vars"][$value]->description) . "</span>";
         }
 
-        public static
-
-        function chronosly_create_category_desc_js($type)
+        public static function chronosly_create_category_desc_js($type)
         {
             return 'var val = el.children(".ev-hidden").find(".vars input.readmore_w").val();
                     var cont = jQuery("input#description").val();
@@ -5595,9 +5190,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         }
 
         /* tags public static functionS*/
-        public static
-
-        function set_new_bubble_tags($type, $fields_array, $style)
+        public static function set_new_bubble_tags($type, $fields_array, $style)
         {
             $args = array(
                 "box_name" => __("Tags", "chronosly") ,
@@ -5626,9 +5219,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         // the content creator for events tab
 
-        public static
-
-        function chronosly_create_tags($value, $vars, $html = 0)
+        public static function chronosly_create_tags($value, $vars, $html = 0)
         {
             if ($html) return "{{tags}}";
             $settings = unserialize(get_option("chronosly-settings"));
@@ -5643,9 +5234,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return "";
         }
 
-        public static
-
-        function chronosly_create_tags_js($type)
+        public static function chronosly_create_tags_js($type)
         {
             $settings = unserialize(get_option("chronosly-settings"));
             return 'var value="";

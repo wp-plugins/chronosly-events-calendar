@@ -816,10 +816,14 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
             //print_r($wp_query);
         }
 
-       public static function get_permalink(){
-           return get_post_type_archive_link( 'chronosly_calendar' )."/";
+       public function get_permalink(){
+            $url = get_post_type_archive_link( 'chronosly_calendar' );
+            if(stripos($url, "?") === false and substr($url, -1) != "/") $url .= "/";
+
+           return $url;
 
        }
+
 
 
 	} // END class Post_Type_Template

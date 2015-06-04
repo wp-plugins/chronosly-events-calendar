@@ -1,4 +1,4 @@
-
+<?php //print_r($vars); ?>
 <div id="settings-tabs" class="wrapch">
     <ul>
         <li><a href="#tabs-1"><?php _e("General", "chronosly");?></a></li>
