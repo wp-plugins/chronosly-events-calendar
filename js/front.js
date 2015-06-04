@@ -263,7 +263,7 @@ function onready_calendar(){
 
             jQuery(this).parents(".ch-content").removeClass("ch-open");
             jQuery(".chronosly-cal.ch-month .ch-content").removeClass("hidde");
-            jQuery('html,body').animate({scrollTop: jQuery(this).parents(".ch-content").offset().top -60},'slow');
+            if(translated1.scrollOnOpen) jQuery('html,body').animate({scrollTop: jQuery(this).parents(".ch-content").offset().top -60},'slow');
             if( jQuery(".chronosly-cal.ch-month").outerWidth() > 600) jQuery(this).find(".cont1").show();
         }
 

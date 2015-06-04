@@ -77,11 +77,7 @@ if (!class_exists('Post_Type_Chronosly')) {
         function add_admin_scripts( $hook ) {
 
             global $post, $taxonomy;
-
-          
-
             if ( $hook == 'post-new.php' || $hook == 'post.php' || $hook == 'edit.php' || $hook == 'edit-tags.php' ) {
-                
                 if ( stripos($post->post_type, 'chronosly') !== false || (is_string($taxonomy) and stripos($taxonomy, 'chronosly') !== false )) {
 
                 wp_print_scripts(  'jquery-ui-core', get_bloginfo("url").'/wp-includes/js/ui/core-min.js' );

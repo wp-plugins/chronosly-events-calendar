@@ -16,7 +16,7 @@
     line-height:14px;
 }
 
-.chronosly.ch-default .ev-item.custom_link{z-index:1000;}
+.chronosly.ch-default .ev-item.custom_link{z-index:10;}
 .ch-default .mCSB_scrollTools_vertical{width:15px!important;}
 .chronosly-cal.year.ch-default .mCSB_scrollTools_vertical{width:15px!important;}
 .ch-default .mCSB_draggerContainer{padding:5px!important;}

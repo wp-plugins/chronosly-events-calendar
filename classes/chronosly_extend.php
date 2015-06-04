@@ -163,12 +163,12 @@ if(!class_exists('Chronosly_Extend'))
             if ($f = @fopen($file, "r")) {
                 $version =@fread($f, filesize($file));
                 if($version != CHRONOSLY_VERSION) {
-                	if($f1 = @fopen($file, "w+")){
-    		       		fwrite($f1, CHRONOSLY_VERSION);
-    		            @fclose($f1);
-    		            return true;
+                    if($f1 = @fopen($file, "w+")){
+                        fwrite($f1, CHRONOSLY_VERSION);
+                        @fclose($f1);
+                        return true;
                     } else return false;
-               	}
+                }
                  @fclose($f);
                  return false;
                 
@@ -181,7 +181,7 @@ if(!class_exists('Chronosly_Extend'))
                 } else return false;
             }
         }
-
+        
         public function copy_default_template(){
             $utils = new Chronosly_Utils();
             $files = scandir (CHRONOSLY_PATH.DIRECTORY_SEPARATOR."custom-templates");
