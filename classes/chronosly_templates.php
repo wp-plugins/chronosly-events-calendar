@@ -637,7 +637,7 @@ if(!class_exists('Chronosly_Templates')){
 
                     $this->render_template($template, $style, $vista, json_decode($data), $draganddropels, $html2 );
                 }
-                $cont= ob_get_clean();
+                $cont= str_replace("{{notprev}}", "",ob_get_clean());
                 echo $cont;
                 if($style == "front") Chronosly_Cache::save_item($itid, $vista, $cont);
             }

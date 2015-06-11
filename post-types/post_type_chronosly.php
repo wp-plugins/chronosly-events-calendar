@@ -1391,81 +1391,86 @@ if (!class_exists('Post_Type_Chronosly')) {
             }
                 do_action("chronosly_custom_frontend_css");
                 Post_Type_Chronosly::get_shortcode_base();
-                if(stripos($template, "shortcode") === FALSE and !is_search()) $chronosly_running = 1;
-                if(is_tax("chronosly_category") or $template == "shortcode_category" or $template == "shortcode_categories" or isset($_REQUEST["shortcode_category"]) or isset($_REQUEST["shortcode_categories"]) ){
+                if(stripos($template, "shortcode") === FALSE and !is_search()) {
+                    $chronosly_running = 1;
+                } else if(stripos($template, "shortcode") !== FALSE){
+                    $chronosly_shortcode = 1;
+                }
+                 // echo $template." ".$chronosly_shortcode." ";
+                if((is_tax("chronosly_category") and !$chronosly_shortcode) or $template == "shortcode_category" or $template == "shortcode_categories" or $_REQUEST["shortcode_category"] or $_REQUEST["shortcode_categories"] ){
                     if(is_tax("chronosly_category","list_all_cats") or $template == "shortcode_categories" or $_REQUEST["shortcode_categories"]){
                         //falta añadir aqui los shortcodes...
                         //esto esta replicado en chronosly category, en template redirect, por lo que no hace caso de esto aqui
                         if($template != "shortcode_categories" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."archive-category-chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."archive-category-chronosly.php";
                         if($template != "shortcode_categories" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."chronosly.php";
-                        if(!$settings["chronosly-base-templates-id"] or isset($_REQUEST["js_render"]) or $template == "shortcode_categories" or isset($_REQUEST["shortcode_categories"])) return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'archive-category-chronosly.php';
+                        if(!$settings["chronosly-base-templates-id"] or $_REQUEST["js_render"] or $template == "shortcode_categories" or $_REQUEST["shortcode_categories"]) return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'archive-category-chronosly.php';
                     }
                     else{
                         //add_action( 'posts_orderby', array("Post_Type_Chronosly",'add_custom_orderby') );
                         add_action( 'pre_get_posts', array("Post_Type_Chronosly",'add_custom_post_vars')  );
                         if($template != "shortcode_category" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."single-category-chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."single-category-chronosly.php";
                         if($template != "shortcode_category" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."chronosly.php";
-                        if(!$settings["chronosly-base-templates-id"]  or isset($_REQUEST["js_render"])  or $template == "shortcode_category" or isset($_REQUEST["shortcode_category"]))return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'single-category-chronosly.php';
+                        if(!$settings["chronosly-base-templates-id"]  or $_REQUEST["js_render"]  or $template == "shortcode_category" or $_REQUEST["shortcode_category"])return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'single-category-chronosly.php';
                     }
                 }
-                else if(is_tax("chronosly_tag")){
+                else if(is_tax("chronosly_tag")  and !$chronosly_shortcode ){
                     if(!has_action( 'posts_orderby', array("Post_Type_Chronosly",'add_custom_orderby') )) add_action( 'posts_orderby', array("Post_Type_Chronosly",'add_custom_orderby') );
                     if(!has_action( 'pre_get_posts', array("Post_Type_Chronosly",'add_custom_post_vars')  ))  add_action( 'pre_get_posts', array("Post_Type_Chronosly",'add_custom_post_vars')  );
                     return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'single-tag-chronosly.php';
                 }
-                else if(self::POST_TYPE === $custom_post_type or $template == "shortcode_event" or $template == "shortcode_events"){
+                else if((self::POST_TYPE === $custom_post_type  and !$chronosly_shortcode)  or $template == "shortcode_event" or $template == "shortcode_events"){
                     if(is_archive() or $template == "shortcode_events"){
                         add_action( 'posts_orderby', array("Post_Type_Chronosly",'add_custom_orderby') );
                         add_action( 'pre_get_posts', array("Post_Type_Chronosly",'add_custom_post_vars')  );
                         if($template != "shortcode_events" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."archive-chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."archive-chronosly.php";
                         if($template != "shortcode_events" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."chronosly.php";
-                        if(!$settings["chronosly-base-templates-id"]  or isset($_REQUEST["js_render"])  or $template == "shortcode_events") return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'archive-chronosly.php';
+                        if(!$settings["chronosly-base-templates-id"]  or $_REQUEST["js_render"]  or $template == "shortcode_events") return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'archive-chronosly.php';
                     }
                     else if (is_single() or $template == "shortcode_event") {
 
                         if($template != "shortcode_event" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."single-chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."single-chronosly.php";
                         if($template != "shortcode_event" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."chronosly.php";
 
-                        if(!$settings["chronosly-base-templates-id"] or isset($_REQUEST["js_render"])  or $template == "shortcode_event" ) return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'single-chronosly.php';
+                        if(!$settings["chronosly-base-templates-id"] or $_REQUEST["js_render"]  or $template == "shortcode_event" ) return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'single-chronosly.php';
                     }
                 }
-                else if("chronosly_organizer" === $custom_post_type or $template == "shortcode_organizer" or $template == "shortcode_organizers"){
+                else if(("chronosly_organizer" === $custom_post_type   and !$chronosly_shortcode) or $template == "shortcode_organizer" or $template == "shortcode_organizers"){
                     add_action( 'pre_get_posts', array("Post_Type_Chronosly",'add_custom_post_vars')  );
                     if(is_archive() or $template == "shortcode_organizers"){
                         if($template != "shortcode_organizers" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."archive-organizer-chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."archive-orgabizer-chronosly.php";
                         if($template != "shortcode_organizers" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."chronosly.php";
-                        if(!$settings["chronosly-base-templates-id"] or isset($_REQUEST["js_render"])  or $template == "shortcode_organizers" ) return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'archive-organizer-chronosly.php';
+                        if(!$settings["chronosly-base-templates-id"] or $_REQUEST["js_render"]  or $template == "shortcode_organizers" ) return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'archive-organizer-chronosly.php';
                     }
                     else if (is_single() or $template == "shortcode_organizer") {
                         if($template != "shortcode_organizer" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."single-organizer-chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."single-organizer-chronosly.php";
                         if($template != "shortcode_organizer" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."chronosly.php";
 
-                        if(!$settings["chronosly-base-templates-id"]  or isset($_REQUEST["js_render"])  or $template == "shortcode_organizer" ) return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'single-organizer-chronosly.php';
+                        if(!$settings["chronosly-base-templates-id"]  or $_REQUEST["js_render"]  or $template == "shortcode_organizer" ) return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'single-organizer-chronosly.php';
                     }
                 }
-                else if("chronosly_places" === $custom_post_type or $template == "shortcode_place" or $template == "shortcode_places"){
+                else if(("chronosly_places" === $custom_post_type   and !$chronosly_shortcode) or $template == "shortcode_place" or $template == "shortcode_places"){
                     add_action( 'pre_get_posts', array("Post_Type_Chronosly",'add_custom_post_vars')  );
 
                     if(is_archive() or $template == "shortcode_places") {
                         if($template != "shortcode_places" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."archive-places-chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."archive-places-chronosly.php";
                         if($template != "shortcode_places" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."chronosly.php";
 
-                        if(!$settings["chronosly-base-templates-id"]  or isset($_REQUEST["js_render"])  or $template == "shortcode_places") return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'archive-places-chronosly.php';
+                        if(!$settings["chronosly-base-templates-id"]  or $_REQUEST["js_render"]  or $template == "shortcode_places") return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'archive-places-chronosly.php';
                     }
                     else if (is_single() or $template == "shortcode_place") {
                         if($template != "shortcode_place" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."single-places-chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."single-places-chronosly.php";
                         if($template != "shortcode_place" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."chronosly.php";
 
-                        if(!$settings["chronosly-base-templates-id"]  or isset($_REQUEST["js_render"])  or $template == "shortcode_place") return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'single-places-chronosly.php';
+                        if(!$settings["chronosly-base-templates-id"]  or $_REQUEST["js_render"]  or $template == "shortcode_place") return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'single-places-chronosly.php';
                     }
                 }
-                else if("chronosly_calendar" === $custom_post_type  or $template == "shortcode_calendar")
+                else if(("chronosly_calendar" === $custom_post_type   and !$chronosly_shortcode)  or $template == "shortcode_calendar")
                 {
                     if(!has_action( 'posts_orderby', array("Post_Type_Chronosly",'add_custom_orderby') )) add_action( 'posts_orderby', array("Post_Type_Chronosly",'add_custom_orderby') );
                     if($template != "shortcode_calendar" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."calendar-chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."calendar-chronosly.php";
                     if($template != "shortcode_calendar" and file_exists(get_template_directory().DIRECTORY_SEPARATOR."chronosly.php")) return get_template_directory().DIRECTORY_SEPARATOR."chronosly.php";
 
-                    if(!$settings["chronosly-base-templates-id"]  or isset($_REQUEST["js_render"])  or $template == "shortcode_calendar") {
+                    if(!$settings["chronosly-base-templates-id"]  or $_REQUEST["js_render"]  or $template == "shortcode_calendar") {
                         add_action('wp_head',array("Post_Type_Chronosly", 'noindex'));
 
                         return CHRONOSLY_PATH.DIRECTORY_SEPARATOR."templates".DIRECTORY_SEPARATOR.'calendar-chronosly.php';
