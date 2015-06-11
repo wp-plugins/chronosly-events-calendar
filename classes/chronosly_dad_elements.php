@@ -507,7 +507,8 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         {
             if ($value) {
                 $dom = new DOMDocument("1.0", "utf8");
-                @$dom->loadHTML(mb_convert_encoding($cont, 'HTML-ENTITIES', 'UTF-8'));
+                if (extension_loaded('mbstring')) @$dom->loadHTML(mb_convert_encoding($cont, 'HTML-ENTITIES', 'UTF-8'));
+                else @$dom->loadHTML($cont);
                 $xpath = new DOMXPath($dom);
                 $link = $xpath->query("//a[@class='ch-readmore']");
                 if ($link->length) {
@@ -599,7 +600,8 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             switch ($value) {
             case 1: //external url
                 $dom = new DOMDocument("1.0", "utf8");
-                @$dom->loadHTML(mb_convert_encoding($cont, 'HTML-ENTITIES', 'UTF-8'));
+                if (extension_loaded('mbstring')) @$dom->loadHTML(mb_convert_encoding($cont, 'HTML-ENTITIES', 'UTF-8'));
+                else @$dom->loadHTML($cont);
                 $xpath = new DOMXPath($dom);
                 $link = $xpath->query("//a[@class='ch-readmore']");
                 if ($link->length) {
@@ -615,7 +617,8 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
             case 3: //slide hidden box
                 $dom = new DOMDocument("1.0", "utf8");
-                @$dom->loadHTML(mb_convert_encoding($cont, 'HTML-ENTITIES', 'UTF-8'));
+                if (extension_loaded('mbstring')) @$dom->loadHTML(mb_convert_encoding($cont, 'HTML-ENTITIES', 'UTF-8'));
+                else @$dom->loadHTML($cont);
                 $xpath = new DOMXPath($dom);
                 $link = $xpath->query("//a[@class='ch-readmore']");
                 if ($link->length) {
@@ -633,7 +636,8 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
             case 4:
                 $dom = new DOMDocument("1.0", "utf8");
-                @$dom->loadHTML(mb_convert_encoding($cont, 'HTML-ENTITIES', 'UTF-8'));
+                if (extension_loaded('mbstring')) @$dom->loadHTML(mb_convert_encoding($cont, 'HTML-ENTITIES', 'UTF-8'));
+                else @$dom->loadHTML($cont);
                 $xpath = new DOMXPath($dom);
                 $link = $xpath->query("//a[@class='ch-readmore']");
                 if ($link->length) {
@@ -802,7 +806,8 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         {
             if ($value) {
                 $dom = new DOMDocument("1.0", "utf8");
-                @$dom->loadHTML(mb_convert_encoding($cont, 'HTML-ENTITIES', 'UTF-8'));
+                if (extension_loaded('mbstring')) @$dom->loadHTML(mb_convert_encoding($cont, 'HTML-ENTITIES', 'UTF-8'));
+                else @$dom->loadHTML($cont);
                 $xpath = new DOMXPath($dom);
                 $link = $xpath->query("//a[@class='ch-readmore']");
                 if ($link->length) $link->item(0)->setAttribute('target', '_blank');
@@ -870,7 +875,8 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         {
             if ($value) {
                 $dom = new DOMDocument("1.0", "utf8");
-                @$dom->loadHTML(mb_convert_encoding($cont, 'HTML-ENTITIES', 'UTF-8'));
+                if (extension_loaded('mbstring')) @$dom->loadHTML(mb_convert_encoding($cont, 'HTML-ENTITIES', 'UTF-8'));
+                else @$dom->loadHTML($cont);
                 $xpath = new DOMXPath($dom);
                 $link = $xpath->query("//a[@class='ch-readmore']");
                 if ($link->length) $link->item(0)->setAttribute('rel', 'nofollow');
@@ -3989,9 +3995,12 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                 $q = $address;
             }
 
-            if ((!is_admin() or stripos($_SERVER["REQUEST_URI"], "wp-admin") === FALSE or $_REQUEST["action"] == "ch_run_shortcode") and $q) {
+            if ((!is_admin() or stripos($_SERVER["REQUEST_URI"], "wp-admin") === FALSE or $_REQUEST["action"] == "ch_run_shortcode" or $_REQUEST["action"] == "chronosly_filter_and_sort") and $q) {
                 if ($html and $html == "print") return __("Loading map", "chronosly") . "<script>jQuery(window).load(function(){gmap_initialize('gmap{$vars->pid}$timestamp', '$q', $zoom);});</script>";
-                else return __("Loading map", "chronosly") . "<script>jQuery(window).load(function(){gmap_initialize('gmap{$vars->pid}" . round(microtime(true) * 100) . "', '$q', $zoom);});</script>";
+                else {
+
+                    return __("Loading map", "chronosly") . "<script>jQuery(window).load(function(){gmap_initialize('gmap{$vars->pid}" . $timestamp . "', '$q', $zoom);});</script>";
+                }
             }
             else if (!$q) return "<span class='lorem'></span>";
             return "";

@@ -48,9 +48,15 @@ function gmap_initialize(id, adress, zoomvar) {
         overviewMapControl: true,
         scrollwheel: scroll,
     };
-    map[id] = new google.maps.Map(document.getElementById(id), mapOptions1);
-    geocoder[id] = new google.maps.Geocoder();
-    codeAddress1(adress, id);
+   
+    
+         // console.log(id);
+    if(document.getElementById(id) != null){
+        // console.log(document.getElementById(id));
+        map[id] = new google.maps.Map(document.getElementById(id), mapOptions1);
+        geocoder[id] = new google.maps.Geocoder();
+        codeAddress1(adress, id);
+    }
 }
 function codeAddress1(adress, id) {
     address[id] = adress;
@@ -109,6 +115,7 @@ function ev_popup(post){
 
 function ev_slide(post, el){
     var parent= jQuery(el).parents("div.chronosly");
+    if(parent.length) parent = jQuery(parent[0]);
     //jQuery(".ev-"+post+":not(.small) .ev-box.ch-hidden").slideToggle("slow");
     //jQuery(".ev-"+post+":not(.small) .ev-box.normal").slideToggle("slow");
     //jQuery(".ev-"+post).toggleClass("slided", 1000);
@@ -263,7 +270,7 @@ function onready_calendar(){
 
             jQuery(this).parents(".ch-content").removeClass("ch-open");
             jQuery(".chronosly-cal.ch-month .ch-content").removeClass("hidde");
-            jQuery('html,body').animate({scrollTop: jQuery(this).parents(".ch-content").offset().top -60},'slow');
+            if(translated1.scrollOnOpen) jQuery('html,body').animate({scrollTop: jQuery(this).parents(".ch-content").offset().top -60},'slow');
             if( jQuery(".chronosly-cal.ch-month").outerWidth() > 600) jQuery(this).find(".cont1").show();
         }
 
@@ -295,8 +302,8 @@ function onready_calendar(){
 }
 
 function onload_calendar(){
-    if(jQuery(".chronosly-cal.year.ch-default .ch-content").length ){
-        jQuery(".chronosly-cal.year.ch-default .ch-content").mCustomScrollbar(
+    if(jQuery(".chronosly-cal.year.ch-default .ch-content.withevents").length ){
+        jQuery(".chronosly-cal.year.ch-default .ch-content.withevents").mCustomScrollbar(
             {
                 theme:"light-2",
                 scrollButtons:{
@@ -344,7 +351,9 @@ function ch_next_page(limit, pag, code, element){
     });
 }
 
+
 function js_post_pagination(){
+    console.log("sadsa");
 
     jQuery(".chronosly-content-block .chronosly script").each(function(){
         //solo ejecuta el maps..mirar otros posibles js
