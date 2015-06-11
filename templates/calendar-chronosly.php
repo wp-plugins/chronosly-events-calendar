@@ -35,7 +35,7 @@ if(!$_REQUEST["js_render"] and !$_REQUEST["action"]) {
         if($k == "y") $r = $year;
         else if($k == "mo") $r = $month;
         else if($k == "week") $r = $week;
-        if($k != "page_id" and $k != "p" and $k != "ch_code" and $k != "post_type" ) $params .= "&$k=$r";
+        if($k != "page_id" and $k != "p" and $k != "ch_code" and $k != "post_type" and $k != "chronosly" ) $params .= "&$k=$r";
     }
     $calendarId = rand();
     echo "<script> jQuery( document ).ready(function(){
