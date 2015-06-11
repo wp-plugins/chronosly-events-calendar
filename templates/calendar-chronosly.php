@@ -12,13 +12,14 @@ if(!$week and isset($_REQUEST["week"])) $week = $_REQUEST["week"];
 if($week == "current") $week = date("W");
 
 
+
 $calendar_url = Post_Type_Chronosly_Calendar::get_permalink();
 if(stripos($calendar_url, "?") === FALSE ) $calendar_url1 = $calendar_url."?";
 else $calendar_url1 = $calendar_url."&";
 
 
 
-if(!isset($_REQUEST["js_render"]) and !isset($_REQUEST["action"])) {
+if(!$_REQUEST["js_render"] and !$_REQUEST["action"]) {
     if(!isset($_REQUEST["shortcode"]) or !$_REQUEST["shortcode"])  get_header();
     if(!isset($_REQUEST["shortcode"]) or !$_REQUEST["shortcode"])  {
 
@@ -34,10 +35,10 @@ if(!isset($_REQUEST["js_render"]) and !isset($_REQUEST["action"])) {
         if($k == "y") $r = $year;
         else if($k == "mo") $r = $month;
         else if($k == "week") $r = $week;
-        if($k != "page_id" and $k != "p" and $k != "ch_code" ) $params .= "&$k=$r";
+        if($k != "page_id" and $k != "p" and $k != "ch_code" and $k != "post_type" ) $params .= "&$k=$r";
     }
     $calendarId = rand();
-    echo "<script> jQuery(window).load(function(){
+    echo "<script> jQuery( document ).ready(function(){
                         var url =  '$calendar_url1".substr($params,1)."&js_render=1';
                         ch_load_calendar(url, ".$calendarId.");
                     });
@@ -68,16 +69,15 @@ if(!isset($_REQUEST["js_render"]) and !isset($_REQUEST["action"])) {
     $repeated = Post_Type_Chronosly_Calendar::get_events_repeated_by_date($year, $month, $week);
     $settings =  unserialize(get_option("chronosly-settings"));
     $calendar = $settings["chronosly_calendar_template_default"];
-    if(isset($_REQUEST["small"]) and $_REQUEST["small"])$calendar .=" small";
+    if(isset($_REQUEST["small"]) and $_REQUEST["small"]) $calendar .=" small";
 
 
-    $stilo = isset($stilo)?$stilo:"";
+
     echo "<div class='chronosly-calendar-block'>";
-    if(!isset($_REQUEST["shortcode"]) or (isset($_REQUEST["shortcode"]) and isset($_REQUEST["before_events"]))) do_action("chronosly-before-events", $stilo);
+    if(!$_REQUEST["shortcode"] or ($_REQUEST["shortcode"] and $_REQUEST["before_events"])) do_action("chronosly-before-events", $stilo);
     echo "<div class='chronosly-content-block' style='".$stilo.";clear:both;'>";
 
-
- if(isset($_REQUEST["from"])){
+    if($_REQUEST["from"]){
         echo "<div style='display:none'>
             <div class='ch_from'>".$_REQUEST["from"]."</div>
             <div class='ch_to'>".$_REQUEST["to"]."</div>
@@ -160,7 +160,7 @@ if(!isset($_REQUEST["js_render"]) and !isset($_REQUEST["action"])) {
                         </div>
                          ";
                         }
-                         if(!isset($_REQUEST["shortcode"])){
+                        if(!isset($_REQUEST["shortcode"])){
                             echo "<div class='ch-frame'>
                                     <div class='ch-month'>
                                         <div class='m_tit'><span class='back'>< </span><a href='".(get_option('permalink_structure')?$calendar_url."year_$year/month_1":"index.php?post_type=chronosly_calendar&y=$year&mo=1")."'>".$m[0]."</a></div>";
@@ -175,8 +175,6 @@ if(!isset($_REQUEST["js_render"]) and !isset($_REQUEST["action"])) {
                         foreach($d as $n) echo "<span>".$n."</span>";
                         echo "</div>";
                         echo "<div class='m_grid'><div class='ch-line'>";
-
-
                         foreach($days as $day=>$ev){
                             ++$i;
                             if(date("n",strtotime($day)) == $mi+1){ //is new month
@@ -197,7 +195,9 @@ if(!isset($_REQUEST["js_render"]) and !isset($_REQUEST["action"])) {
 
                             }
                             //hide days from other year
-                            echo "<div  class='ch-content' >";
+                            $c = "";
+                            if(is_array($ev)) $c = "withevents";
+                            echo "<div  class='ch-content $c' >";
                             $cont = "";
                             $cant = 0;
                             if(is_array($ev)){ //print the calendar view template for each event
@@ -217,7 +217,7 @@ if(!isset($_REQUEST["js_render"]) and !isset($_REQUEST["action"])) {
                                     }
                                     if(isset($repeats[$xid])) ++$repeats[$xid];
                                     else $repeats[$xid] = 1;
-
+                                  
 
                                 }
                             }
@@ -312,7 +312,7 @@ if(!isset($_REQUEST["js_render"]) and !isset($_REQUEST["action"])) {
                                     }
                                     if(isset($repeats[$xid])) ++$repeats[$xid];
                                     else $repeats[$xid] = 1;
-
+                                 
                                 }
                                 echo "</div>";
                             }
@@ -404,7 +404,7 @@ if(!isset($_REQUEST["js_render"]) and !isset($_REQUEST["action"])) {
                                     }
                                     if(isset($repeats[$xid])) ++$repeats[$xid];
                                     else $repeats[$xid] = 1;
-
+                                  
                                 }
                                 echo "</div>";
                             }
@@ -421,13 +421,13 @@ if(!isset($_REQUEST["js_render"]) and !isset($_REQUEST["action"])) {
                     break;
 
                 }
-    if(!isset($_REQUEST["shortcode"]) or ($_REQUEST["shortcode"] and $_REQUEST["after_events"])) do_action("chronosly-after-events");
+    if(!$_REQUEST["shortcode"] or ($_REQUEST["shortcode"] and $_REQUEST["after_events"])) do_action("chronosly-after-events");
     echo "</div>"; //close chronosly block
     echo "</div>"; //close chronosly clanedar block
 
     wp_reset_postdata();
 
-
+    
 }
 
 
