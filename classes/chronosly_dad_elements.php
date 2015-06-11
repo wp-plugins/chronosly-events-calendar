@@ -3998,6 +3998,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             if ((!is_admin() or stripos($_SERVER["REQUEST_URI"], "wp-admin") === FALSE or $_REQUEST["action"] == "ch_run_shortcode" or $_REQUEST["action"] == "chronosly_filter_and_sort") and $q) {
                 if ($html and $html == "print") return __("Loading map", "chronosly") . "<script>jQuery(window).load(function(){gmap_initialize('gmap{$vars->pid}$timestamp', '$q', $zoom);});</script>";
                 else {
+                    $timestamp += 1;
 
                     return __("Loading map", "chronosly") . "<script>jQuery(window).load(function(){gmap_initialize('gmap{$vars->pid}" . $timestamp . "', '$q', $zoom);});</script>";
                 }

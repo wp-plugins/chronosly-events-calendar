@@ -1606,8 +1606,10 @@ if(!class_exists('Chronosly_Templates')){
                             if($type == "place_gmap"){
                                 $width = "100%";
                                 $height = "200";
-                                if($html2) $cont = "$tabs   <div id='gmap{{id}}{{timestamp}}' class='ev-data $type'  style='width:$width; height:{$height}px;#data_style'>\n$tabs $cont\n$tabs</div>";
-                                else $cont = "  $tabs<div id='gmap{$vars->pid}".round(microtime(true) * 100)."' class='ev-data $type'  style='width:$width; height:{$height}px;#data_style'>\n$tabs     $cont\n$tabs    </div>";
+                               if($html2) $cont = "$tabs   <div id='gmap{{id}}{{timestamp}}' class='ev-data $type'  style='width:$width; height:{$height}px;#data_style'>\n$tabs $cont\n$tabs</div>";
+                                else {
+                                    $cont = "  $tabs<div id='gmap{$vars->pid}".$timestamp."' class='ev-data $type'  style='width:$width; height:{$height}px;#data_style'>\n$tabs     $cont\n$tabs    </div>";
+                                }
                             }
                             else{
                                 $cont = "   $tabs<div class='ev-data $etype'>\n$tabs".$cont."\n     $tabs</div>\n$tabs";
@@ -1727,7 +1729,6 @@ if(!class_exists('Chronosly_Templates')){
       }
        public function print_template_html($id, $vista, $draganddropels="", $template ="", $style="back", $args = array()){
             global $timestamp;
-            $timestamp = round(microtime(true) * 100);
             $vars = $this->settings;
             $data = "";
             $this->vars = new stdClass();
