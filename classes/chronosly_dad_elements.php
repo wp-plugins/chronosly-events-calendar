@@ -63,7 +63,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
             if (stripos($cont, "#custom_text#")) return str_replace("#custom_text#", __($value, "chronosly") , $cont);
             if ($value) {
-                return __($value, "chronosly");
+                return do_shortcode(__($value, "chronosly"));
             }
 
             return $cont;
@@ -596,7 +596,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         static
         function create_readmore_action_item($cont, $value, $vars, $html = 0)
-        {
+        {   
             switch ($value) {
             case 1: //external url
                 $dom = new DOMDocument("1.0", "utf8");
@@ -748,7 +748,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
         function create_external_url_item($cont, $value, $vars, $html = 0)
         {
             if ($value) {
-                if (!stripos($value, "://")) $value = "http://$value";
+                if (!stripos($value, "://") && stripos($value, "#") != 0) $value = "http://$value";
                 return str_replace("#external_url#", $value, $cont);
             }
 
@@ -1247,8 +1247,10 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                 }
                 else {
                     if (!$value) $value = $settings["chronosly_format_date_time"];
-                    $date1 = $vars->metas["ev-from"][0] . " " . $vars->metas["ev-from-h"][0] . ":" . $vars->metas["ev-from-m"][0];
-                    $date2 = $vars->metas["ev-to"][0] . " " . $vars->metas["ev-to-h"][0] . ":" . $vars->metas["ev-to-m"][0];
+                    $date1 = $vars->metas["ev-from"][0];
+                    if(!isset($vars->metas["events"][0]) or $vars->metas["events"][0] == "") $date1 .= " " . $vars->metas["ev-from-h"][0] . ":" . $vars->metas["ev-from-m"][0];
+                    $date2 = $vars->metas["ev-to"][0];
+                    if(!isset($vars->metas["events"][0]) or $vars->metas["events"][0] == "") $date2 .= " " . $vars->metas["ev-to-h"][0] . ":" . $vars->metas["ev-to-m"][0];
                     $date1 = str_replace("<span class='lorem'></span>", "", $date1, $lorem);
                     $date2 = str_replace("<span class='lorem'></span>", "", $date2, $lorem);
                     if (stripos($vars->metas["ev-from"][0], "'lorem'") === FALSE) $lorem = 0;
@@ -1274,8 +1276,10 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                 }
                 else {
                     if (!$value) $value = $settings["chronosly_format_date"];
-                    $date1 = $vars->metas["ev-from"][0] . " " . $vars->metas["ev-from-h"][0] . ":" . $vars->metas["ev-from-m"][0];
-                    $date2 = $vars->metas["ev-to"][0] . " " . $vars->metas["ev-to-h"][0] . ":" . $vars->metas["ev-to-m"][0];
+                    $date1 = $vars->metas["ev-from"][0] ;
+                    if(!isset($vars->metas["events"][0]) or $vars->metas["events"][0] == "") $date1 .= " " . $vars->metas["ev-from-h"][0] . ":" . $vars->metas["ev-from-m"][0];
+                    $date2 = $vars->metas["ev-to"][0] ;
+                    if(!isset($vars->metas["events"][0]) or $vars->metas["events"][0] == "") $date2 .= " " . $vars->metas["ev-to-h"][0] . ":" . $vars->metas["ev-to-m"][0];
                     $date1 = str_replace("<span class='lorem'></span>", "", $date1, $lorem);
                     $date2 = str_replace("<span class='lorem'></span>", "", $date2, $lorem);
                     if (stripos($vars->metas["ev-from"][0], "'lorem'")) $lorem = 0;
@@ -1296,28 +1300,41 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                 break;
 
             case "full_time":
+
                 if ($html) {
                     $cont = str_replace("}}", " | time_format $value}}", $cont);
                 }
                 else {
-                        if (!$value) $value = $settings["chronosly_format_time"];
-                    $date1 = $vars->metas["ev-from"][0] . " " . $vars->metas["ev-from-h"][0] . ":" . $vars->metas["ev-from-m"][0];
-                    $date2 = $vars->metas["ev-to"][0] . " " . $vars->metas["ev-to-h"][0] . ":" . $vars->metas["ev-to-m"][0];
-                    $date1 = str_replace("<span class='lorem'></span>", "", $date1, $lorem);
-                    $date2 = str_replace("<span class='lorem'></span>", "", $date2, $lorem);
-                    if (stripos($vars->metas["ev-from"][0], "'lorem'") === FALSE) $lorem = 0;
-                    $date1o = strtotime($date1);
-                    $date2o = strtotime($date2);
-                    if (stripos($value, "%") === FALSE) {
-                        if ($vars->metas["ev-from-h"][0] and stripos($vars->metas["ev-from-h"][0], "'lorem'") === FALSE) $cont.= date_i18n($value, $date1o);
-                        if ($vars->metas["ev-to-h"][0] and stripos($vars->metas["ev-to-h"][0], "'lorem'") === FALSE) $cont.= " " . __($settings["chronosly_full_datetime_separator"] , "chronosly"). " " . date_i18n($value, $date2o);
-                    }
-                    else {
-                        if ($vars->metas["ev-from-h"][0] and stripos($vars->metas["ev-from-h"][0], "'lorem'") === FALSE) $cont.= strftime($value, $date1o);
-                        if ($vars->metas["ev-to-h"][0] and stripos($vars->metas["ev-to-h"][0], "'lorem'") === FALSE) $cont.= " " . __($settings["chronosly_full_datetime_separator"] , "chronosly") . " " . strftime($value, $date2o);
-                    }
+                    if (!$value) $value = $settings["chronosly_format_time"];
+                    if(!isset($vars->metas["events"][0]) or $vars->metas["events"][0] == "") {
+                        $date1 = $vars->metas["ev-from"][0] ;
+                        if(!isset($vars->metas["events"][0]) or $vars->metas["events"][0] == "") $date1 .= " " . $vars->metas["ev-from-h"][0] . ":" . $vars->metas["ev-from-m"][0];
+                        $date2 = $vars->metas["ev-to"][0] ;
+                        if(!isset($vars->metas["events"][0]) or $vars->metas["events"][0] == "") $date2 .= " " . $vars->metas["ev-to-h"][0] . ":" . $vars->metas["ev-to-m"][0];
 
-                    if (!$cont) $cont = __("All day long", "chronosly");
+                        $date1 = str_replace("<span class='lorem'></span>", "", $date1, $lorem);
+                        $date2 = str_replace("<span class='lorem'></span>", "", $date2, $lorem);
+                        if (stripos($vars->metas["ev-from"][0], "'lorem'") === FALSE) $lorem = 0;
+                        $date1o = strtotime($date1);
+                        $date2o = strtotime($date2);
+                        if (stripos($value, "%") === FALSE) {
+                            if ($vars->metas["ev-from-h"][0] and stripos($vars->metas["ev-from-h"][0], "'lorem'") === FALSE) $cont.= date_i18n($value, $date1o);
+                            if ($vars->metas["ev-to-h"][0] and stripos($vars->metas["ev-to-h"][0], "'lorem'") === FALSE) $cont.= " " . __($settings["chronosly_full_datetime_separator"] , "chronosly"). " " . date_i18n($value, $date2o);
+                        }
+                        else {
+                            if ($vars->metas["ev-from-h"][0] and stripos($vars->metas["ev-from-h"][0], "'lorem'") === FALSE) $cont.= strftime($value, $date1o);
+                            if ($vars->metas["ev-to-h"][0] and stripos($vars->metas["ev-to-h"][0], "'lorem'") === FALSE) $cont.= " " . __($settings["chronosly_full_datetime_separator"] , "chronosly") . " " . strftime($value, $date2o);
+                        }
+
+                        if (!$cont) $cont = __("All day long", "chronosly");
+                    } else {
+                        $tickets = unserialize(get_option("chronosly_settings_tickets_and_repeats_extended"));
+                        if(stripos($vars->metas["ev-from-h"][0], ",")) $cont = __($tickets["event_repeats_seasons_name"], "chronosly")." ";
+                        $s = json_decode($vars->metas["ev-from-h"][0]);
+                        foreach($s as $id=>$s1) if($s1 == ":") $s[$id] = __("All day long", "chronosly");
+                        if(count($s) > 1) $cont .= implode(", ", $s);
+                        else $cont .= $s[0];
+                    }
                 }
 
                 break;
@@ -1327,13 +1344,22 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                     $cont = str_replace("}}", " | time_format $value}}", $cont);
                 }
                 else {
-                    if (!$value) $value = $settings["chronosly_format_date_time"];
-                    $date1 = $vars->metas["ev-from"][0] . " " . $vars->metas["ev-from-h"][0] . ":" . $vars->metas["ev-from-m"][0];
-                    $date1 = str_replace("<span class='lorem'></span>", "", $date1, $lorem);
-                    if (stripos($vars->metas["ev-from"][0], "'lorem'") === FALSE) $lorem = 0;
-                    $date1o = strtotime($date1);
-                    if (stripos($value, "%") === FALSE) $cont.= date_i18n($value, $date1o);
-                    else $cont.= strftime($value, $date1o);
+                     if(!isset($vars->metas["events"][0]) or $vars->metas["events"][0] == "") {
+                        if (!$value) $value = $settings["chronosly_format_date_time"];
+                        $date1 = $vars->metas["ev-from"][0] ;
+                        if(!isset($vars->metas["events"][0]) or $vars->metas["events"][0] == "") $date1 .= " " . $vars->metas["ev-from-h"][0] . ":" . $vars->metas["ev-from-m"][0];
+                        $date1 = str_replace("<span class='lorem'></span>", "", $date1, $lorem);
+                        if (stripos($vars->metas["ev-from"][0], "'lorem'") === FALSE) $lorem = 0;
+                        $date1o = strtotime($date1);
+                        if (stripos($value, "%") === FALSE) $cont.= date_i18n($value, $date1o);
+                        else $cont.= strftime($value, $date1o);
+                    } else {
+                         $tickets = unserialize(get_option("chronosly_settings_tickets_and_repeats_extended"));
+                        if(stripos($vars->metas["ev-from-h"][0], ",")) $cont = __($tickets["event_repeats_seasons_name"], "chronosly")." ";
+
+                        $s = json_decode($vars->metas["ev-from-h"][0]);
+                        $cont .= implode(", ", $s);
+                    }
                 }
 
                 break;
@@ -1344,7 +1370,8 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                 }
                 else {
                     if (!$value) $value = $settings["chronosly_format_date_time"];
-                    $date1 = $vars->metas["ev-to"][0] . " " . $vars->metas["ev-to-h"][0] . ":" . $vars->metas["ev-to-m"][0];
+                    $date1 = $vars->metas["ev-to"][0];
+                    if(!isset($vars->metas["events"][0]) or $vars->metas["events"][0] == "") $date1 .= " " . $vars->metas["ev-to-h"][0] . ":" . $vars->metas["ev-to-m"][0];
                     $date1 = str_replace("<span class='lorem'></span>", "", $date1, $lorem);
                     if (stripos($vars->metas["ev-to"][0], "'lorem'") === FALSE) $lorem = 0;
                     $date1o = strtotime($date1);
@@ -1359,8 +1386,10 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                     $cont = str_replace("}}", " | time_format $value}}", $cont);
                 }
                 else {
+
                     if (!$value) $value = $settings["chronosly_format_date"];
-                    $date1 = $vars->metas["ev-from"][0] . " " . $vars->metas["ev-from-h"][0] . ":" . $vars->metas["ev-from-m"][0];
+                    $date1 = $vars->metas["ev-from"][0];
+                    if(!isset($vars->metas["events"][0]) or $vars->metas["events"][0] == "") $date1 .= " " . $vars->metas["ev-from-h"][0] . ":" . $vars->metas["ev-from-m"][0];
                     $date1 = str_replace("<span class='lorem'></span>", "", $date1, $lorem);
                     if (stripos($vars->metas["ev-from"][0], "'lorem'") === FALSE) $lorem = 0;
                     $date1o = strtotime($date1);
@@ -1376,7 +1405,8 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                 }
                 else {
                     if (!$value) $value = $settings["chronosly_format_date"];
-                    $date1 = $vars->metas["ev-to"][0] . " " . $vars->metas["ev-to-h"][0] . ":" . $vars->metas["ev-to-m"][0];
+                    $date1 = $vars->metas["ev-to"][0]; 
+                    if(!isset($vars->metas["events"][0]) or $vars->metas["events"][0] == "") $date1 .= " " . $vars->metas["ev-to-h"][0] . ":" . $vars->metas["ev-to-m"][0];
                     $date1 = str_replace("<span class='lorem'></span>", "", $date1, $lorem);
                     if (stripos($vars->metas["ev-to"][0], "'lorem'") === FALSE) $lorem = 0;
                     $date1o = strtotime($date1);
@@ -1391,13 +1421,26 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                     $cont = str_replace("}}", " | time_format $value}}", $cont);
                 }
                 else {
-                    if (!$value) $value = $settings["chronosly_format_time"];
-                    $date1 = $vars->metas["ev-from"][0] . " " . $vars->metas["ev-from-h"][0] . ":" . $vars->metas["ev-from-m"][0];
-                    $date1 = str_replace("<span class='lorem'></span>", "", $date1, $lorem);
-                    if (stripos($vars->metas["ev-from-h"][0], "'lorem'") === FALSE) $lorem = 0;
-                    $date1o = strtotime($date1);
-                    if (stripos($value, "%") === FALSE) $cont.= date_i18n($value, $date1o);
-                    else $cont.= strftime($value, $date1o);
+                    if(!isset($vars->metas["events"][0]) or $vars->metas["events"][0] == "" || !stripos($vars->metas["ev-from-h"][0], "]")) {
+                        if (!$value) $value = $settings["chronosly_format_time"];
+                        $date1 = $vars->metas["ev-from"][0] . " " . $vars->metas["ev-from-h"][0] . ":" . $vars->metas["ev-from-m"][0];
+                        $date1 = str_replace("<span class='lorem'></span>", "", $date1, $lorem);
+                        if (stripos($vars->metas["ev-from-h"][0], "'lorem'") === FALSE) $lorem = 0;
+                        $date1o = strtotime($date1);
+                        if (stripos($value, "%") === FALSE) $cont.= date_i18n($value, $date1o);
+                        else $cont.= strftime($value, $date1o);
+                    } else {
+
+                         $tickets = unserialize(get_option("chronosly_settings_tickets_and_repeats_extended"));
+                        if(stripos($vars->metas["ev-from-h"][0], ",")) $cont = __($tickets["event_repeats_seasons_name"], "chronosly")." ";
+;
+                       
+                        $s = json_decode($vars->metas["ev-from-h"][0]);
+                        // $m = json_decode($vars->metas["ev-from-m"][0]);
+                        if(count($s)>1) $cont .= implode(", ", $s);
+                        else $cont .= $s;
+                        // print_r($vars->metas["ev-from-h"][0]);
+                    }
                 }
 
                 break;
@@ -1967,7 +2010,36 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         function chronosly_create_custom_link($value, $vars, $html = 0)
         {
-            return "<a class='ch-readmore'></a>";
+            // return "<a class='ch-readmore'></a>";
+            $vista = $vars->vista;
+            $id = $vars->pid;
+                if ($vista == "dad6") {
+                   
+                    if ($html) return "<a href='{{organizer_link | id 0}' class='ch-readmore'></a>";
+                    return "<a href='" . get_post_permalink($id) . "' class='ch-readmore'>$cont</a>";
+                }
+                else
+                if ($vista == "dad7") {
+                    $id = substr($cont, $ini + 9);
+                    $id = substr($id, 0, stripos($id, "'"));
+                    if ($html) return "<a href='{{place_link | id 0}}' class='ch-readmore'>$cont</a>";
+                    return "<a href='" . get_post_permalink($id) . "' class='ch-readmore'>$cont</a>";
+                }
+                // else
+                // if ($vista == "dad4") {
+
+                //     // revisar
+
+                   
+                //     if (isset($link->errors)) return "<a href='{{place_link | id 0}}' class='ch-readmore'></a>";
+                //     $link = get_term_link($id, "chronosly_category");
+                //     return "<a href='$link' class='ch-readmore'></a>";
+                // }
+                
+                if ($html) return "<a href='{{event_link}}' class='ch-readmore'></a>";
+                return "<a href='" . str_replace("<span class='lorem'></span>", "", $vars->link) . "' class='ch-readmore'></a>";
+            
+           
         }
 
         public static
@@ -2013,7 +2085,8 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
         function chronosly_create_custom_code($value, $vars, $html = 0)
         {
-            return apply_filters('the_content', $value);
+
+            return do_shortcode($value);
         }
 
         public static
@@ -3998,6 +4071,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             if ((!is_admin() or stripos($_SERVER["REQUEST_URI"], "wp-admin") === FALSE or $_REQUEST["action"] == "ch_run_shortcode" or $_REQUEST["action"] == "chronosly_filter_and_sort") and $q) {
                 if ($html and $html == "print") return __("Loading map", "chronosly") . "<script>jQuery(window).load(function(){gmap_initialize('gmap{$vars->pid}$timestamp', '$q', $zoom);});</script>";
                 else {
+                    $timestamp += 1;
 
                     return __("Loading map", "chronosly") . "<script>jQuery(window).load(function(){gmap_initialize('gmap{$vars->pid}" . $timestamp . "', '$q', $zoom);});</script>";
                 }
@@ -4125,22 +4199,27 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                         "name" => "tickets_capacity_check",
                         "value" => 1
                     ) ,
-                    array(
-                        "name" => "tickets_min_check",
+                
+                     array(
+                        "name" => "tickets_capacity_check",
                         "value" => 1
                     ) ,
-                    array(
-                        "name" => "tickets_max_check",
-                        "value" => 1
-                    ) ,
-                    array(
-                        "name" => "tickets_start_check",
-                        "value" => 1
-                    ) ,
-                    array(
-                        "name" => "tickets_end_check",
-                        "value" => 1
-                    ) ,
+                    // array(
+                    //     "name" => "tickets_min_check",
+                    //     "value" => 1
+                    // ) ,
+                    // array(
+                    //     "name" => "tickets_max_check",
+                    //     "value" => 1
+                    // ) ,
+                    // array(
+                    //     "name" => "tickets_start_check",
+                    //     "value" => 1
+                    // ) ,
+                    // array(
+                    //     "name" => "tickets_end_check",
+                    //     "value" => 1
+                    // ) ,
                     array(
                         "name" => "tickets_buy_check",
                         "value" => 1
@@ -4167,7 +4246,7 @@ if (!class_exists('Chronosly_Dad_Elements')) {
 
             // print_r($settings);
 
-            $color = $cat->metas["cat-color"];
+            $color = $vars->metas["cat-color"];
             if (!$color) $color = $settings["chronosly_category_color"];
             $ret = "";
             if (isset($vars->metas["tickets_vars"])) {
@@ -4176,10 +4255,10 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                 $ret.= "<li class='title'>" . __("Ticket", 'chronosly') . "</li>";
                 $ret.= "<li class='price'>" . __("Price", 'chronosly') . "</li>";
                 $ret.= "<li class='capacity'>" . __("Capacity", 'chronosly') . "</li>";
-                $ret.= "<li class='min'>" . __("Min. tickets", 'chronosly') . "</li>";
-                $ret.= "<li class='max'>" . __("Max. tickets", 'chronosly') . "</li>";
-                $ret.= "<li class='start'>" . __("Sales start", 'chronosly') . "</li>";
-                $ret.= "<li class='end'>" . __("Sales end", 'chronosly') . "</li>";
+                // $ret.= "<li class='min'>" . __("Min. tickets", 'chronosly') . "</li>";
+                // $ret.= "<li class='max'>" . __("Max. tickets", 'chronosly') . "</li>";
+                // $ret.= "<li class='start'>" . __("Sales start", 'chronosly') . "</li>";
+                // $ret.= "<li class='end'>" . __("Sales end", 'chronosly') . "</li>";
                 $ret.= "</ul>";
                 foreach($vars->metas["tickets_vars"] as $tik) {
 
@@ -4188,22 +4267,23 @@ if (!class_exists('Chronosly_Dad_Elements')) {
                     $ret.= "<ul>";
                     $ret.= "<li class='title'><i class='fa fa-ticket'></i> " . $tik["title"] . "</li>";
                     if (!$tik["price"]) $tik["price"] = 0;
-                    $ret.= "<li class='price'><span class='ch-currency'>" . $settings["chronosly_currency"] . "</span> " . $tik["price"] . "</li>";
+                    if($tik["sales-price"] and $tik["sale"] ) $ret.= "<li class='price sale'><span class='ch-currency'>" . $settings["chronosly_currency"] . "</span> " . $tik["sales-price"] . "</li>";
+                    else $ret.= "<li class='price'><span class='ch-currency'>" . $settings["chronosly_currency"] . "</span> " . $tik["price"] . "</li>";
                     $ret.= "<li class='capacity'>" . $tik["capacity"] . "</li>";
-                    $ret.= "<li class='min'>" . $tik["min-user"] . "</li>";
-                    $ret.= "<li class='max'>" . $tik["max-user"] . "</li>";
-                    $ret.= "<li class='start'>";
-                    if ($tik["start-time"]) {
-                        if (stripos($settings["chronosly_format_date"], "%") === FALSE) $ret.= date_i18n($settings["chronosly_format_date"], strtotime($tik["start-time"]));
-                        else $ret.= strftime($settings["chronosly_format_date"], strtotime($tik["start-time"]));
-                    }
+                    // $ret.= "<li class='min'>" . $tik["min-user"] . "</li>";
+                    // $ret.= "<li class='max'>" . $tik["max-user"] . "</li>";
+                    // $ret.= "<li class='start'>";
+                    // if ($tik["start-time"]) {
+                    //     if (stripos($settings["chronosly_format_date"], "%") === FALSE) $ret.= date_i18n($settings["chronosly_format_date"], strtotime($tik["start-time"]));
+                    //     else $ret.= strftime($settings["chronosly_format_date"], strtotime($tik["start-time"]));
+                    // }
 
-                    $ret.= "</li>";
-                    $ret.= "<li class='end'>";
-                    if ($tik["end-time"]) {
-                        if (stripos($settings["chronosly_format_date"], "%") === FALSE) $ret.= date_i18n($settings["chronosly_format_date"], strtotime($tik["end-time"]));
-                        else $ret.= strftime($settings["chronosly_format_date"], strtotime($tik["end-time"]));
-                    }
+                    // $ret.= "</li>";
+                    // $ret.= "<li class='end'>";
+                    // if ($tik["end-time"]) {
+                    //     if (stripos($settings["chronosly_format_date"], "%") === FALSE) $ret.= date_i18n($settings["chronosly_format_date"], strtotime($tik["end-time"]));
+                    //     else $ret.= strftime($settings["chronosly_format_date"], strtotime($tik["end-time"]));
+                    // }
 
                     $ret.= "</li>";
                     $ret.= "<li class='buy'>";
@@ -4438,293 +4518,293 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             return $return;
         }
 
-        function tickets_min_check_field($default)
-        {
-            if ($default['label']) $label = $default['label'];
-            else $label = "Min. tickets";
-            if ($default['order']) $order = $default['order'];
-            else $order = 1;
-            if (isset($default['value'])) $value = $default['value'];
-            else $value = 1;
-            $args = array(
-                "name" => "tickets_min_check",
-                "label" => $label,
-                "el_type" => "var",
-                "type" => "checkbox",
-                "order" => $order,
-                "value" => $value,
-                "php_function" => array(
-                    "Chronosly_Dad_Elements",
-                    "create_ticket_min"
-                ) ,
-                "js_function" => array(
-                    "Chronosly_Dad_Elements",
-                    "create_ticket_min_js"
-                )
-            );
-            return Chronosly_Extend::create_dad_field($args);
-        }
+        // function tickets_min_check_field($default)
+        // {
+        //     if ($default['label']) $label = $default['label'];
+        //     else $label = "Min. tickets";
+        //     if ($default['order']) $order = $default['order'];
+        //     else $order = 1;
+        //     if (isset($default['value'])) $value = $default['value'];
+        //     else $value = 1;
+        //     $args = array(
+        //         "name" => "tickets_min_check",
+        //         "label" => $label,
+        //         "el_type" => "var",
+        //         "type" => "checkbox",
+        //         "order" => $order,
+        //         "value" => $value,
+        //         "php_function" => array(
+        //             "Chronosly_Dad_Elements",
+        //             "create_ticket_min"
+        //         ) ,
+        //         "js_function" => array(
+        //             "Chronosly_Dad_Elements",
+        //             "create_ticket_min_js"
+        //         )
+        //     );
+        //     return Chronosly_Extend::create_dad_field($args);
+        // }
 
-        static
-        function create_ticket_min($cont, $value, $vars, $html = 0)
-        {
-            if ($html) {
-                $pos = strrpos($cont, "}}");
-                if ($pos !== false) {
-                    $cont = substr_replace($cont, " | ticket_min " . $value . "}}", $pos, 2);
-                }
+        // static
+        // function create_ticket_min($cont, $value, $vars, $html = 0)
+        // {
+        //     if ($html) {
+        //         $pos = strrpos($cont, "}}");
+        //         if ($pos !== false) {
+        //             $cont = substr_replace($cont, " | ticket_min " . $value . "}}", $pos, 2);
+        //         }
 
-                return $cont;
-            }
+        //         return $cont;
+        //     }
 
-            $settings = unserialize(get_option("chronosly-settings"));
-            if (!$value or !$settings["chronosly_tickets"]) {
-                $cont = str_replace("class='min'", "class='min hide'", $cont);
-                return $cont;
-            }
+        //     $settings = unserialize(get_option("chronosly-settings"));
+        //     if (!$value or !$settings["chronosly_tickets"]) {
+        //         $cont = str_replace("class='min'", "class='min hide'", $cont);
+        //         return $cont;
+        //     }
 
-            return $cont;
-        }
+        //     return $cont;
+        // }
 
-        static
-        function create_ticket_min_js($type)
-        {
-            switch ($type) {
-            case "create":
-                $return = 'if(!val) {
-                                element.find(".ev-data .tickets .min").addClass("hide");
-                              }';
-                break;
+        // static
+        // function create_ticket_min_js($type)
+        // {
+        //     switch ($type) {
+        //     case "create":
+        //         $return = 'if(!val) {
+        //                         element.find(".ev-data .tickets .min").addClass("hide");
+        //                       }';
+        //         break;
 
-            case "modify":
-                $return = '
-                               if(!val) {
-                                element.find(".ev-data .tickets .min").addClass("hide");
-                              } else{
-                                element.find(".ev-data .tickets .min").removeClass("hide");
+        //     case "modify":
+        //         $return = '
+        //                        if(!val) {
+        //                         element.find(".ev-data .tickets .min").addClass("hide");
+        //                       } else{
+        //                         element.find(".ev-data .tickets .min").removeClass("hide");
 
-                              }';
-                break;
-            }
+        //                       }';
+        //         break;
+        //     }
 
-            return $return;
-        }
+        //     return $return;
+        // }
 
-        function tickets_max_check_field($default)
-        {
-            if ($default['label']) $label = $default['label'];
-            else $label = "Max. tickets";
-            if ($default['order']) $order = $default['order'];
-            else $order = 1;
-            if (isset($default['value'])) $value = $default['value'];
-            else $value = 1;
-            $args = array(
-                "name" => "tickets_max_check",
-                "label" => $label,
-                "el_type" => "var",
-                "type" => "checkbox",
-                "order" => $order,
-                "value" => $value,
-                "php_function" => array(
-                    "Chronosly_Dad_Elements",
-                    "create_ticket_max"
-                ) ,
-                "js_function" => array(
-                    "Chronosly_Dad_Elements",
-                    "create_ticket_max_js"
-                )
-            );
-            return Chronosly_Extend::create_dad_field($args);
-        }
+        // function tickets_max_check_field($default)
+        // {
+        //     if ($default['label']) $label = $default['label'];
+        //     else $label = "Max. tickets";
+        //     if ($default['order']) $order = $default['order'];
+        //     else $order = 1;
+        //     if (isset($default['value'])) $value = $default['value'];
+        //     else $value = 1;
+        //     $args = array(
+        //         "name" => "tickets_max_check",
+        //         "label" => $label,
+        //         "el_type" => "var",
+        //         "type" => "checkbox",
+        //         "order" => $order,
+        //         "value" => $value,
+        //         "php_function" => array(
+        //             "Chronosly_Dad_Elements",
+        //             "create_ticket_max"
+        //         ) ,
+        //         "js_function" => array(
+        //             "Chronosly_Dad_Elements",
+        //             "create_ticket_max_js"
+        //         )
+        //     );
+        //     return Chronosly_Extend::create_dad_field($args);
+        // }
 
-        static
-        function create_ticket_max($cont, $value, $vars, $html = 0)
-        {
-            if ($html) {
-                $pos = strrpos($cont, "}}");
-                if ($pos !== false) {
-                    $cont = substr_replace($cont, " | ticket_max " . $value . "}}", $pos, 2);
-                }
+        // static
+        // function create_ticket_max($cont, $value, $vars, $html = 0)
+        // {
+        //     if ($html) {
+        //         $pos = strrpos($cont, "}}");
+        //         if ($pos !== false) {
+        //             $cont = substr_replace($cont, " | ticket_max " . $value . "}}", $pos, 2);
+        //         }
 
-                return $cont;
-            }
+        //         return $cont;
+        //     }
 
-            $settings = unserialize(get_option("chronosly-settings"));
-            if (!$value or !$settings["chronosly_tickets"]) {
-                $cont = str_replace("class='max'", "class='max hide'", $cont);
-                return $cont;
-            }
+        //     $settings = unserialize(get_option("chronosly-settings"));
+        //     if (!$value or !$settings["chronosly_tickets"]) {
+        //         $cont = str_replace("class='max'", "class='max hide'", $cont);
+        //         return $cont;
+        //     }
 
-            return $cont;
-        }
+        //     return $cont;
+        // }
 
-        static
-        function create_ticket_max_js($type)
-        {
-            switch ($type) {
-            case "create":
-                $return = 'if(!val) {
-                                element.find(".ev-data .tickets .max").addClass("hide");
-                              }';
-                break;
+        // static
+        // function create_ticket_max_js($type)
+        // {
+        //     switch ($type) {
+        //     case "create":
+        //         $return = 'if(!val) {
+        //                         element.find(".ev-data .tickets .max").addClass("hide");
+        //                       }';
+        //         break;
 
-            case "modify":
-                $return = '
-                               if(!val) {
-                                element.find(".ev-data .tickets .max").addClass("hide");
-                              } else{
-                                element.find(".ev-data .tickets .max").removeClass("hide");
+        //     case "modify":
+        //         $return = '
+        //                        if(!val) {
+        //                         element.find(".ev-data .tickets .max").addClass("hide");
+        //                       } else{
+        //                         element.find(".ev-data .tickets .max").removeClass("hide");
 
-                              }';
-                break;
-            }
+        //                       }';
+        //         break;
+        //     }
 
-            return $return;
-        }
+        //     return $return;
+        // }
 
-        function tickets_start_check_field($default)
-        {
-            if ($default['label']) $label = $default['label'];
-            else $label = "Start date";
-            if ($default['order']) $order = $default['order'];
-            else $order = 1;
-            if (isset($default['value'])) $value = $default['value'];
-            else $value = 1;
-            $args = array(
-                "name" => "tickets_start_check",
-                "label" => $label,
-                "el_type" => "var",
-                "type" => "checkbox",
-                "order" => $order,
-                "value" => $value,
-                "php_function" => array(
-                    "Chronosly_Dad_Elements",
-                    "create_ticket_start"
-                ) ,
-                "js_function" => array(
-                    "Chronosly_Dad_Elements",
-                    "create_ticket_start_js"
-                )
-            );
-            return Chronosly_Extend::create_dad_field($args);
-        }
+        // function tickets_start_check_field($default)
+        // {
+        //     if ($default['label']) $label = $default['label'];
+        //     else $label = "Start date";
+        //     if ($default['order']) $order = $default['order'];
+        //     else $order = 1;
+        //     if (isset($default['value'])) $value = $default['value'];
+        //     else $value = 1;
+        //     $args = array(
+        //         "name" => "tickets_start_check",
+        //         "label" => $label,
+        //         "el_type" => "var",
+        //         "type" => "checkbox",
+        //         "order" => $order,
+        //         "value" => $value,
+        //         "php_function" => array(
+        //             "Chronosly_Dad_Elements",
+        //             "create_ticket_start"
+        //         ) ,
+        //         "js_function" => array(
+        //             "Chronosly_Dad_Elements",
+        //             "create_ticket_start_js"
+        //         )
+        //     );
+        //     return Chronosly_Extend::create_dad_field($args);
+        // }
 
-        static
-        function create_ticket_start($cont, $value, $vars, $html = 0)
-        {
-            if ($html) {
-                $pos = strrpos($cont, "}}");
-                if ($pos !== false) {
-                    $cont = substr_replace($cont, " | ticket_start " . $value . "}}", $pos, 2);
-                }
+        // static
+        // function create_ticket_start($cont, $value, $vars, $html = 0)
+        // {
+        //     if ($html) {
+        //         $pos = strrpos($cont, "}}");
+        //         if ($pos !== false) {
+        //             $cont = substr_replace($cont, " | ticket_start " . $value . "}}", $pos, 2);
+        //         }
 
-                return $cont;
-            }
+        //         return $cont;
+        //     }
 
-            $settings = unserialize(get_option("chronosly-settings"));
-            if (!$value or !$settings["chronosly_tickets"]) {
-                $cont = str_replace("class='start'", "class='start hide'", $cont);
-                return $cont;
-            }
+        //     $settings = unserialize(get_option("chronosly-settings"));
+        //     if (!$value or !$settings["chronosly_tickets"]) {
+        //         $cont = str_replace("class='start'", "class='start hide'", $cont);
+        //         return $cont;
+        //     }
 
-            return $cont;
-        }
+        //     return $cont;
+        // }
 
-        static
-        function create_ticket_start_js($type)
-        {
-            switch ($type) {
-            case "create":
-                $return = 'if(!val) {
-                                element.find(".ev-data .tickets .start").addClass("hide");
-                              }';
-                break;
+        // static
+        // function create_ticket_start_js($type)
+        // {
+        //     switch ($type) {
+        //     case "create":
+        //         $return = 'if(!val) {
+        //                         element.find(".ev-data .tickets .start").addClass("hide");
+        //                       }';
+        //         break;
 
-            case "modify":
-                $return = '
-                               if(!val) {
-                                element.find(".ev-data .tickets .start").addClass("hide");
-                              } else{
-                                element.find(".ev-data .tickets .start").removeClass("hide");
+        //     case "modify":
+        //         $return = '
+        //                        if(!val) {
+        //                         element.find(".ev-data .tickets .start").addClass("hide");
+        //                       } else{
+        //                         element.find(".ev-data .tickets .start").removeClass("hide");
 
-                              }';
-                break;
-            }
+        //                       }';
+        //         break;
+        //     }
 
-            return $return;
-        }
+        //     return $return;
+        // }
 
-        function tickets_end_check_field($default)
-        {
-            if ($default['label']) $label = $default['label'];
-            else $label = "End date";
-            if ($default['order']) $order = $default['order'];
-            else $order = 1;
-            if (isset($default['value'])) $value = $default['value'];
-            else $value = 1;
-            $args = array(
-                "name" => "tickets_end_check",
-                "label" => $label,
-                "el_type" => "var",
-                "type" => "checkbox",
-                "order" => $order,
-                "value" => $value,
-                "php_function" => array(
-                    "Chronosly_Dad_Elements",
-                    "create_ticket_end"
-                ) ,
-                "js_function" => array(
-                    "Chronosly_Dad_Elements",
-                    "create_ticket_end_js"
-                )
-            );
-            return Chronosly_Extend::create_dad_field($args);
-        }
+        // function tickets_end_check_field($default)
+        // {
+        //     if ($default['label']) $label = $default['label'];
+        //     else $label = "End date";
+        //     if ($default['order']) $order = $default['order'];
+        //     else $order = 1;
+        //     if (isset($default['value'])) $value = $default['value'];
+        //     else $value = 1;
+        //     $args = array(
+        //         "name" => "tickets_end_check",
+        //         "label" => $label,
+        //         "el_type" => "var",
+        //         "type" => "checkbox",
+        //         "order" => $order,
+        //         "value" => $value,
+        //         "php_function" => array(
+        //             "Chronosly_Dad_Elements",
+        //             "create_ticket_end"
+        //         ) ,
+        //         "js_function" => array(
+        //             "Chronosly_Dad_Elements",
+        //             "create_ticket_end_js"
+        //         )
+        //     );
+        //     return Chronosly_Extend::create_dad_field($args);
+        // }
 
-        static
-        function create_ticket_end($cont, $value, $vars, $html = 0)
-        {
-            if ($html) {
-                $pos = strrpos($cont, "}}");
-                if ($pos !== false) {
-                    $cont = substr_replace($cont, " | ticket_end " . $value . "}}", $pos, 2);
-                }
+        // static
+        // function create_ticket_end($cont, $value, $vars, $html = 0)
+        // {
+        //     if ($html) {
+        //         $pos = strrpos($cont, "}}");
+        //         if ($pos !== false) {
+        //             $cont = substr_replace($cont, " | ticket_end " . $value . "}}", $pos, 2);
+        //         }
 
-                return $cont;
-            }
+        //         return $cont;
+        //     }
 
-            $settings = unserialize(get_option("chronosly-settings"));
-            if (!$value or !$settings["chronosly_tickets"]) {
-                $cont = str_replace("class='end'", "class='end hide'", $cont);
-                return $cont;
-            }
+        //     $settings = unserialize(get_option("chronosly-settings"));
+        //     if (!$value or !$settings["chronosly_tickets"]) {
+        //         $cont = str_replace("class='end'", "class='end hide'", $cont);
+        //         return $cont;
+        //     }
 
-            return $cont;
-        }
+        //     return $cont;
+        // }
 
-        static
-        function create_ticket_end_js($type)
-        {
-            switch ($type) {
-            case "create":
-                $return = 'if(!val) {
-                                element.find(".ev-data .tickets .end").addClass("hide");
-                              }';
-                break;
+        // static
+        // function create_ticket_end_js($type)
+        // {
+        //     switch ($type) {
+        //     case "create":
+        //         $return = 'if(!val) {
+        //                         element.find(".ev-data .tickets .end").addClass("hide");
+        //                       }';
+        //         break;
 
-            case "modify":
-                $return = '
-                               if(!val) {
-                                element.find(".ev-data .tickets .end").addClass("hide");
-                              } else{
-                                element.find(".ev-data .tickets .end").removeClass("hide");
+        //     case "modify":
+        //         $return = '
+        //                        if(!val) {
+        //                         element.find(".ev-data .tickets .end").addClass("hide");
+        //                       } else{
+        //                         element.find(".ev-data .tickets .end").removeClass("hide");
 
-                              }';
-                break;
-            }
+        //                       }';
+        //         break;
+        //     }
 
-            return $return;
-        }
+        //     return $return;
+        // }
 
         function tickets_buy_check_field($default)
         {
@@ -4978,7 +5058,13 @@ if (!class_exists('Chronosly_Dad_Elements')) {
             $currency_type = "";
             $length = strlen(utf8_decode(html_entity_decode($settings["chronosly_currency"], ENT_COMPAT, 'utf-8')));
             if ($length > 1) $currency_type = "$length";
-            return "<span class='ch-currency$currency_type'>" . $settings["chronosly_currency"] . "</span> " . $vars->metas['tickets_vars'][$value]["price"] . $soldout;
+            $ant = "";
+            if(count($vars->metas['tickets_vars']) > 1) $ant = "<span class='price-from'>".__("From", "chronosly")."</span> ";
+            if($vars->metas['tickets_vars'][$value]["sale"] && $vars->metas['tickets_vars'][$value]["sales-price"]) {
+                $porc = " <span class='sale-discount' style='background-color: #sale-color'>".round((($vars->metas['tickets_vars'][$value]["sales-price"]-$vars->metas['tickets_vars'][$value]["price"])/$vars->metas['tickets_vars'][$value]["price"])*100)."%</span>";
+                return "$ant<span class='sale'><span class='ch-currency$currency_type'>" . $settings["chronosly_currency"] . "</span> <span class='oldprice'>" .$vars->metas['tickets_vars'][$value]["price"]."</span> ". $vars->metas['tickets_vars'][$value]["sales-price"] .$porc. $soldout."</span>";
+            }
+            return "$ant<span class='ch-currency$currency_type'>" . $settings["chronosly_currency"] . "</span> " . $vars->metas['tickets_vars'][$value]["price"] . $soldout;
         }
 
         public static

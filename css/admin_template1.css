@@ -85,18 +85,18 @@ li#menu-posts-chronosly_calendar div.wp-menu-image:before{color:white;}
 #chronosly_tickets_list li input{text-align:center;font-size:15px;}
 #chronosly_tickets_list li.ticket-head span {text-align:center;display:inline-block;margin:0px;padding:0px;text-transform:uppercase;font-size:13px;}
 #chronosly_tickets_list li input{margin:0px;}
-#chronosly_tickets_list li .title{width:20%;}
-#chronosly_tickets_list li .link{width:16%;}
-#chronosly_tickets_list li .price{width:7%;}
+#chronosly_tickets_list li .title{width:23%;}
+#chronosly_tickets_list li .link{width:25%;}
+#chronosly_tickets_list li .price{width:10%;}
 #chronosly_tickets_list li .capacity{width:7%;}
-#chronosly_tickets_list li .min-user{width:6%;}
+/*#chronosly_tickets_list li .min-user{width:6%;}
 #chronosly_tickets_list li .max-user{width:6%;}
 #chronosly_tickets_list li .start-time{width:11%;}
-#chronosly_tickets_list li .end-time{width:11%;}
-#chronosly_tickets_list li .notes{width:84%;}
-#chronosly_tickets_list div.butons{float:right;}
-#chronosly_tickets_list div.butons .solded {text-align:center;text-transform:uppercase;font-weight:bold;padding-top:5px;}
-#chronosly_tickets_list div.butons span{display:inline-block;margin-left:10px;
+#chronosly_tickets_list li .end-time{width:11%;}*/
+#chronosly_tickets_list li .notes{width:75%;}
+#chronosly_tickets_list div.butons{float:right;width:20%;}
+#chronosly_tickets_list div.butons .solded {margin-left:17px;display:inline-block;text-align:center;text-transform:uppercase;font-weight:bold;padding:11px 0px;}
+#chronosly_tickets_list div.butons span{display:inline-block;margin-left:15px;
     background:#ffd363;
     border-bottom:2px solid #fdca48;
 
@@ -430,6 +430,8 @@ div.chronosly div.clear{clear:both;}
 div.chronosly a{text-decoration:none;}
 div.chronosly p a{text-decoration:underline;}
 .ev-data.place_gmap{background:grey;width:100%;height:200px;}
+.ev-data.seasons_list{background:grey;width:100%;height:120px;color:white;}
+
 div.ev-styling{display:none;width:100px;float:right;background:#3F4041;padding:0px;color:white;text-transform:uppercase;font-size:10px;font-family: 'Roboto', serif;font-weight:bold;z-index:100000;}
 div.ev-styling > select{width:80px;margin:10px;display:inline-block;text-transform:uppercase;font-size:10px;font-family: 'Roboto', serif;font-weight:bold;}
 div.ev-styling > span{display:block;background:#3F4041;border-bottom:5px solid #4B4C4E;padding:10px;cursor:pointer;}

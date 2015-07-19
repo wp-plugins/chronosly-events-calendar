@@ -19,6 +19,7 @@ else $calendar_url1 = $calendar_url."&";
 
 
 
+
 if(!$_REQUEST["js_render"] and !$_REQUEST["action"]) {
     if(!isset($_REQUEST["shortcode"]) or !$_REQUEST["shortcode"])  get_header();
     if(!isset($_REQUEST["shortcode"]) or !$_REQUEST["shortcode"])  {
@@ -207,9 +208,12 @@ if(!$_REQUEST["js_render"] and !$_REQUEST["action"]) {
                                     ++$cant;
                                     $xid = 0;
                                     if(is_array($e)){
+                                        // print_r($e);
                                         $xid = $ide =  $e["id"];
                                         if(isset($repeats[$xid])) $ide .= "_".$repeats[$xid];
-                                        $template->print_template($e["id"], "dad3", "", "", "front", array("id" => $ide, "start" => $e["start"], "end" => $e["end"]));
+                                        $evs = array("id" => $ide,"start" => $e["start"], "end" => $e["end"]);
+                                        if($e["h"]) $evs = array("id" => $ide, "start" => $e["start"], "end" => $e["end"], "h" => $e["h"], "m" => $e["m"]);
+                                        $template->print_template($e["id"], "dad3", "", "", "front", $evs);
                                     }
                                     else {
                                         $xid = $e;
@@ -303,8 +307,10 @@ if(!$_REQUEST["js_render"] and !$_REQUEST["action"]) {
                                     $xid = 0;
                                     if(is_array($e)){
                                         $xid = $ide =  $e["id"];
-                                        if(isset($repeats[$xid])) $ide .= "_".$repeats[$xid];
-                                        $template->print_template($e["id"], "dad3", "", "", "front", array("id" => $ide, "start" => $e["start"], "end" => $e["end"]));
+                                       if(isset($repeats[$xid])) $ide .= "_".$repeats[$xid];
+                                        $evs = array("id" => $ide,"start" => $e["start"], "end" => $e["end"]);
+                                        if($e["h"]) $evs = array("id" => $ide, "start" => $e["start"], "end" => $e["end"], "h" => $e["h"], "m" => $e["m"]);
+                                        $template->print_template($e["id"], "dad3", "", "", "front", $evs);
                                     }
                                     else {
                                         $xid = $e;
@@ -395,8 +401,10 @@ if(!$_REQUEST["js_render"] and !$_REQUEST["action"]) {
                                     $xid = 0;
                                     if(is_array($e)){
                                         $xid = $ide =  $e["id"];
-                                        if(isset($repeats[$xid])) $ide .= "_".$repeats[$xid];
-                                        $template->print_template($e["id"], "dad3", "", "", "front", array("id" => $ide, "start" => $e["start"], "end" => $e["end"]));
+                                       if(isset($repeats[$xid])) $ide .= "_".$repeats[$xid];
+                                        $evs = array("id" => $ide,"start" => $e["start"], "end" => $e["end"]);
+                                        if($e["h"]) $evs = array("id" => $ide, "start" => $e["start"], "end" => $e["end"], "h" => $e["h"], "m" => $e["m"]);
+                                        $template->print_template($e["id"], "dad3", "", "", "front", $evs);
                                     }
                                     else {
                                         $xid = $e;

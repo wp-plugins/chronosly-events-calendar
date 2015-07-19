@@ -60,6 +60,7 @@ if(!class_exists('Chronosly_Settings'))
                     "chronosly_titles_template_default" => "default",
                     "chronosly_category_color" => "#1BBC9D",
                     "chronosly_font_color" => "#fff",
+                    "chronosly_sale_color" => "#ff9711",
                     "chronosly_font_family" => "Arial",
                     "chronosly_font_size" => "14",
                     "chronosly_background_color" => "#fff",
@@ -393,7 +394,8 @@ if(!class_exists('Chronosly_Settings'))
             $templates_calendar_options = $Post_Type_Chronosly->template->get_templates_options(0, $vars["chronosly_calendar_template_default"]);
             $templates_titles_options = $Post_Type_Chronosly->template->get_templates_options(0, $vars["chronosly_titles_template_default"]);
             $currency = $Post_Type_Chronosly->template->currency_selector($vars['chronosly_currency']);
-        	// Render the settings template
+        	$templates_licenses = $this->get_template_licenses();
+            // Render the settings template
         	include(CHRONOSLY_PATH.DIRECTORY_SEPARATOR."metaboxes".DIRECTORY_SEPARATOR."settings".DIRECTORY_SEPARATOR."settings.php");
 
         }
@@ -764,8 +766,7 @@ if(!class_exists('Chronosly_Settings'))
             if(!count($m_templates)) return "";
             $sets = unserialize(get_option("chronosly-settings"));
             foreach($m_templates as $t=>$cont){
-
-                if($t != "default") $ret .= "<label>".$cont->name." ".__("license", "chronosly")."</label><input type='text' name='chronosly-settings_templates_license_$t' value='".$sets["chronosly-settings_templates_license_$t"]."' /><br/>";
+                if($t != "default") $ret .= "<label>".$t." ".__("license", "chronosly")."</label><input type='text' name='chronosly-settings_templates_license_$t' value='".$sets["chronosly-settings_templates_license_$t"]."' /><br/>";
 
             }
             return $ret;

@@ -162,6 +162,12 @@ jQuery(document).ready(function($){
 		tickets_save();
 		//var templates = ["#tdad1_box","#tdad2_box","#tdad3_box","#tdad4_box","#tdad5_box","#tdad6_box"];
         save_template("");
+        if($("#ch-seasons").length) {
+            $("#ch-seasons").val(JSON.stringify(seasons));
+            recalc_events(1,1);
+            $("#ch-events").val(JSON.stringify(eventos));
+
+        }
 
         return true;
 	});
@@ -174,7 +180,7 @@ jQuery(document).ready(function($){
 
 
     });
-	$(".post-type-chronosly_places #pos").on('submit', function(e){
+	$(".post-type-chronosly_places #post").on('submit', function(e){
 		//var templates = ["#tdad9_box","#tdad10_box"];
 		//template_encode_all(templates);
         save_template("");
@@ -1125,7 +1131,7 @@ function tickets_save(){
 			jQuery(this).find("input").each(function(j){
 				 var v = jQuery(this).attr('name');
 				 var res = jQuery(this).attr('value');
-                 if(v == "soldout" && !jQuery(this).is(":checked")) res = 0;
+                 if((v == "soldout" || v == "sale") && !jQuery(this).is(":checked")) res = 0;
 				 save.tickets[i][j] = {name: v, value : res};
 				 x = j;
 			});
@@ -1140,6 +1146,7 @@ function tickets_save(){
         }
 	});
 	if(count) jQuery("input#tickets").val(JSON.stringify(save));
+    return save;
 }
 
 

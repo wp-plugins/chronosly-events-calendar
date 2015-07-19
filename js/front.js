@@ -31,6 +31,7 @@ var Environment = {
 
 
 function gmap_initialize(id, adress, zoomvar) {
+    // console.log(id);
     var scroll = true;
     var drag = true;
     if(jQuery("#"+id).parents(".back_img").length) {
@@ -101,6 +102,24 @@ function ev_popup(post){
                 //solo ejecuta el maps..mirar otros posibles js
                 var code = jQuery(this).html().replace("jQuery(window).load(function(){", "").replace(";});", ";");
                 eval(code);
+                 if(jQuery(".chronosly.ch-dad10 .ev-item.events_list").length ){
+                        jQuery(".chronosly.ch-dad10 .ev-item.events_list .ev-data.events_list").mCustomScrollbar(
+                            {
+                                theme:"light-2",
+                                scrollButtons:{
+                                    enable:true
+                                }
+                            }
+                        );
+                    }
+                    jQuery(".ev-data a").each(function(){
+
+                        if( jQuery(this).attr("href") && jQuery(this).attr("href").indexOf("#gmap_link") >= 0 ){
+
+                            var pid = jQuery(this).parents(".chronosly").find(".ev-data.place_gmap").attr("id");
+                            jQuery(this).attr("href", "https://www.google.com/maps/dir//"+address[pid]);
+                        }
+                    });
             });
         }
     });
@@ -155,13 +174,13 @@ jQuery(window).load(function(){
     setTimeout(function () {
         jQuery(".ev-data a").each(function(){
 
-            if( jQuery(this).attr("href") && jQuery(this).attr("href").indexOf("#gmap_link") > 0 ){
-
+            if( jQuery(this).attr("href") && jQuery(this).attr("href").indexOf("#gmap_link") >= 0 ){
+                // console.log("entra");
                 var pid = jQuery(this).parents(".chronosly").find(".ev-data.place_gmap").attr("id");
-                jQuery(this).attr("href", "https://www.google.com/maps/dir//"+address[pid]);
+                jQuery(this).attr("href", "https://www.google.com/maps/dir/"+address[pid]);
             }
         });
-    }, 2000);
+    }, 1000);
 
     if(jQuery(".chronosly.ch-dad7 .ev-item.events_list").length ){
         jQuery(".chronosly.ch-dad7 .ev-item.events_list .ev-data.events_list").mCustomScrollbar(
@@ -189,6 +208,7 @@ jQuery(window).load(function(){
 
 function ch_load_calendar(url, id){
     jQuery(".ch_js_loader.id"+id+" .chronosly-content-block").html( "<div class='ch-spinner'></div>" );
+    jQuery(".ch_js_loader.id"+id).html("<div class='ch-spinner'></div>" );
     if(!url) url = translated1.calendarurl;
     if(url.indexOf("?") > 1) url =  url+"&js_render=1&calendarid="+id;
     else url += "?js_render=1&calendarid="+id;
@@ -349,6 +369,13 @@ function ch_next_page(limit, pag, code, element){
         element.html(content);
         js_post_pagination();
     });
+}
+
+function seasons_paginate(dir, element){
+    element = jQuery(element).parents(".ch-pag");
+    element.toggleClass("show");
+    if(dir == "next") element.next().toggleClass("show");
+    else element.prev().toggleClass("show");
 }
 
 

@@ -182,7 +182,8 @@ if($vars["chronosly_places_addon"]){ ?>
 
 
        <label> <?php _e("Default category color", "chronosly")?></label> <input type="text" class="color" name="chronosly_category_color" id="chronosly_category_color" value='<?php echo $vars['chronosly_category_color']?>' /><span class="info"></span>           <div class="info-hide">                           <?php _e("This is the default color for all categories, you can individually set category color inside the category editor", "chronosly");?><br/>        </div><br/>
-          <label> <?php _e("Show load template", "chronosly")?></label> <input type="checkbox" name="chronosly_dad_show_load_template" value="1" <?php if(isset($vars['chronosly_dad_show_load_template']) and $vars['chronosly_dad_show_load_template']) echo "checked" ?> /><span class="info"></span>
+      <label> <?php _e("Ticket deal color", "chronosly")?></label> <input type="text" class="color" name="chronosly_sale_color" id="chronosly_sale_color" value='<?php echo $vars['chronosly_sale_color']?>' /><span class="info"></span>           <div class="info-hide">                           <?php _e("Color for ticket deals when sale is enabled. Set best color to incerease visibility for your ticket sales", "chronosly");?><br/>        </div><br/>
+     <label> <?php _e("Show load template", "chronosly")?></label> <input type="checkbox" name="chronosly_dad_show_load_template" value="1" <?php if(isset($vars['chronosly_dad_show_load_template']) and $vars['chronosly_dad_show_load_template']) echo "checked" ?> /><span class="info"></span>
           <div class="info-hide">
               <?php _e("The option of load template is enabled by default, so different templates can be chosen and loaded in the Template editor", "chronosly");?><br/>
               <?php _e("This option is especially useful to prevent other users (team members or clients) from changing or modifying how the events are shown in the site", "chronosly");?><br/>

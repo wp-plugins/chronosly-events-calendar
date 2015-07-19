@@ -27,7 +27,9 @@ if (!class_exists('Post_Type_Chronosly')) {
             'ev-end_count',
             'featured',
             'order',
-            'tickets'
+            'tickets',
+            'events',
+            'seasons'
         );
         public $template, $settings;
 
@@ -1287,6 +1289,7 @@ if (!class_exists('Post_Type_Chronosly')) {
         {
 
             global $chronosly_running, $wp_query;
+            $original_query = $wp_query;
 
 
             $settings = unserialize(get_option('chronosly-settings'));
@@ -1396,6 +1399,7 @@ if (!class_exists('Post_Type_Chronosly')) {
                 } else if(stripos($template, "shortcode") !== FALSE){
                     $chronosly_shortcode = 1;
                 }
+                $wp_query = $original_query;
                  // echo $template." ".$chronosly_shortcode." ";
                 if((is_tax("chronosly_category") and !$chronosly_shortcode) or $template == "shortcode_category" or $template == "shortcode_categories" or $_REQUEST["shortcode_category"] or $_REQUEST["shortcode_categories"] ){
                     if(is_tax("chronosly_category","list_all_cats") or $template == "shortcode_categories" or $_REQUEST["shortcode_categories"]){
@@ -1633,27 +1637,29 @@ if (!class_exists('Post_Type_Chronosly')) {
 // otherwise all custom meta fields are cleared out
             if (wp_verify_nonce($_POST['_inline_edit'], 'inlineeditnonce')){
                 Chronosly_Cache::delete_item($post_id);
-                $req = array("ev-to","ev-to-h","ev-to-m","ev-from","ev-from-h","ev-from-m","ev-repeat-every", "ev-repeat", "ev-repeat-option", "ev-until","ev-end_count","organizer", "places", "featured","order", "tickets");
+                if(!class_exists("Chronosly_Tickets_and_Repeats_Extended"))$req = array("ev-to","ev-to-h","ev-to-m","ev-from","ev-from-h","ev-from-m","ev-repeat-every", "ev-repeat", "ev-repeat-option", "ev-until","ev-end_count","organizer", "places", "featured","order");
+                else $req = array("organizer", "places", "featured","order"); 
                 foreach ($this->_meta as $field_name) {
                     // Update the post's meta field
-                    if($field_name == "tickets"){
-                        $tick_send = $_POST[$field_name];
-                        $tickets = @get_post_meta($post_id, 'tickets', true);
-                        $tickets= json_decode($tickets[0]);
-                        if(isset($tickets->tickets)){
-                            for($i = 1; $i < count($tickets->tickets);++$i){
-                                $ticket = $tickets->tickets[$i];
-                                foreach($ticket as $t){
-                                    $tick[$t->name] = $t->value;
-                                    if(($t->name == "price" or $t->name == "soldout") and $tick_send[$i][$t->name]) $t->value = $tick_send[$i][$t->name];
-                                    $tickets->tickets[$i][] = array("name" => $t->name, "value" => $t->value);
+                    // if($field_name == "tickets"){
+                    //     $tick_send = $_POST[$field_name];
+                    //     $tickets = @get_post_meta($post_id, 'tickets', true);
+                    //     $tickets= json_decode($tickets[0]);
+                    //     if(isset($tickets->tickets)){
+                    //         for($i = 1; $i < count($tickets->tickets);++$i){
+                    //             $ticket = $tickets->tickets[$i];
+                    //             foreach($ticket as $t){
+                    //                 $tick[$t->name] = $t->value;
+                    //                 if(($t->name == "price" or $t->name == "soldout") and $tick_send[$i][$t->name]) $t->value = $tick_send[$i][$t->name];
+                    //                 $tickets->tickets[$i][] = array("name" => $t->name, "value" => $t->value);
 
-                                }
-                            }
-                            update_post_meta($post_id, $field_name, json_encode($tickets));
-                        }
-                    }
-                    else if(in_array($field_name, $req)) update_post_meta($post_id, $field_name, $_POST[$field_name]);
+                    //             }
+                    //         }
+                    //         update_post_meta($post_id, $field_name, json_encode($tickets));
+                    //     }
+                    // }
+                    // else
+                     if(in_array($field_name, $req)) update_post_meta($post_id, $field_name, $_POST[$field_name]);
                 }
             }
             if (isset($_POST['post_type']) && $_POST['post_type'] == self::POST_TYPE && current_user_can('edit_post', $post_id)) {
@@ -1810,7 +1816,8 @@ if (!class_exists('Post_Type_Chronosly')) {
 
             switch ($column_name) {
                 case 'ch_date' :
-                    $req = array("ev-to","ev-to-h","ev-to-m","ev-from","ev-from-h","ev-from-m","ev-repeat-every", "ev-repeat", "ev-repeat-option", "ev-until","ev-end_count","tickets","organizer", "places", "featured","order");
+                    if(!class_exists("Chronosly_Tickets_and_Repeats_Extended"))$req = array("ev-to","ev-to-h","ev-to-m","ev-from","ev-from-h","ev-from-m","ev-repeat-every", "ev-repeat", "ev-repeat-option", "ev-until","ev-end_count","tickets","organizer", "places", "featured","order");
+                    else $req = array("organizer", "places", "featured","order");
                     foreach($req as $r){
                         if($r == "organizer" or $r == "places") $vars[$r] = isset($custom_fields[$r][0])?unserialize($custom_fields[$r][0]):"";
                         else if($r == "tickets"){
@@ -1824,7 +1831,9 @@ if (!class_exists('Post_Type_Chronosly')) {
                         else $vars[$r] = isset($custom_fields[$r][0])?$custom_fields[$r][0]:"";
                     }
 
-                    echo "<div style='display:none;' class='chonosly-qe-vars'>".str_replace("\\", "",json_encode($vars))."</div><b>".__("From", "chronosly").":</b> ".$custom_fields['ev-from'][0]." ".$custom_fields['ev-from-h'][0].":".$custom_fields['ev-from-m'][0]."<br/>";
+                    echo "<div style='display:none;' class='chonosly-qe-vars'>".str_replace("\\", "",json_encode($vars))."</div>";
+                if(!class_exists("Chronosly_Tickets_and_Repeats_Extended")){
+                    echo "<b>".__("From", "chronosly").":</b> ".$custom_fields['ev-from'][0]." ".$custom_fields['ev-from-h'][0].":".$custom_fields['ev-from-m'][0]."<br/>";
                     echo "<b>".__("To", "chronosly").":</b> ".$custom_fields['ev-to'][0]." ".$custom_fields['ev-to-h'][0].":".$custom_fields['ev-to-m'][0]."<br/>";
                     $num = isset($custom_fields['ev-repeat-every'][0])?$custom_fields['ev-repeat-every'][0]:0;
                     $rep = isset($custom_fields['ev-repeat'][0])?$custom_fields['ev-repeat'][0]:"";
@@ -1869,6 +1878,10 @@ if (!class_exists('Post_Type_Chronosly')) {
                         }
                         echo "<b>Repeat end:</b> $repeatn";
                     }
+                }
+                else {
+                    _e("Tickets and Repeats addon enabled", "chronosly");
+                }
 
                     break;
 
@@ -1939,6 +1952,9 @@ if (!class_exists('Post_Type_Chronosly')) {
                     <div id="chronosly_chronosly_data_section" class="chronosly-fields" style="clear:both">
                         <h4><?php _e("Chronosly fields", "chronosly")?></h4>
                         <fieldset class="inline-edit-col-left">
+                        <?php 
+                            if(!class_exists("Chronosly_Tickets_and_Repeats_Extended")){
+                        ?>
                             <div class="inline-edit-col">
                                 <label for="from"><?php echo __("From", "chronosly"); ?></label>
                                 <input type="text" id="ev-from" name="ev-from" value="" />
@@ -2001,6 +2017,9 @@ if (!class_exists('Post_Type_Chronosly')) {
 
                              ?>
                             </div>
+                            <?php } else {
+                                _e("Tickets and Repeats addon enabled", "chronosly");
+                            }?>
                         </fieldset>
                         <?php if($this->settings["chronosly_organizers"] and $this->settings["chronosly_organizers_addon"]) { ?>
                         <fieldset class="inline-edit-col-center">
@@ -2194,8 +2213,7 @@ if (!class_exists('Post_Type_Chronosly')) {
                     $tags = wp_get_object_terms($post->ID, "chronosly_tag");
                 }
                 if ('organizers' == $metabox['args']['type'] and  $this->settings['chronosly_organizers_addon'] and  $this->settings['chronosly_organizers']) {
-                    print_r($this->settings);
-                    echo "HOLA";
+                   
                     $check = @get_post_meta($post->ID, 'organizer', true);
                     $posts = get_posts('post_type=chronosly_organizer&numberposts=-1&orderby=title&order=ASC&suppress_filters=0');
 
