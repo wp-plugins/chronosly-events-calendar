@@ -3,7 +3,7 @@
  * Plugin Name: Chronosly Events Calendar Lite
  * Plugin URI: http://www.chronosly.com
  * Description: Chronosly is one of the plugins you have always dreamt about. Designed to suit all users (basic, designers, and software developers). Choose your template and you are ready to publish your events. Install addons to enhance the preset plugin features. You can get a wide selection of templates and addons in our marketplace
- * Version: 2.1.4
+ * Version: 2.1.9
  * Author: Heimsveld IPBN
  * Author URI: http://www.heimsveld.com
  * Requires at least: 3.1
@@ -25,7 +25,7 @@ define('CHRONOSLY_URL',  plugin_dir_url(__FILE__) ); //path para incluir scripts
 define('CHRONOSLY_ADDONS_URL', plugins_url()."/chronosly-addons"); //path para incluir scripts o css
 define('CHRONOSLY_TEMPLATES_URL',  plugins_url()."/chronosly-templates"); //path para incluir scripts o css
 define('CHRONOSLY_DEBUG', false); //debug mode
-define('CHRONOSLY_VERSION', "2.1.4"); //debug mode
+define('CHRONOSLY_VERSION', "2.1.9"); //debug mode
 define('CHRONOSLY_ADMIN_INTERFACE', 1);  //Todo: hacer diferentes interficies de admin simple o varios event
 define('CHRONOSLY_ADMIN_MODALITY', 1);  //Todo: hacer diferentes modalidades segun la tematica
 define("CHRONOSLY_ADMIN_ROLE", 'administrator'); //role del admin
@@ -33,8 +33,8 @@ define("CHRONOSLY_CAPABILITY_TYPE", 'chronosly'); //capability
 define("CHRONOSLY_TEMPLATES_PATH", WP_PLUGIN_DIR."/chronosly-templates"); //path de los templates
 define("CHRONOSLY_ADDONS_PATH", WP_PLUGIN_DIR."/chronosly-addons"); //path de los addons
 
-// if(!CHRONOSLY_DEBUG) error_reporting(0);
-// else  error_reporting(E_ERROR | E_WARNING | E_PARSE);
+if(!CHRONOSLY_DEBUG) error_reporting(0);
+else  error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 if (!class_exists('Chronosly')) {
     global $Post_Type_Chronosly, $Post_Type_Organizer, $Post_Type_Places, $Post_Type_Category,$Post_Type_Tag, $Chronosly_Marketplace,$Chronosly_Settings, $Chronosly_Extend, $chshortcode,$chronosly_running;

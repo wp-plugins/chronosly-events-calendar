@@ -8,7 +8,7 @@ if($st != "front"){
             ?>
             <div id="spin"></div>
 
-            <div  class="dad_controls">
+            <div style="display:none;" class="dad_controls">
 
 
             <div id="tabs">
@@ -24,7 +24,7 @@ if($st != "front"){
             </div>
         <?php // } ?>
 
-        <div id="tdad_box" class="dad_box">
+        <div style="display:none;" id="tdad_box" class="dad_box">
     <?php
     }
 

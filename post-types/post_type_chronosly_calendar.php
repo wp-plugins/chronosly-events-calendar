@@ -1,35 +1,35 @@
 <?php
 if(!class_exists('Post_Type_Chronosly_Calendar'))
 {
-	/**
-	 * A PostTypeTemplate class that provides 3 additional meta fields
-	 */
-	class Post_Type_Chronosly_Calendar
-	{
-		const POST_TYPE	= "chronosly_calendar";
-		private $_meta	= array(
-			'meta_a',
-			'meta_b',
-			'meta_c',
-		);
+    /**
+     * A PostTypeTemplate class that provides 3 additional meta fields
+     */
+    class Post_Type_Chronosly_Calendar
+    {
+        const POST_TYPE = "chronosly_calendar";
+        private $_meta  = array(
+            'meta_a',
+            'meta_b',
+            'meta_c',
+        );
 
-    	/**
-    	 * The Constructor
-    	 */
-    	public function __construct()
-    	{
-    		// register actions
-    		add_action('init', array(&$this, 'init'));
-    		//add_action('admin_init', array(&$this, 'admin_init'));
-    	} // END public function __construct()
+        /**
+         * The Constructor
+         */
+        public function __construct()
+        {
+            // register actions
+            add_action('init', array(&$this, 'init'));
+            //add_action('admin_init', array(&$this, 'admin_init'));
+        } // END public function __construct()
 
-    	/**
-    	 * hook into WP's init action hook
-    	 */
-    	public function init()
-    	{
-    		// Initialize Post Type
-    		$this->create_post_type();
+        /**
+         * hook into WP's init action hook
+         */
+        public function init()
+        {
+            // Initialize Post Type
+            $this->create_post_type();
             //creamos el calendario base
 
             $args  = array(
@@ -52,14 +52,14 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
                     // Set to False if you want to send them to Trash.
                 }
             }
-    		add_action('save_post', array(&$this, 'save_post'));
-    	} // END public function init()
+            add_action('save_post', array(&$this, 'save_post'));
+        } // END public function init()
 
-    	/**
-    	 * Create the post type
-    	 */
-    	public function create_post_type()
-    	{
+        /**
+         * Create the post type
+         */
+        public function create_post_type()
+        {
             global $Post_Type_Chronosly;
             $slug = "chronosly-calendar";
            if($Post_Type_Chronosly->settings['chronosly-calendar-slug']) $slug = $Post_Type_Chronosly->settings['chronosly-calendar-slug'];
@@ -83,7 +83,7 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
                     'rewrite' => array('slug' => $slug, 'with_front' => false, 'feeds' => true),
                     'public' => true,
                     'show_ui' => true,
-                    'map_meta_cap'	=> true,
+                    'map_meta_cap'  => true,
                     'capability_type' => 'chronosly',
                     'capabilities' => array(
                         'publish_posts' => 'publish_chronoslys',
@@ -111,17 +111,16 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
             );
 
 
-            if(isset($Post_Type_Chronosly->settings['chronosly-allow-flush']) and !$Post_Type_Chronosly->settings['chronosly-calendar-flushed']) {
+            if($Post_Type_Chronosly->settings['chronosly-allow-flush']and !$Post_Type_Chronosly->settings['chronosly-calendar-flushed']) {
                 flush_rewrite_rules();
                 $Post_Type_Chronosly->settings['chronosly-calendar-flushed'] = 1;
                 update_option('chronosly-settings', serialize($Post_Type_Chronosly->settings));
-
+            
             }
-
             //add_filter( 'map_meta_cap', array("Post_Type_Chronosly",'chronosly_map_meta_cap'), 10, 4 );
             add_filter( 'template_include', array("Post_Type_Chronosly",'chronosly_templates') );
             add_filter('template_redirect',  array(&$this,'calendar_override_404'));
-    	}
+        }
 
         //adding custom vars to query for url firendly
         public static function add_query_vars($aVars) {
@@ -133,11 +132,11 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
 
 // hook add_query_vars function into query_vars
 
-    	/**
-    	 * Save the metaboxes for this custom post type
-    	 */
-    	public function save_post($post_id)
-    	{
+        /**
+         * Save the metaboxes for this custom post type
+         */
+        public function save_post($post_id)
+        {
             // verify if this is an auto save routine.
             // If it is our form has not been submitted, so we dont want to do anything
             if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
@@ -150,18 +149,18 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
                 return;
 
             if(isset($_POST['post_type']) && $_POST['post_type'] == self::POST_TYPE && current_user_can('edit_post', $post_id))
-    		{
-    			foreach($this->_meta as $field_name)
-    			{
-    				// Update the post's meta field
-    				update_post_meta($post_id, $field_name, $_POST[$field_name]);
-    			}
-    		}
-    		else
-    		{
-    			return;
-    		} // if($_POST['post_type'] == self::POST_TYPE && current_user_can('edit_post', $post_id))
-    	} // END public function save_post($post_id)
+            {
+                foreach($this->_meta as $field_name)
+                {
+                    // Update the post's meta field
+                    update_post_meta($post_id, $field_name, $_POST[$field_name]);
+                }
+            }
+            else
+            {
+                return;
+            } // if($_POST['post_type'] == self::POST_TYPE && current_user_can('edit_post', $post_id))
+        } // END public function save_post($post_id)
 
         public static function get_days_by_date($year, $month, $week, $query,$repeated){
             if(!$year) $year = date("Y");
@@ -207,7 +206,14 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
 
                     $elements["ids"][] = get_the_ID();
                     $meta = get_post_meta(get_the_ID());
-                    if(isset($meta["ev-from"][0])){
+                    if(isset($meta["events"][0]) and $meta["events"][0]) {
+                        $eventos = json_decode($meta["events"][0]);
+                        $elements = Post_Type_Chronosly_Calendar::seasons($eventos, $year, $month, $week, $start_ini, $end, get_the_ID(), $elements);
+                    }
+                    else if(isset($meta["ev-from"][0])){
+                        
+
+
                         //si empieza en el mismo año que el calendario debemos empezar en el dia especifico
                         if(date("Y", strtotime($meta["ev-from"][0])) == $year){
                            $start =  strtotime($meta["ev-from"][0]);
@@ -240,16 +246,20 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
 
             } else if($week){
                 while ( $query->have_posts() ){
-                   $query->the_post();
+                    $query->the_post();
                     if(!Post_Type_Chronosly::filter(get_the_ID())) continue;
 
                     $elements["ids"][] = get_the_ID();
 
                     $meta = get_post_meta(get_the_ID());
 
-                    if(isset($meta["ev-from"][0])){
-
-                          if($settings["chronosly_week_start"] == 1) {
+                    if(isset($meta["events"][0]) and $meta["events"][0]) {
+                        $eventos = json_decode($meta["events"][0]);
+                        $elements = Post_Type_Chronosly_Calendar::seasons($eventos, $year, $month, $week, $start_ini, $end, get_the_ID(), $elements);
+                    }
+                    else if(isset($meta["ev-from"][0])){
+                        //si empieza en el mismo año y week que el calendario debemos empezar en el dia especifico
+                         if($settings["chronosly_week_start"] == 1) {
                             $botom = strtotime($year."W".str_pad($week, 2, '0', STR_PAD_LEFT))-(60*60*24);
                             $top = strtotime($year."W".str_pad($week+1, 2, '0', STR_PAD_LEFT))-(2*60*60*24);
                          } else {
@@ -268,6 +278,7 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
                             $end =  strtotime($meta["ev-to"][0]);
                         }//si no acabamos en el ultimo dia del mes
                         else $end = $top;
+
                         if($settings["chronosly_week_start"] == 1) {
                                 // $start -= (60*60*24);
                                 // $end -= (60*60*24);
@@ -296,7 +307,11 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
 
                     $meta = get_post_meta(get_the_ID());
 
-                    if(isset($meta["ev-from"][0])){
+                    if(isset($meta["events"][0]) and $meta["events"][0]) {
+                        $eventos = json_decode($meta["events"][0]);
+                        $elements = Post_Type_Chronosly_Calendar::seasons($eventos, $year, $month, $week, $start_ini, $end, get_the_ID(), $elements);
+                    }
+                    else if(isset($meta["ev-from"][0])){
                         //si empieza en el mismo año y mes que el calendario debemos empezar en el dia especifico
                         if(date("Y-m", strtotime($meta["ev-from"][0])) == date("Y-m", strtotime($year."-".$month))){
                             $start =  strtotime($meta["ev-from"][0]);
@@ -369,10 +384,10 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
                             $end =  strtotime($meta["ev-to"][0]);
 
 
-                        // if($settings["chronosly_week_start"] == 1) {
-                        //     $start -= (60*60*24);
-                        //    $end -= (60*60*24);
-                        // }
+                        if($settings["chronosly_week_start"] == 1) {
+                           //  $start -= (60*60*24);
+                           // $end -= (60*60*24);
+                        }
 
 
                         //do repeats
@@ -432,8 +447,8 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
                         $end_top = strtotime($meta["ev-until"][0]);
                     }
                     // if($settings["chronosly_week_start"] == 1) {
-                    //     $start_min -= (60*60*24);
-                    //     $end_top -= (60*60*24);
+                    //     // $start_min -= (60*60*24);
+                    //     // $end_top -= (60*60*24);
                     // }
                 } else if($month){
                     if($repeated)  $start_min = strtotime("01-$month-$year");//start building array
@@ -531,6 +546,110 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
 
             }
             return $elements;
+        }
+            
+        public static function seasons($eventos, $year, $month, $week, $start, $end, $id, $elements, $repeated=0){
+            $settings =  unserialize(get_option("chronosly-settings"));
+            // print_r($eventos);
+            foreach($eventos as $evento){
+                $from = strtotime(substr($evento->start, 0, stripos($evento->start, "+")-1));
+                $to = strtotime(substr($evento->end, 0, stripos( $evento->start, "+")-1));
+                if(date('Y-m-d',$from) != date('Y-m-d',$to)) $to -= 60*60*24;
+                $pos = $id;
+                
+                if( date("H", $from) != "00") $pos += date("H", $from)*60*10000;
+                else $pos += 10000000;
+                if(date("i", $from) != "00") $pos += date("i", $from)*10000;
+                if($settings["chronosly_featured_first"] and (!isset($meta["featured"][0]) or $meta["featured"][0] != 1)) $pos += 100000000;
+
+                //repeats
+                if(!$month and !$week){
+                    if(date("Y", $from) == $year){
+                       $start =  $from;
+                    }//si no empezamos en el primer dia del año
+                    else $start = strtotime("01-01-".$year);
+                    if($to >= $start and $from <= strtotime("31-12-".$year)){
+                        if(date("Y", $to) == $year){
+                            $end =  $to;
+                        }//si no empezamos en el primer dia del año
+                        else $end = strtotime("31-12-".$year);
+                       
+                        $start_ini = $start;
+
+                        // $pos = Post_Type_Chronosly_Calendar::get_event_position_by_hour($meta, get_the_ID());
+                        do{
+                            if($settings["hide_past_on_calendar"] != 1 or $start>= strtotime(date("Y-m-d"))) {
+                                $elements["days"][date('Y-m-d',$start)][$pos]= array("id" => $id,"start" => $start_ini, "end" => $end , "h" => date("H", $from), "m"=> date("i", $from));}
+                            $start = strtotime("+ 1 day",$start);
+                        }while ( $start<=$end );
+                    }
+
+                } else if($week){
+                   
+                    //si empieza en el mismo año y week que el calendario debemos empezar en el dia especifico
+                     if($settings["chronosly_week_start"] == 1) {
+                        $botom = strtotime($year."W".str_pad($week, 2, '0', STR_PAD_LEFT))-(60*60*24);
+                        $top = strtotime($year."W".str_pad($week+1, 2, '0', STR_PAD_LEFT))-(2*60*60*24);
+                     } else {
+                         $botom = strtotime($year."W".str_pad($week, 2, '0', STR_PAD_LEFT));
+                        $top = strtotime($year."W".str_pad($week+1, 2, '0', STR_PAD_LEFT))-(60*60*24);
+                     }
+                    if($from >=  $botom
+                        and  $from <= $top){
+                        $start =  $from;
+                    }//si no empezamos en el primer dia de semana
+                    else {
+                        $start = $botom;
+                    }
+                    $start_ini = $start;
+                    // echo "$from >=  $botom";
+                    // echo "<br>".date("Y-m-d", $from);
+                    if($from <= $top && $to >= $start){
+                        if($to <= $top){
+                            $end =  $to;
+                        }//si no acabamos en el ultimo dia del mes
+                        else $end = $top;
+
+                     
+                        // $pos = Post_Type_Chronosly_Calendar::get_event_position_by_hour($meta, get_the_ID());
+
+                        do{
+                            // echo date('Y-m-d',$start)." ";
+                            $elements["days"][date('Y-m-d',$start)][$pos]= array("id" => $id,"start" => $start_ini, "end" => $end , "h" => date("H", $from), "m"=> date("i", $from));
+                            $start = strtotime("+ 1 day",$start);
+                        }while ( $start<=$end );
+                    }
+
+                    
+                }
+                else if($month){
+                   
+                    //si empieza en el mismo año y mes que el calendario debemos empezar en el dia especifico
+                    if(date("Y-m", $from) == date("Y-m", strtotime($year."-".$month))){
+                        $start =  $from;
+                    }//si no empezamos en el primer dia del mes
+                    else $start = strtotime("01-$month-$year");
+                    if($to >= $start and $from <= strtotime( date("Y-m-t", strtotime($year."-".$month)))){
+                        // echo "<br>".date("Y-m-d", $from);
+                        //si acaba en este mes acabamos en el dia
+                        if(date("Y-m", $to) ==  date("Y-m", strtotime($year."-".$month))){
+                            $end =  $to;
+                        }//si no acabamos en el ultimo dia del mes
+                        else $end = strtotime(date("Y-m-t", strtotime($year."-".$month)));
+
+                        $start_ini = $start;
+                        // echo date("Y-m", $from);
+                        // echo date("Y-m", strtotime($year."-".$month));
+                        do{
+                            $elements["days"][date('Y-m-d',$start)][$pos]=array("id" => $id,"start" => $start_ini, "end" => $end , "h" => date("H", $from), "m"=> date("i", $from));
+                            $start = strtotime("+ 1 day",$start);
+                        }while ( $start<=$end );
+                    }
+
+                }
+            }
+            return $elements;
+           
         }
 
         public static function yearArray($year){
@@ -687,6 +806,7 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
 
             }
             if ( is_user_logged_in() ) $args["post_status"] = array('publish', 'private');
+
             return  new WP_Query( $args );
         }
 
@@ -816,11 +936,14 @@ if(!class_exists('Post_Type_Chronosly_Calendar'))
             //print_r($wp_query);
         }
 
-       public static function get_permalink(){
-           return get_post_type_archive_link( 'chronosly_calendar' )."/";
+       public function get_permalink(){
+            $url = get_post_type_archive_link( 'chronosly_calendar' );
+            if(stripos($url, "?") === false and substr($url, -1) != "/") $url .= "/";
+
+           return $url;
 
        }
 
 
-	} // END class Post_Type_Template
+    } // END class Post_Type_Template
 } // END if(!class_exists('Post_Type_Template'))

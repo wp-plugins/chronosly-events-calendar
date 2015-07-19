@@ -605,6 +605,7 @@ if(!class_exists('Chronosly_Templates')){
             $this->vars->args = $args;
             $itid = $id;
             if(isset($args["start"]) and isset($args["end"])) $itid .= "_{$args["start"]}_{$args["end"]}";
+            if($args["h"] and $args["m"]) $itid .= "_{$args["h"]}_{$args["m"]}";
             //si lo tenemos en la cache lo pintamos, si no lo generamos y lo guardamos
 
             $path = CHRONOSLY_TEMPLATES_PATH.DIRECTORY_SEPARATOR;
@@ -637,7 +638,7 @@ if(!class_exists('Chronosly_Templates')){
 
                     $this->render_template($template, $style, $vista, json_decode($data), $draganddropels, $html2 );
                 }
-                $cont= ob_get_clean();
+                $cont= str_replace("{{notprev}}", "",ob_get_clean());
                 echo $cont;
                 if($style == "front") Chronosly_Cache::save_item($itid, $vista, $cont);
             }
@@ -796,18 +797,32 @@ if(!class_exists('Chronosly_Templates')){
 
                 foreach($this->vars->args as $k => $v){
                     switch($k){
-                        case "id":
+                       case "id":
                             $this->vars->pid = $v;
                             if(!isset($this->vars->post)) $this->vars->post = new stdClass();
                              $this->vars->post->ID = $v;
                             break;
                         case "start":
                             $this->vars->metas['ev-from'][0] = date("Y-m-d",$v);
+                            //echo date("Y-m-d",$v)." ".$v;
                             $this->vars->metas['repeat'] = $v;
+                            if(substr($this->vars->link, -1) != "/") $this->vars->link .="/";
                             $this->vars->link .= (get_option('permalink_structure')?"repeat_$v":"&repeat=$v");
                             break;
                         case "end":
                             $this->vars->metas['ev-to'][0] = date("Y-m-d",$v);
+                            $this->vars->metas['repeat'] .= "_$v";
+                            $this->vars->link .=  "_$v";
+
+                            break;
+                        case "h":
+                            $this->vars->metas['ev-from-h'][0] = $v;
+                            $this->vars->metas['repeat'] .= "_$v";
+                            $this->vars->link .=  "_$v";
+
+                            break;
+                         case "m":
+                            $this->vars->metas['ev-from-m'][0] = $v;
                             $this->vars->metas['repeat'] .= "_$v";
                             $this->vars->link .=  "_$v";
 
@@ -918,13 +933,16 @@ if(!class_exists('Chronosly_Templates')){
                     $this->vars->metas["tickets_vars"] = array();
                     $this->vars->metas["tickets_vars"][1]["title"] = "<span class='lorem'></span>Ticket lorem ipsum";
                     $this->vars->metas["tickets_vars"][1]["price"] = "<span class='lorem'></span>49";
-                    $this->vars->metas["tickets_vars"][1]["capacity"] = "<span class='lorem'></span>100";
-                    $this->vars->metas["tickets_vars"][1]["min-user"] = "<span class='lorem'></span>1";
-                    $this->vars->metas["tickets_vars"][1]["max-user"] = "<span class='lorem'></span>5";
-                    $this->vars->metas["tickets_vars"][1]["start-time"] = "<span class='lorem'></span>10-05-2014";
-                    $this->vars->metas["tickets_vars"][1]["end-time"] = "<span class='lorem'></span>11-06-2014";
+                    $this->vars->metas["tickets_vars"][1]["capacity"] = "<span class='lorem'></span>100";   
+                    $this->vars->metas["tickets_vars"][1]["sale-price"] = "<span class='lorem'></span>39";
+
+                    // $this->vars->metas["tickets_vars"][1]["min-user"] = "<span class='lorem'></span>1";
+                    // $this->vars->metas["tickets_vars"][1]["max-user"] = "<span class='lorem'></span>5";
+                    // $this->vars->metas["tickets_vars"][1]["start-time"] = "<span class='lorem'></span>10-05-2014";
+                    // $this->vars->metas["tickets_vars"][1]["end-time"] = "<span class='lorem'></span>11-06-2014";
                     $this->vars->metas["tickets_vars"][1]["link"] = "<span class='lorem'></span>link.com";
                     $this->vars->metas["tickets_vars"][1]["soldout"] = "";
+                     $this->vars->metas["tickets_vars"][1]["sale"] = "";
                     $this->vars->metas["tickets_vars"][1]["notes"] = "<span class='lorem'></span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ultrices, ante commodo elementum posuere, velit justo fermentum enim, placerat tincidunt massa leo convallis purus. Praesent cursus arcu non tortor iaculis, eleifend lacinia enim euismod. Etiam consequat porttitor sapien, vitae feugiat nunc accumsan at. Mauris ultrices pretium lacus, vitae dapibus enim pharetra ut. Curabitur gravida vel lorem quis sollicitudin. Fusce commodo, mi et bibendum elementum, eros enim dapibus arcu, gravida rhoncus felis nulla ut eros. Suspendisse consequat ligula rhoncus erat gravida, et mollis quam placerat. Morbi in diam vestibulum, tempus ante molestie, pharetra nibh. Etiam nulla risus, imperdiet eu tincidunt a, hendrerit a elit. Nullam ut tincidunt augue. Aenean vehicula nulla sed ipsum bibendum, non congue risus mollis. Etiam dolor diam, semper nec sem et, convallis gravida urna.";
 
                 }
@@ -1038,6 +1056,7 @@ if(!class_exists('Chronosly_Templates')){
 
             $st = $variant;
             $this->get_all_vars($st);
+
             if($variant == "back-js") {
                 $this->templates_tabs($vista, 1);
             }
@@ -1117,10 +1136,10 @@ if(!class_exists('Chronosly_Templates')){
             add_filter("chronosly_field_tickets_title_check", array("Chronosly_Dad_Elements", "tickets_title_check_field"), 25, 1);
             add_filter("chronosly_field_tickets_price_check", array("Chronosly_Dad_Elements", "tickets_price_check_field"), 25, 1);
             add_filter("chronosly_field_tickets_capacity_check", array("Chronosly_Dad_Elements", "tickets_capacity_check_field"), 25, 1);
-            add_filter("chronosly_field_tickets_min_check", array("Chronosly_Dad_Elements", "tickets_min_check_field"), 25, 1);
-            add_filter("chronosly_field_tickets_max_check", array("Chronosly_Dad_Elements", "tickets_max_check_field"), 25, 1);
-            add_filter("chronosly_field_tickets_start_check", array("Chronosly_Dad_Elements", "tickets_start_check_field"), 25, 1);
-            add_filter("chronosly_field_tickets_end_check", array("Chronosly_Dad_Elements", "tickets_end_check_field"), 25, 1);
+            // add_filter("chronosly_field_tickets_min_check", array("Chronosly_Dad_Elements", "tickets_min_check_field"), 25, 1);
+            // add_filter("chronosly_field_tickets_max_check", array("Chronosly_Dad_Elements", "tickets_max_check_field"), 25, 1);
+            // add_filter("chronosly_field_tickets_start_check", array("Chronosly_Dad_Elements", "tickets_start_check_field"), 25, 1);
+            // add_filter("chronosly_field_tickets_end_check", array("Chronosly_Dad_Elements", "tickets_end_check_field"), 25, 1);
             add_filter("chronosly_field_tickets_buy_check", array("Chronosly_Dad_Elements", "tickets_buy_check_field"), 25, 1);
             add_filter("chronosly_field_tickets_note_check", array("Chronosly_Dad_Elements", "tickets_note_check_field"), 25, 1);
 
@@ -1203,10 +1222,10 @@ if(!class_exists('Chronosly_Templates')){
             add_filter("chronosly_bubble_ticket_name", array("Chronosly_Dad_Elements","set_new_bubble_ticket_name"), 10, 3);
             add_filter("chronosly_bubble_ticket_price", array("Chronosly_Dad_Elements","set_new_bubble_ticket_price"), 10, 3);
             add_filter("chronosly_bubble_ticket_capacity", array("Chronosly_Dad_Elements","set_new_bubble_ticket_capacity"), 10, 3);
-            add_filter("chronosly_bubble_ticket_min_per_user", array("Chronosly_Dad_Elements","set_new_bubble_ticket_min_per_user"), 10, 3);
-            add_filter("chronosly_bubble_ticket_max_per_user", array("Chronosly_Dad_Elements","set_new_bubble_ticket_max_per_user"), 10, 3);
-            add_filter("chronosly_bubble_ticket_start", array("Chronosly_Dad_Elements","set_new_bubble_ticket_start"), 10, 3);
-            add_filter("chronosly_bubble_ticket_end", array("Chronosly_Dad_Elements","set_new_bubble_ticket_end"), 10, 3);
+            // add_filter("chronosly_bubble_ticket_min_per_user", array("Chronosly_Dad_Elements","set_new_bubble_ticket_min_per_user"), 10, 3);
+            // add_filter("chronosly_bubble_ticket_max_per_user", array("Chronosly_Dad_Elements","set_new_bubble_ticket_max_per_user"), 10, 3);
+            // add_filter("chronosly_bubble_ticket_start", array("Chronosly_Dad_Elements","set_new_bubble_ticket_start"), 10, 3);
+            // add_filter("chronosly_bubble_ticket_end", array("Chronosly_Dad_Elements","set_new_bubble_ticket_end"), 10, 3);
             add_filter("chronosly_bubble_ticket_notes", array("Chronosly_Dad_Elements","set_new_bubble_ticket_notes"), 10, 3);
             add_filter("chronosly_bubble_ticket_link", array("Chronosly_Dad_Elements","set_new_bubble_ticket_link"), 10, 3);
             $return .= apply_filters("chronosly_bubble_ticket_list", 0, "", "");
@@ -1218,10 +1237,10 @@ if(!class_exists('Chronosly_Templates')){
                     $return .= apply_filters("chronosly_bubble_ticket_name", 0, $fields_array, "");
                     $return .= apply_filters("chronosly_bubble_ticket_price", 0, $fields_array, "");
                     $return .= apply_filters("chronosly_bubble_ticket_capacity", 0, $fields_array, "");
-                    $return .= apply_filters("chronosly_bubble_ticket_min_per_user", 0, $fields_array, "");
-                    $return .= apply_filters("chronosly_bubble_ticket_max_per_user", 0, $fields_array, "");
-                    $return .= apply_filters("chronosly_bubble_ticket_start", 0, $fields_array, "");
-                    $return .= apply_filters("chronosly_bubble_ticket_end", 0, $fields_array, "");
+                    // $return .= apply_filters("chronosly_bubble_ticket_min_per_user", 0, $fields_array, "");
+                    // $return .= apply_filters("chronosly_bubble_ticket_max_per_user", 0, $fields_array, "");
+                    // $return .= apply_filters("chronosly_bubble_ticket_start", 0, $fields_array, "");
+                    // $return .= apply_filters("chronosly_bubble_ticket_end", 0, $fields_array, "");
                     $return .= apply_filters("chronosly_bubble_ticket_link", 0, $fields_array, "");
                     $return .= apply_filters("chronosly_bubble_ticket_notes", 0, $fields_array, "");
                     if(isset($org["name"]))$return .="</div></div>";
@@ -1452,8 +1471,11 @@ if(!class_exists('Chronosly_Templates')){
                             if(!$color){
                                 $color = $this->settings["chronosly_category_color"];
                             }
+                             if(!$this->settings["chronosly_sale_color"]){
+                                $color2 = "#ff9711";
+                            } else $color2 = $this->settings["chronosly_sale_color"];
                             if($html2) $val = $value;
-                            else $val = str_replace(array("#cat-color", "#feat-image"), array($color, $featimg), $value);
+                            else $val = str_replace(array("#cat-color", "#sale-color", "#feat-image"), array($color,$color2, $featimg), $value);
                             $out3 .= $val;
                         }
                         else {
@@ -1606,8 +1628,10 @@ if(!class_exists('Chronosly_Templates')){
                             if($type == "place_gmap"){
                                 $width = "100%";
                                 $height = "200";
-                                if($html2) $cont = "$tabs   <div id='gmap{{id}}{{timestamp}}' class='ev-data $type'  style='width:$width; height:{$height}px;#data_style'>\n$tabs $cont\n$tabs</div>";
-                                else $cont = "  $tabs<div id='gmap{$vars->pid}".round(microtime(true) * 100)."' class='ev-data $type'  style='width:$width; height:{$height}px;#data_style'>\n$tabs     $cont\n$tabs    </div>";
+                               if($html2) $cont = "$tabs   <div id='gmap{{id}}{{timestamp}}' class='ev-data $type'  style='width:$width; height:{$height}px;#data_style'>\n$tabs $cont\n$tabs</div>";
+                                else {
+                                    $cont = "  $tabs<div id='gmap{$vars->pid}".$timestamp."' class='ev-data $type'  style='width:$width; height:{$height}px;#data_style'>\n$tabs     $cont\n$tabs    </div>";
+                                }
                             }
                             else{
                                 $cont = "   $tabs<div class='ev-data $etype'>\n$tabs".$cont."\n     $tabs</div>\n$tabs";
@@ -1727,7 +1751,6 @@ if(!class_exists('Chronosly_Templates')){
       }
        public function print_template_html($id, $vista, $draganddropels="", $template ="", $style="back", $args = array()){
             global $timestamp;
-            $timestamp = round(microtime(true) * 100);
             $vars = $this->settings;
             $data = "";
             $this->vars = new stdClass();
@@ -1783,7 +1806,11 @@ if(!class_exists('Chronosly_Templates')){
                 if(!$color){
                     $color = $this->settings["chronosly_category_color"];
                 }
-                $content = str_replace(array("#cat-color", "#feat-image"), array($color, $featimg), $content);
+                if(!$this->settings["chronosly_sale_color"]){
+                    $color2 = "#ff9711";
+                } else $color2 = $this->settings["chronosly_sale_color"];
+
+                $content = str_replace(array("#cat-color", "#sale-color", "#feat-image"), array($color,$color2, $featimg), $content);
                 echo $content;
                  // if($style == "front") Chronosly_Cache::save_item($itid, $vista, $content);
             // }
@@ -1909,6 +1936,7 @@ if(!class_exists('Chronosly_Templates')){
             global $timestamp;
             $settings = unserialize(get_option("chronosly-settings"));
 
+            if($fin = stripos($this->vars->pid, "_")) $this->vars->pid = substr($this->vars->pid, 0, $fin);
             $vars = $this->vars;
             switch(trim($var)){
                 case "id":
@@ -1959,6 +1987,12 @@ if(!class_exists('Chronosly_Templates')){
                 break;
                 case "tickets_list":
                     return Chronosly_dad_elements::chronosly_create_ticket_list("", $vars);
+                break;
+                case "seasons_list":
+                    if(class_exists("Chronosly_Tickets_and_Repeats_Extended")){
+                        // echo "HOLA";
+                        return Chronosly_Tickets_and_Repeats_Extended::chronosly_create_seasons_item("", $vars);
+                    } else return "";
                 break;
                 case "full_date":
                 case "full_time":
@@ -2029,7 +2063,7 @@ if(!class_exists('Chronosly_Templates')){
             $settings = unserialize(get_option("chronosly-settings"));
 
             $vars = $this->vars;
-            if($cont == "translate") return __($func." ".$arg, "chronosly");
+            if($cont == "translate") return  do_shortcode( __($func." ".$arg, "chronosly"));
             switch(trim($func)){
                 case "filter":
                 // echo $cont;
@@ -2078,6 +2112,11 @@ if(!class_exists('Chronosly_Templates')){
                 break;
                 case "ticket_note":
                     return Chronosly_dad_elements::create_ticket_note($cont, $arg, $vars);
+                break;
+                case "seasons_calendar":
+                    if(class_exists("Chronosly_Tickets_and_Repeats_Extended")){
+                        return Chronosly_Tickets_and_Repeats_Extended::chronosly_create_seasons_calendar_item($cont, $arg, $vars);
+                    } else return "";
                 break;
                 case "share_fb":
                     if(class_exists("Chronosly_Social_Media_Share")){

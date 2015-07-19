@@ -1,10 +1,5 @@
 
         <div class="wrapch support">
-            <div class="tit"><?php _e("Support");?></div>
-            <div class="tickets"><a href="http://codecanyon.net/item/chronosly-wordpress-full-editable-event-calendar/8493796/comments" target="_blank"><?php _e("Leave a codecanyon ticket", "chronosly")?></a></div>
-
-            <div class="or"><?php _e("or", "chronosly")?></div>
-            <div class="contact"><a href="http://www.chronosly.com/contact/" target="_blank"><?php _e("Send us a form", "chronosly")?></a></div>
             <ul class="lev1">
                 <li>1. <?php _e("Events", "chronosly");?>
                     <ul class="lev2">

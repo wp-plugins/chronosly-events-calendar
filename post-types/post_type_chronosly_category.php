@@ -76,7 +76,7 @@ if(!class_exists('Post_Type_Chronosly_Category'))
                 wp_register_style( 'chronosly-icons', CHRONOSLY_URL.'/css/icons/styles.css');
                 wp_enqueue_style( 'chronosly-icons');
                 wp_register_style( 'chronosly-fa-icons', "http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
-                wp_enqueue_style( 'chronoslyv-fa-icons');
+                wp_enqueue_style( 'chronosly-fa-icons');
 
                 if(!is_admin() or  stripos($_SERVER["REQUEST_URI"], "wp-admin") === FALSE){
                     wp_register_script( 'chronosly-front-js', CHRONOSLY_URL.'/js/front.js', array( 'jquery' ));

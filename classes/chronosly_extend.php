@@ -53,7 +53,7 @@ if(!class_exists('Chronosly_Extend'))
     },
     "import_and_export":{
         "id":"import_and_export",
-        "version":"1.4",
+        "version":"1.6",
         "name":"Import and Export",
         "desc":"Import / Export your content (events, organizers, places and calendars) to iCal, .csv file (Excel or Numbers), Facebook or Google+" ,
         "img":"'.CHRONOSLY_URL.'css/img/import-from-addon-230px.png",
@@ -69,7 +69,7 @@ if(!class_exists('Chronosly_Extend'))
     },
     "filter_and_sort":{
         "id":"filter_and_sort",
-        "version":"1.4",
+        "version":"1.7",
         "name":"Filter and Sort",
         "desc":"Allow you to show your content based on given set of criteria" ,
         "img":"'.CHRONOSLY_URL.'css/img/filters-sorting-addon1.png",
@@ -84,7 +84,7 @@ if(!class_exists('Chronosly_Extend'))
     },
     "social_media_share":{
         "id":"social_media_share",
-        "version":"1.5",
+        "version":"1.6",
         "name":"Social Media Share",
         "desc":"Add social media buttons to your events for sharing, going viral or bigger potential audience" ,
         "img":"'.CHRONOSLY_URL.'css/img/social-media-share.png",
@@ -100,7 +100,7 @@ if(!class_exists('Chronosly_Extend'))
     },
     "frontend_event_submission":{
         "id":"frontend_event_submission",
-        "version":"1.5",
+        "version":"1.8",
         "name":"Frontend Event Submission",
         "desc":"Frontend event submission addon allow users to send events for admin approval" ,
         "img":"'.CHRONOSLY_URL.'css/img/ICONA-EventSubmission.png",
@@ -132,8 +132,8 @@ if(!class_exists('Chronosly_Extend'))
             $templates= json_decode(
 '{
     "default":{"id":"default","version":"1.0","name":"Default","desc":"Default Template","img":"'.CHRONOSLY_URL.'/css/img//slider-all-event-list-658x375-300x170.jpg","price":0,"author":"Chronosly","author_url":"http://www.chronosly.com","view":"http://www.chronosly.com","url":"http://www.chronosly.com","featured":0,"updated":1412467200,"dw":1,"rate":8},
-    "dark":{"id":"dark","version":"1.5","name":"Dark","desc":"This is the dark design version of Chronosly Default template, specially designed to match with darker theme sites.","img":"'.CHRONOSLY_URL.'/css/img/dark-300x191.png","price":12,"author":"Chronosly","author_url":"http://www.chronosly.com", "view":"http://dark.chronosly.com/events/?utm_source=chronosly.com&utm_medium=referral&utm_campaign=Templates2DarkLiveDemo", "url":"http://www.chronosly.com/product/dark-template-addon/?utm_source=clients&utm_medium=referral&utm_campaign=Templates2Darkprofile","featured":0,"updated":1409356800,"dw":0,"rate":8},
-    "grid":{"id":"grid","version":"1.0","name":"Grid","desc":"Responsive theme with 3 Column Grid based homepage layout.","img":"'.CHRONOSLY_URL.'/css/img/chronosly-screenshot-grid-template-event-list-3f-3e-300x190.jpg","price":15,"author":"Chronosly","author_url":"http://www.chronosly.com", "view":"http://grid.chronosly.com/events/?utm_source=chronosly.com&utm_medium=referral&utm_campaign=Templates2GridLiveDemo", "url":"http://www.chronosly.com/product/grid-template/?utm_source=clients&utm_medium=referral&utm_campaign=Templates2Gridprofile","featured":0,"updated":1409356800,"dw":0,"rate":8}
+    "dark":{"id":"dark","version":"1.9","name":"Dark","desc":"This is the dark design version of Chronosly Default template, specially designed to match with darker theme sites.","img":"'.CHRONOSLY_URL.'/css/img/dark-300x191.png","price":12,"author":"Chronosly","author_url":"http://www.chronosly.com", "view":"http://dark.chronosly.com/events/?utm_source=chronosly.com&utm_medium=referral&utm_campaign=Templates2DarkLiveDemo", "url":"http://www.chronosly.com/product/dark-template-addon/?utm_source=clients&utm_medium=referral&utm_campaign=Templates2Darkprofile","featured":0,"updated":1409356800,"dw":0,"rate":8},
+    "grid":{"id":"grid","version":"1.5","name":"Grid","desc":"Responsive theme with 3 Column Grid based homepage layout.","img":"'.CHRONOSLY_URL.'/css/img/chronosly-screenshot-grid-template-event-list-3f-3e-300x190.jpg","price":15,"author":"Chronosly","author_url":"http://www.chronosly.com", "view":"http://grid.chronosly.com/events/?utm_source=chronosly.com&utm_medium=referral&utm_campaign=Templates2GridLiveDemo", "url":"http://www.chronosly.com/product/grid-template/?utm_source=clients&utm_medium=referral&utm_campaign=Templates2Gridprofile","featured":0,"updated":1409356800,"dw":0,"rate":8}
 
 }');
             set_transient( "templates_marketplace", $templates, 60 * 60 * 24  );
@@ -163,23 +163,25 @@ if(!class_exists('Chronosly_Extend'))
             if ($f = @fopen($file, "r")) {
                 $version =@fread($f, filesize($file));
                 if($version != CHRONOSLY_VERSION) {
-                	$f = @fopen($file, "w+");
-		       		fwrite($f, CHRONOSLY_VERSION);
-		            @fclose($f);
-		            return true;
-               	}
+                    if($f1 = @fopen($file, "w+")){
+                        fwrite($f1, CHRONOSLY_VERSION);
+                        @fclose($f1);
+                        return true;
+                    } else return false;
+                }
                  @fclose($f);
                  return false;
                 
 
             } else {
-                $f = @fopen($file, "w+");
-                fwrite($f, CHRONOSLY_VERSION);
-                @fclose($f);
-                return true;
+                if($f = @fopen($file, "w+")){
+                    fwrite($f, CHRONOSLY_VERSION);
+                    @fclose($f);
+                    return true;
+                } else return false;
             }
         }
-
+        
         public function copy_default_template(){
             $utils = new Chronosly_Utils();
             $files = scandir (CHRONOSLY_PATH.DIRECTORY_SEPARATOR."custom-templates");
