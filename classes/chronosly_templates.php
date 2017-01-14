@@ -807,7 +807,7 @@ if(!class_exists('Chronosly_Templates')){
                             //echo date("Y-m-d",$v)." ".$v;
                             $this->vars->metas['repeat'] = $v;
                             if(substr($this->vars->link, -1) != "/") $this->vars->link .="/";
-                            $this->vars->link .= (get_option('permalink_structure')?"repeat_$v":"&repeat=$v");
+                            $this->vars->link .= (get_option('permalink_structure')?"?repeat_$v":"&repeat=$v");
                             break;
                         case "end":
                             $this->vars->metas['ev-to'][0] = date("Y-m-d",$v);
